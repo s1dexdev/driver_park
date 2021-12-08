@@ -1,10 +1,5 @@
 function App() {
-  return <>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <ul>
-      <li>Lorem, ipsum dolor.</li>
-    </ul>
-  </>
+  return <></>
 }
 
 export default App;
