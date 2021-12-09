@@ -1,13 +1,11 @@
 @import '../../styles/variables.scss';
 
 .header {
-    padding-top: 8px;
-    padding-bottom: 8px;
-
     background-color: $component-bcg-color;
 
     &__wrapper {
         display: flex;
         justify-content: space-between;
+        padding: 8px 0;
     }
 }
