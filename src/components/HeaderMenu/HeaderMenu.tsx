@@ -1,12 +1,17 @@
-import { ReactComponent as Menu } from './menu.svg';
-import { ReactComponent as Logo } from './logo.svg';
+import { ReactComponent as IconMenu } from './menu.svg';
+import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import styles from './HeaderMenu.module.scss';
 
-function HeaderMenu() {
+function HeaderMenu({
+    showMenu,
+}: {
+    showMenu: React.MouseEventHandler<SVGSVGElement>;
+}) {
     return (
         <div className={styles.headerMenu}>
-            <Menu className={styles.headerMenu__menu} />
-            <Logo />
+            <IconMenu className={styles.headerMenu__menu} onClick={showMenu} />
+
+            <IconLogo />
         </div>
     );
 }
