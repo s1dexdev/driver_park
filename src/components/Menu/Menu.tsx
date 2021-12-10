@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import { ReactComponent as IconDriver } from './driver.svg';
@@ -19,19 +20,25 @@ function Menu({ onShowMenu }: { onShowMenu: Function }) {
 
     return (
         <div className={styles.menu}>
-            <IconLogo className={styles.menu__logo} />
+            <NavLink to="/" className={styles.menu__link}>
+                <IconLogo className={styles.menu__logo} />
+            </NavLink>
             <ul className={styles.menu__list}>
-                <li className={styles.menu__item}>
-                    <span className={styles.menu__itemContent}>
-                        <IconDriver className={styles.menu__icon} />
-                        Drivers
-                    </span>
+                <li key="drivers" className={styles.menu__item}>
+                    <NavLink to="/drivers" className={styles.menu__link}>
+                        <span className={styles.menu__itemContent}>
+                            <IconDriver className={styles.menu__icon} />
+                            Drivers
+                        </span>
+                    </NavLink>
                 </li>
-                <li className={styles.menu__item}>
-                    <span className={styles.menu__itemContent}>
-                        <IconCar className={styles.menu__icon} />
-                        Cars
-                    </span>
+                <li key="cars" className={styles.menu__item}>
+                    <NavLink to="/cars" className={styles.menu__link}>
+                        <span className={styles.menu__itemContent}>
+                            <IconCar className={styles.menu__icon} />
+                            Cars
+                        </span>
+                    </NavLink>
                 </li>
             </ul>
             <div className={styles.menu__footer}>
