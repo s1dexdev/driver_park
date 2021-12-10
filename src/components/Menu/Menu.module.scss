@@ -11,6 +11,15 @@
 
     background-color: $component-bcg-color;
 
+    &__link {
+        text-decoration: none;
+        color: $text-main-color;
+    }
+
+    &__link:hover {
+        text-decoration: underline;
+    }
+
     &__logo {
         display: block;
         margin: 8px 72px 24px;
