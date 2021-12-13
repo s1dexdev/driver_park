@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
-import { ReactComponent as IconDriver } from './driver.svg';
-import { ReactComponent as IconCar } from './car.svg';
+import { ReactComponent as IconDriver } from '../../images/driver.svg';
+import { ReactComponent as IconCar } from '../../images/car.svg';
 import styles from './Menu.module.scss';
 
 function Menu({ onShowMenu }: { onShowMenu: Function }) {
