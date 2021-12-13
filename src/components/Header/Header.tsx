@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import Container from '../Container';
-import HeaderMenu from '../HeaderMenu';
 import UserInfo from '../UserInfo';
 import Menu from '../Menu';
+import { ReactComponent as IconMenu } from '../../images/menu.svg';
+import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import styles from './Header.module.scss';
 
 function Header() {
@@ -16,7 +18,15 @@ function Header() {
         <header className={styles.header}>
             <Container>
                 <div className={styles.header__wrapper}>
-                    <HeaderMenu showMenu={showMenu} />
+                    <div className={styles.headerMenu}>
+                        <IconMenu
+                            className={styles.headerMenu__icon}
+                            onClick={showMenu}
+                        />
+                        <NavLink to="/">
+                            <IconLogo />
+                        </NavLink>
+                    </div>
                     <UserInfo />
                 </div>
                 {menu && <Menu onShowMenu={setMenu} />}

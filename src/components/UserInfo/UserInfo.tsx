@@ -1,5 +1,5 @@
-import { ReactComponent as IconAvatar } from './avatar.svg';
-import { ReactComponent as IconArrow } from './arrow.svg';
+import { ReactComponent as IconAvatar } from '../../images/avatar.svg';
+import { ReactComponent as IconArrow } from '../../images/bottomArrow.svg';
 import styles from './UserInfo.module.scss';
 
 function UserInfo() {
