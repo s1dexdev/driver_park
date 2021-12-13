@@ -3,9 +3,12 @@ import { useEffect } from 'react';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import { ReactComponent as IconDriver } from '../../images/driver.svg';
 import { ReactComponent as IconCar } from '../../images/car.svg';
+import navConfig from '../../utils/constants/navConfig';
 import styles from './Menu.module.scss';
 
 function Menu({ onShowMenu }: { onShowMenu: Function }) {
+    const { home, drivers, cars } = navConfig;
+
     const closeMenu = (event: MouseEvent) => {
         onShowMenu(false);
     };
@@ -28,7 +31,7 @@ function Menu({ onShowMenu }: { onShowMenu: Function }) {
                     <NavLink to="/drivers" className={styles.menu__link}>
                         <span className={styles.menu__itemContent}>
                             <IconDriver className={styles.menu__icon} />
-                            Drivers
+                            {drivers.label}
                         </span>
                     </NavLink>
                 </li>
@@ -36,7 +39,7 @@ function Menu({ onShowMenu }: { onShowMenu: Function }) {
                     <NavLink to="/cars" className={styles.menu__link}>
                         <span className={styles.menu__itemContent}>
                             <IconCar className={styles.menu__icon} />
-                            Cars
+                            {cars.label}
                         </span>
                     </NavLink>
                 </li>

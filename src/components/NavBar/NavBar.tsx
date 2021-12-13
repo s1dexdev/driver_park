@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom';
 import Container from '../Container';
 import { ReactComponent as Home } from '../../images/home.svg';
 import { ReactComponent as Arrow } from '../../images/rightArrow.svg';
+import navConfig from '../../utils/constants/navConfig';
 import styles from './NavBar.module.scss';
 
 type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
 
 function NavBar({ icon, text }: { icon: Icon; text: string }) {
+    const { home } = navConfig;
     const IconHome = icon;
 
     return (
@@ -16,7 +18,9 @@ function NavBar({ icon, text }: { icon: Icon; text: string }) {
                 <div className={styles.navBar__wrapper}>
                     <NavLink className={styles.navBar__link} to="/">
                         <Home className={styles.navBar__icon} />
-                        <span className={styles.navBar__textHome}>Home</span>
+                        <span className={styles.navBar__textHome}>
+                            {home.label}
+                        </span>
                     </NavLink>
                     <Arrow className={styles.navBar__arrow} />
                     <IconHome className={styles.navBar__icon} />

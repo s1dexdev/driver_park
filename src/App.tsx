@@ -3,15 +3,18 @@ import Header from './components/Header';
 import PageHome from './pages/PageHome';
 import PageDrivers from './pages/PageDrivers';
 import PageCars from './pages/PageCars';
+import navConfig from './utils/constants/navConfig';
 
 function App() {
+    const { home, drivers, cars } = navConfig;
+
     return (
         <>
             <Header />
             <Routes>
-                <Route path="/" element={<PageHome />} />
-                <Route path="/drivers" element={<PageDrivers />} />
-                <Route path="/cars" element={<PageCars />} />
+                <Route path={home.path} element={<PageHome />} />
+                <Route path={drivers.path} element={<PageDrivers />} />
+                <Route path={cars.path} element={<PageCars />} />
             </Routes>
         </>
     );
