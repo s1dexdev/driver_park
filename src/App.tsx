@@ -5,7 +5,7 @@ import PageDrivers from './pages/PageDrivers';
 import PageCars from './pages/PageCars';
 import navConfig from './utils/constants/navConfig';
 
-function App() {
+function App(): JSX.Element {
     const { home, drivers, cars } = navConfig;
 
     return (

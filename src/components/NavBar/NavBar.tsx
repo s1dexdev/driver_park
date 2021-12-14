@@ -8,7 +8,7 @@ import styles from './NavBar.module.scss';
 
 type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
 
-function NavBar({ icon, text }: { icon: Icon; text: string }) {
+function NavBar({ icon, text }: { icon: Icon; text: string }): JSX.Element {
     const { home } = navConfig;
     const IconHome = icon;
 

@@ -7,7 +7,7 @@ import { ReactComponent as IconMenu } from '../../images/menu.svg';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import styles from './Header.module.scss';
 
-function Header() {
+function Header(): JSX.Element {
     const [menu, setMenu] = useState(false);
 
     const showMenu = () => {

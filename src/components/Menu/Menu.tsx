@@ -6,10 +6,12 @@ import { ReactComponent as IconCar } from '../../images/car.svg';
 import navConfig from '../../utils/constants/navConfig';
 import styles from './Menu.module.scss';
 
-function Menu({ onShowMenu }: { onShowMenu: Function }) {
-    const { home, drivers, cars } = navConfig;
+type Props = React.Dispatch<React.SetStateAction<boolean>>;
 
-    const closeMenu = (event: MouseEvent) => {
+function Menu({ onShowMenu }: { onShowMenu: Props }): JSX.Element {
+    const { drivers, cars } = navConfig;
+
+    const closeMenu = () => {
         onShowMenu(false);
     };
 

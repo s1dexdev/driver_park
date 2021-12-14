@@ -3,7 +3,7 @@ import { ReactComponent as Car } from '../../images/car.svg';
 import navConfig from '../../utils/constants/navConfig';
 import styles from './PageCars.module.scss';
 
-function PageCars() {
+function PageCars(): JSX.Element {
     const { cars } = navConfig;
 
     return (

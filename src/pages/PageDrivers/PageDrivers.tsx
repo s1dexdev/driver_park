@@ -3,7 +3,7 @@ import { ReactComponent as Driver } from '../../images/driver.svg';
 import navConfig from '../../utils/constants/navConfig';
 import styles from './PageDrivers.module.scss';
 
-function PageDrivers() {
+function PageDrivers(): JSX.Element {
     const { drivers } = navConfig;
 
     return (
