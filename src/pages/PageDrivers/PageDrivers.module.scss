@@ -1,6 +1,34 @@
-.driversPage {
-    width: 200px;
-    margin-top: 100px;
+.driversBlock {
+    background: #FFFFFF;
+    border-radius: 10px;
+    max-width: 1556px;
+    margin-top: 56px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.nuv_list {
+    display: flex;
+    align-items: center;
+}
+
+.list_status {
+    border: none;
+}
+
+.driversTitle {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: space-around;
+    border-bottom: 1px solid #6b6f82;
+}
+.driversPage {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 72px;
+    border-bottom: 1px solid #6b6f82;
 }
