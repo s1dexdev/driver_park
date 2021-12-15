@@ -6,9 +6,9 @@ import { ReactComponent as IconCar } from '../../images/car.svg';
 import navConfig from '../../utils/constants/navConfig';
 import styles from './Menu.module.scss';
 
-type Props = React.Dispatch<React.SetStateAction<boolean>>;
+type TProps = (isShow: boolean) => void;
 
-function Menu({ onShowMenu }: { onShowMenu: Props }): JSX.Element {
+function Menu({ onShowMenu }: { onShowMenu: TProps }): JSX.Element {
     const { drivers, cars } = navConfig;
 
     useEffect(() => {
