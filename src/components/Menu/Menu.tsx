@@ -11,17 +11,17 @@ type Props = React.Dispatch<React.SetStateAction<boolean>>;
 function Menu({ onShowMenu }: { onShowMenu: Props }): JSX.Element {
     const { drivers, cars } = navConfig;
 
-    const closeMenu = () => {
-        onShowMenu(false);
-    };
-
     useEffect(() => {
+        const closeMenu = () => {
+            onShowMenu(false);
+        };
+
         window.addEventListener('click', closeMenu);
 
         return () => {
             window.removeEventListener('click', closeMenu);
         };
-    });
+    }, [onShowMenu]);
 
     return (
         <div className={styles.menu}>
