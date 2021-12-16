@@ -1,12 +1,11 @@
-import { FunctionComponent, SVGProps } from 'react';
 import NavBar from '../../components/NavBar';
 import { ReactComponent as Driver } from '../../images/driver.svg';
-import { ReactComponent as SortDown } from '../../images/sortDown.svg';
-import { ReactComponent as BottomArrow } from '../../images/bottomArrow.svg';
 import navConfig from '../../utils/constants/navConfig';
 import styles from './PageDrivers.module.scss';
-
-type TIcon = FunctionComponent<SVGProps<SVGSVGElement>>;
+import { ReactComponent as SortDown } from './sortDown.svg';
+import { ReactComponent as BottomArrow } from '../../images/bottomArrow.svg';
+import DriversBlock from './DriversBlock';
+import DriversArr from './Drivers';
 
 function PageDrivers(): JSX.Element {
     const { drivers } = navConfig;
@@ -44,14 +43,7 @@ function PageDrivers(): JSX.Element {
                     </div>
                     <div className={styles.nuv_list}>Action</div>
                 </div>
-                <div className={styles.driversPage}>
-                    <div>1</div>
-                    <div>Fedya Juk</div>
-                    <div>12.05.2021</div>
-                    <div>12.05.2021</div>
-                    <div>active</div>
-                    <div>Action</div>
-                </div>
+                <DriversBlock drivers={DriversArr} />
             </div>
         </>
     );

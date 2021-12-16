@@ -1,10 +1,11 @@
 .driversBlock {
-    background: #FFFFFF;
-    border-radius: 10px;
+    background: white;
+    border-radius: 4px;
     max-width: 1556px;
     margin-top: 56px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: rgba(136, 136, 136, 0.24);
 }
 
 .nuv_list {
@@ -30,5 +31,5 @@
     margin-left: auto;
     margin-right: auto;
     height: 72px;
-    border-bottom: 1px solid #6b6f82;
+    border-bottom: 1px solid #FFFFFF;
 }

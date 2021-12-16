@@ -12,8 +12,22 @@ const Drivers: DriversArr[] = [
         name_surname: 'Fedya Juk',
         registration: '12.05.2021',
         date_birth: '02.05.2021',
-        status: 'active'
-    }
+        status: 'active',
+    },
+    {
+        id: 2,
+        name_surname: 'Vasya Juk',
+        registration: '12.05.2021',
+        date_birth: '02.05.2021',
+        status: 'active',
+    },
+    {
+        id: 3,
+        name_surname: 'Senya Juk',
+        registration: '12.05.2021',
+        date_birth: '02.05.2021',
+        status: 'no active',
+    },
 ];
 
 export default Drivers;
