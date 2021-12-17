@@ -1,10 +1,10 @@
 export const tableCarsColumns = [
     'id',
-    'Full name driver',
+    'Driver',
     'Brand',
     'Mark',
     'Number',
-    'First registration',
+    'Release date',
     'Status',
-    'Actions',
+    'Action',
 ];
