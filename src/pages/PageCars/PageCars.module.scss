@@ -1,6 +1,99 @@
-.carsPage {
-    width: 200px;
+%hideButton {
+
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        background-color: rgba($color: #000000, $alpha: 0);
+    
+}
+
+%blockSort {
+    display: flex;
+    .sort {
+        width: 30px;
+        height: 20px;
+        padding: 0 3px;
+        background-color: rgba($color: #000000, $alpha: 0);
+    }
+}
+
+$vw: 6.25vw;
+
+.blockTableCars {
+    position: relative;
+    width: auto;
+    display: flex;
     margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #5c5a5a;
+
+    .addCars {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+
+    .headlines {
+        width: auto;
+        min-height: 30px;
+        height: fit-content;
+        display: flex;
+        padding: 60px 0 20px;
+        border-bottom: 1px solid grey;
+
+        div:nth-child(1) {
+            padding-left: 5px;
+            width: $vw;
+            @extend %blockSort;
+        }
+
+        div:nth-child(2) {
+            width: $vw * 4;
+            @extend %blockSort;
+        }
+
+        div:nth-child(n+3) {
+            width: $vw * 2;
+            @extend %blockSort;
+        }
+
+        div:nth-child(8) {
+            width: $vw;
+            @extend %blockSort;
+        }
+    }
+
+    .blockInfo {
+        width: auto;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        border-bottom: 1px solid grey;
+
+        div:nth-child(1) {
+            padding-left: 5px;
+            width: 6.25vw;
+        }
+        div:nth-child(2) {
+            width: 25vw;
+        }
+        div:nth-child(n+3) {
+            width: 12.5vw;
+        }
+        button:nth-child(8) {
+            width: 6.25vw;
+            @extend %hideButton;
+        }
+    }
+
+    .footer {
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
 }
