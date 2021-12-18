@@ -5,7 +5,7 @@ import Header from './components/Header';
 import PageHome from './pages/PageHome';
 import PageDrivers from './pages/PageDrivers';
 import PageCars from './pages/PageCars';
-import navConfig from './utils/constants/navConfig';
+import { navConfig } from './utils/constants';
 
 const { store } = createStore();
 

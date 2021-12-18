@@ -1,4 +1,3 @@
-import { IDriver, IFetchDriversSuccess } from './interfaces';
 // const ADD_DRIVER_REQUEST = 'ADD_DRIVER_REQUEST';
 // const ADD_DRIVER_SUCCESS = 'ADD_DRIVER_SUCCESS';
 // const ADD_DRIVER_ERROR = 'ADD_DRIVER_ERROR';
@@ -15,6 +14,7 @@ export const fetchDriversRequest = () => ({
     type: FETCH_DRIVERS_REQUEST,
 });
 
-// export const fetchDriversSuccess = () => ({
-//     type: FETCH_DRIVERS_SUCCESS,
-// });
+export const fetchDriversSuccess = <T>(data: T) => ({
+    type: FETCH_DRIVERS_SUCCESS,
+    payload: data,
+});

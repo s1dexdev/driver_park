@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Container from '../Container';
 import { ReactComponent as Home } from '../../images/home.svg';
 import { ReactComponent as Arrow } from '../../images/rightArrow.svg';
-import navConfig from '../../utils/constants/navConfig';
+import { navConfig } from '../../utils/constants';
 import styles from './NavBar.module.scss';
 
 type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;

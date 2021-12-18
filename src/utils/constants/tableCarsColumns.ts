@@ -1,8 +1,8 @@
 export const tableCarsColumns = [
     'id',
     'Driver',
-    'Brand',
     'Mark',
+    'Model',
     'Number',
     'Release date',
     'Status',

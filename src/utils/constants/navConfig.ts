@@ -1,4 +1,4 @@
-const navConfig = {
+export const navConfig = {
     home: {
         path: '/',
         label: 'Home',
@@ -12,5 +12,3 @@ const navConfig = {
         label: 'Cars',
     },
 };
-
-export default navConfig;

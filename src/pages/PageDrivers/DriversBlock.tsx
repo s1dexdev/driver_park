@@ -1,7 +1,6 @@
-import React from 'react';
 import Driver from './Driver';
 
-const DriversBlock = ({ drivers }: any) => {
+const DriversBlock = ({ drivers }: any): JSX.Element => {
     return (
         <>
             {drivers.map((item: any) => (

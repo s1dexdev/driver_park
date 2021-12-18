@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import { ReactComponent as IconDriver } from '../../images/driver.svg';
 import { ReactComponent as IconCar } from '../../images/car.svg';
-import navConfig from '../../utils/constants/navConfig';
+import { navConfig } from '../../utils/constants';
 import styles from './Menu.module.scss';
 
 type TProps = (isShow: boolean) => void;

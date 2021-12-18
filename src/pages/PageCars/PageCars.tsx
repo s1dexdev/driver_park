@@ -1,27 +1,36 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCarsRequest } from '../../redux/cars/actions';
+import { carsSelector } from '../../redux/cars/selectors';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/Container';
 import { ReactComponent as Car } from '../../images/car.svg';
 import { ReactComponent as Delete } from './delete.svg';
 import { ReactComponent as SortDown } from './sortDown.svg';
 import { ReactComponent as SortUp } from './sortUp.svg';
-import navConfig from '../../utils/constants/navConfig';
+import { navConfig } from '../../utils/constants';
 import {
     tableCarsColumns,
     statusCars,
     infoCars,
 } from '../../utils/constants/index';
 import styles from './PageCars.module.scss';
-import React, { useState } from 'react';
 import { Button } from '../../components/Button/Button';
 
 function PageCars(): JSX.Element {
-    const { cars } = navConfig;
+    const dispatch = useDispatch();
+    const cars: any = useSelector(carsSelector);
+
     const sortImageDown = <SortDown />;
     const sortImageUp = <SortUp />;
     const removeCar = <Delete />;
 
     const [sortedData, setData] = useState(false);
     const [addForm, setFormNewCar] = useState(false);
+
+    useEffect(() => {
+        dispatch(fetchCarsRequest());
+    }, [dispatch]);
 
     const addNewCar = () => {
         setFormNewCar(true);
@@ -41,7 +50,7 @@ function PageCars(): JSX.Element {
 
     return (
         <>
-            <NavBar icon={Car} text={cars.label} />
+            <NavBar icon={Car} text={navConfig.cars.label} />
             {/* <h1 className={styles.carsPage}>Cars Page</h1> */}
             <Container>
                 <div className={styles.blockTableCars}>
@@ -69,19 +78,20 @@ function PageCars(): JSX.Element {
                             );
                         })}
                     </div>
-                    {infoCars.map(item => {
+                    {cars.map((item: any) => {
                         return (
                             <div
                                 className={styles.blockInfo}
                                 key={'id_' + item.id}
                             >
                                 <div>{item.id}</div>
-                                <div>{item.FIO}</div>
-                                <div>{item.brand}</div>
+                                {/* <div>{item.FIO}</div> */}
+                                <div>{item.model}</div>
                                 <div>{item.mark}</div>
-                                <div>{item.numberAuto}</div>
-                                <div>{item.registration}</div>
-                                <div>{item.status}</div>
+                                <div>{item.model}</div>
+                                <div>{item.number}</div>
+                                <div>{item.year}</div>
+                                <div>{item.status.title}</div>
                                 <Button
                                     className={styles.delete}
                                     name={item.id}

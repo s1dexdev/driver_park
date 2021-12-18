@@ -1,4 +1,4 @@
-import { FETCH_DRIVERS_REQUEST, FETCH_DRIVERS_SUCCESS } from './actions';
+import { FETCH_DRIVERS_SUCCESS } from './actions';
 import { IDriversState, IAction } from './interfaces';
 
 const initialState: any = {
