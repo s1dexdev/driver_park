@@ -1,3 +1,18 @@
-import { IState } from './interfaces';
+interface ICar {
+    id: number;
+    model: string;
+    mark: string;
+    year: number;
+    number: string;
+    driver_id: number;
+    status: {
+        title: string;
+        code: string;
+    };
+}
 
-export const carsSelector = (state: IState) => state.carsReducer.cars;
+interface IState {
+    carsReducer: { cars: ICar[] };
+}
+
+export const carsSelector = (state: IState): ICar[] => state.carsReducer.cars;

@@ -1,3 +1,5 @@
+import styles from './Button.module.scss';
+
 export const Button = ({
     img,
     text,
@@ -12,7 +14,11 @@ export const Button = ({
     onClick: () => boolean;
 }): JSX.Element => {
     return (
-        <button className={className} onClick={onClick} name={name}>
+        <button
+            className={`${className} ${styles.button}`}
+            onClick={onClick}
+            name={name}
+        >
             {text}
             {img}
         </button>

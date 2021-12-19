@@ -1,7 +1,28 @@
 import { FETCH_CARS_SUCCESS } from './actions';
-import { ICarsState, IAction } from './interfaces';
 
-const initialState: any = {
+interface ICar {
+    id: number;
+    model: string;
+    mark: string;
+    year: number;
+    number: string;
+    driver_id: number;
+    status: {
+        title: string;
+        code: string;
+    };
+}
+
+interface ICarsState {
+    cars: ICar[] | [];
+}
+
+interface IAction {
+    type: string;
+    payload?: ICar[];
+}
+
+const initialState: ICarsState = {
     cars: [],
 };
 
@@ -11,6 +32,7 @@ export const carsReducer = (state: ICarsState, action: IAction): ICarsState => {
     switch (action.type) {
         case FETCH_CARS_SUCCESS:
             return {
+                ...state,
                 cars: action.payload!,
             };
         default:

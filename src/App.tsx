@@ -1,10 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createStore from './redux/store';
-import Header from './components/Header';
-import PageHome from './pages/PageHome';
-import PageDrivers from './pages/PageDrivers';
-import PageCars from './pages/PageCars';
+import { Header } from './components';
+import { PageHome, PageDrivers, PageCars } from './pages';
 import { navConfig } from './utils/constants';
 
 const { store } = createStore();

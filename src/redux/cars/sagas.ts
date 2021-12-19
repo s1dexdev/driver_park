@@ -1,12 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { FETCH_CARS_REQUEST, fetchCarsSuccess } from './actions';
-import { fetchCars } from './operations';
+import { fetchCars } from '../../API/carService';
 
-function* sagaWorker(): Generator {
-    const data = yield call(fetchCars);
-    yield put(fetchCarsSuccess(data));
+function* fetchCarsSaga(): Generator {
+    const cars = yield call(fetchCars);
+    yield put(fetchCarsSuccess(cars));
 }
 
-export default function* watchDrivers() {
-    yield takeEvery(FETCH_CARS_REQUEST, sagaWorker);
+export function* watchCars() {
+    yield takeEvery(FETCH_CARS_REQUEST, fetchCarsSaga);
 }

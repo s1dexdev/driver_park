@@ -1,9 +1,21 @@
 import { parseDate } from '../../helpers';
-import styles from './PageDrivers.module.scss';
-import { ReactComponent as Delete } from './delete.svg';
+import { ReactComponent as Delete } from '../../images/delete.svg';
 import { ReactComponent as BottomArrow } from '../../images/bottomArrow.svg';
+import styles from './PageDrivers.module.scss';
 
-function Driver({ driver }: any): JSX.Element {
+interface IDriver {
+    id: number;
+    first_name: string;
+    last_name: string;
+    date_created: number;
+    date_birth: number;
+    status: {
+        title: string;
+        code: string;
+    };
+}
+
+function Driver({ driver }: { driver: IDriver }): JSX.Element {
     return (
         <>
             <div className={styles.driversPage}>
