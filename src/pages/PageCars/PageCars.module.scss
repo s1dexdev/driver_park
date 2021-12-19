@@ -1,10 +1,8 @@
 %hideButton {
-
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        background-color: rgba($color: #000000, $alpha: 0);
-    
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: rgba($color: #000000, $alpha: 0);
 }
 
 %blockSort {
@@ -54,7 +52,7 @@ $vw: 6.25vw;
             @extend %blockSort;
         }
 
-        div:nth-child(n+3) {
+        div:nth-child(n + 3) {
             width: $vw * 2;
             @extend %blockSort;
         }
@@ -80,7 +78,7 @@ $vw: 6.25vw;
         div:nth-child(2) {
             width: 25vw;
         }
-        div:nth-child(n+3) {
+        div:nth-child(n + 3) {
             width: 12.5vw;
         }
         button:nth-child(8) {
