@@ -1,4 +1,4 @@
-import { FETCH_DRIVERS_SUCCESS } from './actions';
+import { FETCH_DRIVERS_SUCCESS, SET_LOADING } from './actions';
 
 interface IDriver {
     id: number;
@@ -14,6 +14,7 @@ interface IDriver {
 
 interface IDriversState {
     drivers: IDriver[] | [];
+    isLoading: boolean;
 }
 
 interface IAction {
@@ -21,20 +22,28 @@ interface IAction {
     payload?: IDriver[];
 }
 
-const initialState: IDriversState = {
+const initialDriversState: IDriversState = {
     drivers: [],
+    isLoading: false,
 };
 
 export const driversReducer = (state: IDriversState, action: IAction) => {
-    state = state || initialState;
+    state = state || initialDriversState;
 
     switch (action.type) {
         case FETCH_DRIVERS_SUCCESS:
             return {
                 ...state,
-                drivers: action.payload!,
+                drivers: action.payload,
             };
+
+        case SET_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload,
+            };
+
         default:
-            return initialState;
+            return initialDriversState;
     }
 };

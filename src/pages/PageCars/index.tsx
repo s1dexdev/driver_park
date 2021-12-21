@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Container, NavBar, TableCars } from '../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, NavBar, TableCars, Spinner } from '../../components';
 import { navConfig } from '../../utils/constants';
 import { fetchCarsRequest } from '../../redux/cars/actions';
+import { loadingSelector } from '../../redux/cars/selectors';
 import { ReactComponent as Car } from '../../images/car.svg';
 
 export function PageCars(): JSX.Element {
     const dispatch = useDispatch();
+    const isLoading = useSelector(loadingSelector);
 
     useEffect(() => {
         dispatch(fetchCarsRequest());
@@ -15,9 +17,7 @@ export function PageCars(): JSX.Element {
     return (
         <>
             <NavBar icon={Car} text={navConfig.cars.label} />
-            <Container>
-                <TableCars />
-            </Container>
+            <Container>{isLoading ? <Spinner /> : <TableCars />}</Container>
         </>
     );
 }

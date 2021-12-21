@@ -14,7 +14,10 @@ interface ICar {
 }
 
 interface IState {
-    carsReducer: { cars: ICar[] };
+    carsReducer: { cars: ICar[]; isLoading: boolean };
 }
 
 export const carsSelector = (state: IState): ICar[] => state.carsReducer.cars;
+
+export const loadingSelector = (state: IState): boolean =>
+    state.carsReducer.isLoading;
