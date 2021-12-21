@@ -1,5 +1,4 @@
-$driver-active-bcg-color: #ebf9eb;
-$driver-active-text-color: #26c124;
+@import '../../../styles/variables.scss';
 
 .listDrivers {
     &__item {
