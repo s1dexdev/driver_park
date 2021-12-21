@@ -15,6 +15,13 @@ export function TableHeaderCars(): JSX.Element {
                 <SortDown className={styles.tableHeader__icon} />
             </li>
             <li
+                key={'name'}
+                className={`${styles.tableHeader__item} ${styles.tableHeader__name}`}
+            >
+                NAME
+                <SortDown className={styles.tableHeader__icon} />
+            </li>
+            <li
                 key={'mark'}
                 className={`${styles.tableHeader__item} ${styles.tableHeader__mark}`}
             >
@@ -50,7 +57,10 @@ export function TableHeaderCars(): JSX.Element {
                 STATUS
                 <SortDown className={styles.tableHeader__icon} />
             </li>
-            <li key={'actions'} className={styles.tableHeader__item}>
+            <li
+                key={'actions'}
+                className={`${styles.tableHeader__item} ${styles.tableHeader__actions}`}
+            >
                 ACTIONS
             </li>
         </ul>

@@ -5,6 +5,8 @@ interface ICar {
     year: number;
     number: string;
     driver_id: number;
+    driver_firstname?: string;
+    driver_lastname?: string;
     status: {
         title: string;
         code: string;

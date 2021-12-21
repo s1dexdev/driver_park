@@ -1,12 +1,45 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { fetchDrivers } from '../../../API/driverService';
 import { carsSelector } from '../../../redux/cars/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
-
 import styles from './ListCars.module.scss';
 
+interface IDriver {
+    id: number;
+    first_name: string;
+    last_name: string;
+    date_created: number;
+    date_birth: number;
+    status: {
+        title: string;
+        code: string;
+    };
+}
+
 export function ListCars(): JSX.Element {
+    const [drivers, setDrivers] = useState<IDriver[]>([]);
     const cars = useSelector(carsSelector);
+
+    useEffect(() => {
+        fetchDrivers().then((data: IDriver[]) => setDrivers(data));
+    }, []);
+
+    const addDriverName = () => {
+        cars.forEach(car => {
+            const driver: IDriver = drivers.find(
+                (itemDriver: IDriver) => car.driver_id === itemDriver.id,
+            )!;
+
+            car.driver_firstname = driver.first_name;
+            car.driver_lastname = driver.last_name;
+        });
+    };
+
+    if (drivers.length > 0) {
+        addDriverName();
+    }
 
     return (
         <ul className={styles.listCars}>
@@ -22,6 +55,10 @@ export function ListCars(): JSX.Element {
                         >
                             {car.id}
                         </li>
+                        <li
+                            key={'name'}
+                            className={`${styles.car__item} ${styles.car__name}`}
+                        >{`${car.driver_firstname} ${car.driver_lastname}`}</li>
                         <li
                             key={'mark'}
                             className={`${styles.car__item} ${styles.car__mark}`}
@@ -44,17 +81,17 @@ export function ListCars(): JSX.Element {
                             key={'year'}
                             className={`${styles.car__item} ${styles.car__year}`}
                         >
-                            {parseDate(car.year)}
+                            {car.year}
                         </li>
                         <li
                             key={'status'}
-                            className={`${styles.driver__item} ${styles.driver__status}`}
+                            className={`${styles.car__item} ${styles.car__status}`}
                         >
                             {car.status.title}
                         </li>
                         <li
                             key={'actions'}
-                            className={`${styles.driver__item} ${styles.actions}`}
+                            className={`${styles.car__item} ${styles.car__actions}`}
                         >
                             <Delete />
                         </li>

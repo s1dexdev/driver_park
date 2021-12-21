@@ -24,16 +24,20 @@
         width: 50px;
     }
 
+    &__name {
+        width: 300px;
+    }
+
     &__mark {
-        width: 240px;
+        width: 150px;
     }
 
     &__model {
-        width: 200px;
+        width: 150px;
     }
 
     &__number {
-        width: 200px;
+        width: 150px;
     }
 
     &__year {
@@ -45,6 +49,6 @@
     }
 
     &__actions {
-        width: 100px;
+        width: 70px;
     }
 }
