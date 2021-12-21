@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+
+.button {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+}
+
+.carTable {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 104px;
+
+    &__title {
+        width: 576px;
+        padding: 8px 16px;
+
+        font-weight: 700;
+        line-height: 1.5;
+        color: $active-link-color;
+
+        border-radius: 8px 8px 0px 0px;
+        background-color: $component-bcg-color;
+    }
+
+    &__wrapper {
+        position: relative;
+        border-radius: 0px 8px 8px 8px;
+        background-color: $component-bcg-color;
+    }
+
+    &__numberCars {
+        padding: 16px 24px;
+
+        border-radius: 0px 8px 0px 0px;
+    }
+
+    &__numberCars_color {
+        color: $primary-link-color;
+    }
+}

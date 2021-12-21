@@ -1,0 +1,54 @@
+.listCars {
+    &__item {
+        padding: 22px 24px;
+
+        border-top: 1px solid #eeeeee;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    &__item:last-child {
+        border-radius: 0px 0px 8px 8px;
+    }
+}
+
+.car {
+    display: flex;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+    }
+
+    &__id {
+        width: 70px;
+    }
+
+    &__name {
+        width: 300px;
+    }
+
+    &__mark {
+        width: 150px;
+    }
+
+    &__model {
+        width: 150px;
+    }
+
+    &__number {
+        width: 150px;
+    }
+
+    &__year {
+        width: 220px;
+    }
+
+    &__status {
+        width: 150px;
+    }
+
+    &__actions {
+        width: 70px;
+    }
+}

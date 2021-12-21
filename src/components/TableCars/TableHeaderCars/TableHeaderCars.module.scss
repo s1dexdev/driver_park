@@ -1,0 +1,49 @@
+.tableHeader {
+    display: flex;
+    align-items: center;
+
+    padding: 8px 24px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+    }
+
+    &__id {
+        width: 70px;
+    }
+
+    &__name {
+        width: 300px;
+    }
+
+    &__mark {
+        width: 150px;
+    }
+
+    &__model {
+        width: 150px;
+    }
+
+    &__number {
+        width: 150px;
+    }
+
+    &__year {
+        width: 220px;
+    }
+
+    &__status {
+        width: 150px;
+    }
+
+    &__actions {
+        width: 70px;
+    }
+
+    &__icon {
+        margin-left: 8px;
+        cursor: pointer;
+    }
+}
