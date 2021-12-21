@@ -11,13 +11,20 @@ export function TableDrivers(): JSX.Element {
         <div className={styles.driverTable}>
             <p className={styles.driverTable__title}>All drivers</p>
             <div className={styles.driverTable__wrapper}>
-                <p className={styles.driverTable__numberDrivers}>
-                    {' '}
-                    All drivers{' '}
-                    <span className={styles.driverTable__numberDrivers_color}>
-                        ({drivers.length})
-                    </span>
-                </p>
+                <div className={styles.driverTable__wrapperDrivers}>
+                    <p className={styles.driverTable__numberDrivers}>
+                        {' '}
+                        All drivers{' '}
+                        <span
+                            className={styles.driverTable__numberDrivers_color}
+                        >
+                            ({drivers.length})
+                        </span>
+                    </p>
+                    <button className={styles.driverTable__addBtnDrivers}>
+                        Add drivers
+                    </button>
+                </div>
                 <TableHeaderDrivers />
                 <ListDrivers />
             </div>

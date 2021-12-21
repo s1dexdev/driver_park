@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .listDrivers {
     &__item {
         padding: 22px 24px;
@@ -7,7 +9,7 @@
     }
 
     &__item:last-child {
-        border-radius: 0px 0px 8px 8px;
+        border-radius: 0 0 8px 8px;
     }
 }
 
@@ -38,5 +40,26 @@
 
     &__status {
         width: 150px;
+        height: 24px;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 8px;
+
+        background: $driver-active-bcg-color;
+        color: $driver-active-text-color;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__action {
+        cursor: pointer;
+    }
+}
+
+.tableHeader {
+    &__iconDelete {
+      margin: 0 20px 0 20px;
     }
 }
