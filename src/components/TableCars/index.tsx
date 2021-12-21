@@ -3,9 +3,16 @@ import { carsSelector } from '../../redux/cars/selectors';
 import { TableHeaderCars } from './TableHeaderCars';
 import { ListCars } from './ListCars';
 import styles from './TableCars.module.scss';
+import { Button } from '../Button';
+import { Modal } from '../Modal/Modal';
+import { useState } from 'react';
 
 export function TableCars(): JSX.Element {
     const cars = useSelector(carsSelector);
+
+    const [modalActive, setModalActive] = useState(true);
+
+    // const renderModalCar = () => {};
 
     return (
         <div className={styles.carTable}>
@@ -18,8 +25,10 @@ export function TableCars(): JSX.Element {
                         ({cars.length})
                     </span>
                 </p>
+                {/* <Button onClick={renderModalCar} /> */}
                 <TableHeaderCars />
                 <ListCars />
+                <Modal active={modalActive} setActive={setModalActive} />
             </div>
         </div>
     );

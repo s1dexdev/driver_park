@@ -48,13 +48,13 @@ export function ListCars(): JSX.Element {
                         </li>
                         <li
                             key={'status'}
-                            className={`${styles.driver__item} ${styles.driver__status}`}
+                            className={`${styles.car__item} ${styles.car__status}`}
                         >
                             {car.status.title}
                         </li>
                         <li
                             key={'actions'}
-                            className={`${styles.driver__item} ${styles.actions}`}
+                            className={`${styles.car__item} ${styles.car__actions}`}
                         >
                             <Delete />
                         </li>
