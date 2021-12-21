@@ -1,4 +1,4 @@
-import { FETCH_CARS_SUCCESS } from './actions';
+import { FETCH_CARS_SUCCESS, SET_LOADING } from './actions';
 
 interface ICar {
     id: number;
@@ -15,6 +15,7 @@ interface ICar {
 
 interface ICarsState {
     cars: ICar[] | [];
+    isLoading: boolean;
 }
 
 interface IAction {
@@ -24,16 +25,23 @@ interface IAction {
 
 const initialState: ICarsState = {
     cars: [],
+    isLoading: false,
 };
 
-export const carsReducer = (state: ICarsState, action: IAction): ICarsState => {
+export const carsReducer = (state: ICarsState, action: IAction) => {
     state = state || initialState;
 
     switch (action.type) {
         case FETCH_CARS_SUCCESS:
             return {
                 ...state,
-                cars: action.payload!,
+                cars: action.payload,
+            };
+
+        case SET_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload,
             };
         default:
             return initialState;

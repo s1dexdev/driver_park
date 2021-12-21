@@ -11,8 +11,11 @@ interface IDriver {
 }
 
 interface IState {
-    driversReducer: { drivers: IDriver[] };
+    driversReducer: { drivers: IDriver[]; isLoading: boolean };
 }
 
 export const driversSelector = (state: IState): IDriver[] =>
     state.driversReducer.drivers;
+
+export const loadingSelector = (state: IState): boolean =>
+    state.driversReducer.isLoading;

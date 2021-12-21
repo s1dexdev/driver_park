@@ -6,3 +6,4 @@ export { NavBar } from './NavBar';
 export { UserInfo } from './UserInfo';
 export { TableDrivers } from './TableDrivers';
 export { TableCars } from './TableCars';
+export { Spinner } from './Spinner';
