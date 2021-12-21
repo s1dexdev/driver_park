@@ -10,7 +10,7 @@ export const Modal = ({
 }) => {
     return (
         <div
-            className={active ? 'styles.modal__active' : 'styles.modal'}
+            className={styles[active ? 'modal__active' : 'modal']}
             onClick={() => setActive(false)}
         >
             <div

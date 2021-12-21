@@ -10,9 +10,12 @@ import { useState } from 'react';
 export function TableCars(): JSX.Element {
     const cars = useSelector(carsSelector);
 
-    const [modalActive, setModalActive] = useState(true);
+    const [modalActive, setModalActive] = useState(false);
 
-    // const renderModalCar = () => {};
+    const renderModalCar = () => {
+        setModalActive(true);
+        return true;
+    };
 
     return (
         <div className={styles.carTable}>
@@ -25,11 +28,15 @@ export function TableCars(): JSX.Element {
                         ({cars.length})
                     </span>
                 </p>
-                {/* <Button onClick={renderModalCar} /> */}
+                <Button
+                    onClick={renderModalCar}
+                    Name={styles.button}
+                    text={'Add car'}
+                />
                 <TableHeaderCars />
                 <ListCars />
-                <Modal active={modalActive} setActive={setModalActive} />
             </div>
+            <Modal active={modalActive} setActive={setModalActive} />
         </div>
     );
 }

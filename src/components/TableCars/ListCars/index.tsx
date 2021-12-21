@@ -81,7 +81,7 @@ export function ListCars(): JSX.Element {
                             key={'year'}
                             className={`${styles.car__item} ${styles.car__year}`}
                         >
-                            {car.year}
+                            {parseDate(car.year)}
                         </li>
                         <li
                             key={'status'}
