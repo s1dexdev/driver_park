@@ -1,24 +1,16 @@
-import styles from './Button.module.scss';
-
 export const Button = ({
     img,
     text,
-    name,
-    className,
     onClick,
+    Name,
 }: {
     img?: JSX.Element;
     text?: string;
-    name?: string;
-    className: string;
+    Name: string;
     onClick: () => boolean;
 }): JSX.Element => {
     return (
-        <button
-            className={`${className} ${styles.button}`}
-            onClick={onClick}
-            name={name}
-        >
+        <button onClick={onClick} className={Name}>
             {text}
             {img}
         </button>

@@ -1,5 +1,11 @@
 @import '../../styles/variables.scss';
 
+.button {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+}
+
 .carTable {
     width: 1500px;
     margin-left: auto;
@@ -19,6 +25,7 @@
     }
 
     &__wrapper {
+        position: relative;
         border-radius: 0px 8px 8px 8px;
         background-color: $component-bcg-color;
     }
@@ -33,4 +40,3 @@
         color: $primary-link-color;
     }
 }
-
