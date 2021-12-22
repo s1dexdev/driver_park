@@ -21,23 +21,25 @@ export function TableCars(): JSX.Element {
         <div className={styles.carTable}>
             <p className={styles.carTable__title}>All cars</p>
             <div className={styles.carTable__wrapper}>
-                <p className={styles.carTable__numberCars}>
-                    {' '}
-                    All cars{' '}
-                    <span className={styles.carTable__numberCars_color}>
-                        ({cars.length})
-                    </span>
-                </p>
-                <Button
-                    text={'Add car'}
-                    name={styles.button}
-                    className={styles.button}
-                    onClick={renderModalCar}
-                />
+                <div className={styles.carTable__wrapperCars}>
+                    <p className={styles.carTable__numberCars}>
+                        {' '}
+                        All cars{' '}
+                        <span className={styles.carTable__numberCars_color}>
+                            ({cars.length})
+                        </span>
+                    </p>
+                    <Button
+                        className={styles.button}
+                        onClick={renderModalCar}
+                        name={styles.button}
+                        text={'Add car'}
+                    />
+                </div>
                 <TableHeaderCars />
                 <ListCars />
+                <Modal active={modalActive} setActive={setModalActive} />
             </div>
-            <Modal active={modalActive} setActive={setModalActive} />
         </div>
     );
 }
