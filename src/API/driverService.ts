@@ -2,10 +2,10 @@ import Axios from 'axios';
 import { apiConfig } from './apiConfig';
 
 interface IDriver {
-    id: number;
+    id?: number;
     first_name: string;
     last_name: string;
-    date_created: number;
+    date_created?: number;
     date_birth: number;
     status: {
         title: string;
@@ -14,7 +14,7 @@ interface IDriver {
 }
 
 interface ICar {
-    id: number;
+    id?: number;
     model: string;
     mark: string;
     year: number;
@@ -26,6 +26,15 @@ interface ICar {
         title: string;
         code: string;
     };
+}
+
+interface IDriverStatus {
+    title: string;
+    code: string;
+}
+
+interface IUpdateInfo {
+    [key: string]: string | number | IDriverStatus;
 }
 
 Axios.defaults.baseURL = apiConfig.baseUrl;
@@ -40,6 +49,34 @@ export async function fetchDrivers(): Promise<IDriver[]> {
 
 export async function fetchDriverById(id: number): Promise<IDriver> {
     const response = await Axios.get(`/driver/${id}/`);
+    const { data }: { data: IDriver } = response.data;
+
+    return data;
+}
+
+export async function fetchDriverStatus(): Promise<IDriverStatus> {
+    const response = await Axios.get(`/driver-status/`);
+    const { data }: { data: IDriverStatus } = response.data;
+
+    return data;
+}
+
+export async function addDriver(driver: IDriver): Promise<IDriver> {
+    const response = await Axios.post(`/driver/`, driver);
+    const { data }: { data: IDriver } = response.data;
+
+    return data;
+}
+
+export async function deleteDriver(id: number): Promise<void> {
+    await Axios.delete(`/driver/${id}/`);
+}
+
+export async function updateDriverInfo(
+    id: number,
+    info: IUpdateInfo,
+): Promise<IDriver> {
+    const response = await Axios.patch(`/driver/${id}/`, info);
     const { data }: { data: IDriver } = response.data;
 
     return data;
