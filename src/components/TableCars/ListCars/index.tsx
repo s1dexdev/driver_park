@@ -1,52 +1,17 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchDrivers } from '../../../API/driverService';
 import { carsSelector } from '../../../redux/cars/selectors';
-import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
+import { Button } from '../../';
 import styles from './ListCars.module.scss';
-import { Button } from '../..';
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: {
-        title: string;
-        code: string;
-    };
-}
 
 export function ListCars(): JSX.Element {
-    const [drivers, setDrivers] = useState<IDriver[]>([]);
-    const removeCar = <Delete />;
     const cars = useSelector(carsSelector);
-
-    useEffect(() => {
-        fetchDrivers().then((data: IDriver[]) => setDrivers(data));
-    }, []);
+    const removeCar = <Delete />;
 
     const deleteCar = (id: number) => {
         console.log(id);
         return true;
     };
-
-    const addDriverName = () => {
-        cars.forEach(car => {
-            const driver: IDriver = drivers.find(
-                (itemDriver: IDriver) => car.driver_id === itemDriver.id,
-            )!;
-
-            car.driver_firstname = driver.first_name;
-            car.driver_lastname = driver.last_name;
-        });
-    };
-
-    if (drivers.length > 0) {
-        addDriverName();
-    }
 
     return (
         <ul className={styles.listCars}>
@@ -88,7 +53,7 @@ export function ListCars(): JSX.Element {
                             key={'year'}
                             className={`${styles.car__item} ${styles.car__year}`}
                         >
-                            {parseDate(car.year)}
+                            {car.year}
                         </li>
                         <li
                             key={'status'}
@@ -101,9 +66,9 @@ export function ListCars(): JSX.Element {
                             className={`${styles.car__item} ${styles.car__actions}`}
                         >
                             <Button
-                                className={styles.delete}
-                                name={car.id.toString()}
                                 img={removeCar}
+                                name={car.id.toString()}
+                                className={styles.delete}
                                 onClick={() => deleteCar(car.id)}
                             />
                         </li>

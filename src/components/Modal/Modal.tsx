@@ -7,7 +7,7 @@ export const Modal = ({
 }: {
     active: boolean;
     setActive: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}): JSX.Element => {
     return (
         <div
             className={styles[active ? 'modal__active' : 'modal']}

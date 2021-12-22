@@ -13,6 +13,6 @@ export function* fetchDriversSaga(): Generator {
     yield put(setLoading(false));
 }
 
-export function* watchDrivers() {
+export function* watchDrivers(): Generator {
     yield takeEvery(FETCH_DRIVERS_REQUEST, fetchDriversSaga);
 }

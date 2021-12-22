@@ -19,7 +19,7 @@ interface IDriversState {
 
 interface IAction {
     type: string;
-    payload?: IDriver[];
+    payload: IDriver[] | boolean;
 }
 
 const initialDriversState: IDriversState = {

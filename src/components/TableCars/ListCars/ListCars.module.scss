@@ -20,7 +20,8 @@
         margin-right: 24px;
     }
 
-    &__id {
+    &__id,
+    &__actions {
         width: 70px;
     }
 
@@ -28,28 +29,15 @@
         width: 300px;
     }
 
-    &__mark {
-        width: 150px;
-    }
-
-    &__model {
-        width: 150px;
-    }
-
-    &__number {
+    &__mark,
+    &__model,
+    &__number,
+    &__status {
         width: 150px;
     }
 
     &__year {
         width: 220px;
-    }
-
-    &__status {
-        width: 150px;
-    }
-
-    &__actions {
-        width: 70px;
     }
 }
 

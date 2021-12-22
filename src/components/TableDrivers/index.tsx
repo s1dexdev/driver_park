@@ -1,15 +1,14 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { driversSelector } from '../../redux/drivers/selectors';
 import { TableHeaderDrivers } from './TableHeaderDrivers';
 import { ListDrivers } from './ListDrivers';
-import styles from './TableDrivers.module.scss';
 import { Button } from '../Button';
 import { Modal } from '../Modal/Modal';
-import { useState } from 'react';
+import styles from './TableDrivers.module.scss';
 
 export function TableDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
-
     const [modalActive, setModalActive] = useState(false);
 
     const renderModalDriver = () => {

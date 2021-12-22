@@ -9,6 +9,6 @@ function* fetchCarsSaga(): Generator {
     yield put(setLoading(false));
 }
 
-export function* watchCars() {
+export function* watchCars(): Generator {
     yield takeEvery(FETCH_CARS_REQUEST, fetchCarsSaga);
 }
