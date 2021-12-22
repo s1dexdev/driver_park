@@ -1,16 +1,18 @@
 export const Button = ({
     img,
     text,
+    name,
+    className,
     onClick,
-    Name,
 }: {
     img?: JSX.Element;
     text?: string;
-    Name: string;
+    name?: string;
+    className: string;
     onClick: () => boolean;
 }): JSX.Element => {
     return (
-        <button onClick={onClick} className={Name}>
+        <button onClick={onClick} className={className} name={name}>
             {text}
             {img}
         </button>
