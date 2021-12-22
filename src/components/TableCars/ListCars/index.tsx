@@ -5,6 +5,7 @@ import { carsSelector } from '../../../redux/cars/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from './ListCars.module.scss';
+import { Button } from '../..';
 
 interface IDriver {
     id: number;
@@ -20,11 +21,17 @@ interface IDriver {
 
 export function ListCars(): JSX.Element {
     const [drivers, setDrivers] = useState<IDriver[]>([]);
+    const removeCar = <Delete />;
     const cars = useSelector(carsSelector);
 
     useEffect(() => {
         fetchDrivers().then((data: IDriver[]) => setDrivers(data));
     }, []);
+
+    const deleteCar = (id: number) => {
+        console.log(id);
+        return true;
+    };
 
     const addDriverName = () => {
         cars.forEach(car => {
@@ -93,7 +100,12 @@ export function ListCars(): JSX.Element {
                             key={'actions'}
                             className={`${styles.car__item} ${styles.car__actions}`}
                         >
-                            <Delete />
+                            <Button
+                                className={styles.delete}
+                                name={car.id.toString()}
+                                img={removeCar}
+                                onClick={() => deleteCar(car.id)}
+                            />
                         </li>
                     </ul>
                 </li>
