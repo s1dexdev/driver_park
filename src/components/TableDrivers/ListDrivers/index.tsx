@@ -47,7 +47,20 @@ export function ListDrivers(): JSX.Element {
                             key={'status'}
                             className={`${styles.driver__item} ${styles.driver__status}`}
                         >
-                            {driver.status.title}
+                            <div className={styles.driver__status_dropDown}>
+                                <div className={styles.driver__status_dropBtn}>
+                                    {driver.status.title}
+                                </div>
+                                <ul
+                                    className={
+                                        styles.driver__status_dropDownContent
+                                    }
+                                >
+                                    <li>Ссылка 1</li>
+                                    <li>Ссылка 2</li>
+                                    <li>Ссылка 3</li>
+                                </ul>
+                            </div>
                         </li>
                         <li
                             key={'action'}
