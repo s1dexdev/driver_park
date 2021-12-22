@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .driverTable {
+    width: 1500px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 104px;
@@ -35,20 +36,5 @@
 
     &__numberDrivers_color {
         color: $primary-link-color;
-    }
-
-    &__addBtnDrivers {
-        cursor: pointer;
-        margin: 16px 24px;
-        padding: 8px 16px;
-        width: 147px;
-        height: 40px;
-        font-weight: 700;
-
-        background: $driver-btn-add-color;
-        color: $active-link-color;
-
-        border: none;
-        border-radius: 8px;
     }
 }

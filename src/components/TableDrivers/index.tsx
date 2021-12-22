@@ -3,9 +3,19 @@ import { driversSelector } from '../../redux/drivers/selectors';
 import { TableHeaderDrivers } from './TableHeaderDrivers';
 import { ListDrivers } from './ListDrivers';
 import styles from './TableDrivers.module.scss';
+import { Button } from '../Button';
+import { Modal } from '../Modal/Modal';
+import { useState } from 'react';
 
 export function TableDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
+
+    const [modalActive, setModalActive] = useState(false);
+
+    const renderModalDriver = () => {
+        setModalActive(true);
+        return true;
+    };
 
     return (
         <div className={styles.driverTable}>
@@ -21,12 +31,15 @@ export function TableDrivers(): JSX.Element {
                             ({drivers.length})
                         </span>
                     </p>
-                    <button className={styles.driverTable__addBtnDrivers}>
-                        Add drivers
-                    </button>
+                    <Button
+                        onClick={renderModalDriver}
+                        Name={styles.button}
+                        text={'Add drivers'}
+                    />
                 </div>
                 <TableHeaderDrivers />
                 <ListDrivers />
+                <Modal active={modalActive} setActive={setModalActive} />
             </div>
         </div>
     );
