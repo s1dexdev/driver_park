@@ -1,11 +1,5 @@
 @import '../../styles/variables.scss';
 
-.button {
-    position: absolute;
-    top: 10px;
-    right: 30px;
-}
-
 .carTable {
     width: 1500px;
     margin-left: auto;
@@ -20,20 +14,25 @@
         line-height: 1.5;
         color: $active-link-color;
 
-        border-radius: 8px 8px 0px 0px;
+        border-radius: 8px 8px 0 0;
         background-color: $component-bcg-color;
     }
 
     &__wrapper {
         position: relative;
-        border-radius: 0px 8px 8px 8px;
+        border-radius: 0 8px 8px 8px;
         background-color: $component-bcg-color;
+    }
+
+    &__wrapperCars {
+      display: flex;
+      justify-content: space-between;
     }
 
     &__numberCars {
         padding: 16px 24px;
 
-        border-radius: 0px 8px 0px 0px;
+        border-radius: 0 8px 0 0;
     }
 
     &__numberCars_color {
