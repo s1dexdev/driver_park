@@ -29,9 +29,10 @@ export function TableCars(): JSX.Element {
                     </span>
                 </p>
                 <Button
-                    onClick={renderModalCar}
-                    Name={styles.button}
                     text={'Add car'}
+                    name={styles.button}
+                    className={styles.button}
+                    onClick={renderModalCar}
                 />
                 <TableHeaderCars />
                 <ListCars />

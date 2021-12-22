@@ -56,6 +56,6 @@ export const carsConfig = [
     },
     {
         title: 'ACTIONS',
-        classes: ['tableHeader__item'],
+        classes: ['tableHeader__item', 'tableHeader__actions'],
     },
 ];

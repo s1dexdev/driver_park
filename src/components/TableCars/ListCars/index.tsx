@@ -1,11 +1,17 @@
 import { useSelector } from 'react-redux';
 import { carsSelector } from '../../../redux/cars/selectors';
-import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
+import { Button } from '../../';
 import styles from './ListCars.module.scss';
 
 export function ListCars(): JSX.Element {
     const cars = useSelector(carsSelector);
+    const removeCar = <Delete />;
+
+    const deleteCar = (id: number) => {
+        console.log(id);
+        return true;
+    };
 
     return (
         <ul className={styles.listCars}>
@@ -59,7 +65,12 @@ export function ListCars(): JSX.Element {
                             key={'actions'}
                             className={`${styles.car__item} ${styles.car__actions}`}
                         >
-                            <Delete />
+                            <Button
+                                img={removeCar}
+                                name={car.id.toString()}
+                                className={styles.delete}
+                                onClick={() => deleteCar(car.id)}
+                            />
                         </li>
                     </ul>
                 </li>
