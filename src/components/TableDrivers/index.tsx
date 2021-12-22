@@ -33,7 +33,8 @@ export function TableDrivers(): JSX.Element {
                     </p>
                     <Button
                         onClick={renderModalDriver}
-                        Name={styles.button}
+                        className={styles.button}
+                        name={styles.button}
                         text={'Add drivers'}
                     />
                 </div>
