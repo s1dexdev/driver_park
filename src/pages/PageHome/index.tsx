@@ -1,4 +1,3 @@
-import { Spinner } from '../../components';
 import styles from './PageHome.module.scss';
 
 export function PageHome(): JSX.Element {

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { driversSelector } from '../../../redux/drivers/selectors';
 import { parseDate } from '../../../helpers';
-import styles from './ListDrivers.module.scss';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
+import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
