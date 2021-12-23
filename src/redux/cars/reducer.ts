@@ -1,4 +1,8 @@
-import { FETCH_CARS_SUCCESS, SET_LOADING } from './actions';
+import {
+    FETCH_CARS_REQUEST,
+    FETCH_CARS_SUCCESS,
+    FETCH_CARS_ERROR,
+} from './actions';
 
 interface ICar {
     id: number;
@@ -16,6 +20,7 @@ interface ICar {
 interface ICarsState {
     cars: ICar[] | [];
     isLoading: boolean;
+    error: null | string;
 }
 
 interface IAction {
@@ -23,26 +28,40 @@ interface IAction {
     payload?: ICar[];
 }
 
+const setTrue = () => true;
+const setFalse = () => false;
+const setNull = () => null;
+
 const initialState: ICarsState = {
     cars: [],
-    isLoading: false,
+    isLoading: setFalse(),
+    error: setNull(),
 };
 
 export const carsReducer = (state: ICarsState, action: IAction) => {
     state = state || initialState;
 
     switch (action.type) {
+        case FETCH_CARS_REQUEST:
+            return {
+                ...state,
+                isLoading: setTrue(),
+                error: setNull(),
+            };
         case FETCH_CARS_SUCCESS:
             return {
                 ...state,
                 cars: action.payload,
+                isLoading: setFalse(),
+                error: setNull(),
             };
-
-        case SET_LOADING:
+        case FETCH_CARS_ERROR:
             return {
                 ...state,
-                isLoading: action.payload,
+                cars: action.payload,
+                error: action.payload,
             };
+
         default:
             return initialState;
     }

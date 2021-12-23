@@ -1,18 +1,38 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
+import * as API from '../../API/driverService';
 import {
     FETCH_DRIVERS_REQUEST,
+    DELETE_DRIVER_REQUEST,
     fetchDriversSuccess,
-    setLoading,
+    fetchDriversError,
+    deleteDriverSuccess,
+    deleteDriverError,
 } from './actions';
-import { fetchDrivers } from '../../API/driverService';
 
 export function* fetchDriversSaga(): Generator {
-    yield put(setLoading(true));
-    const drivers = yield call(fetchDrivers);
-    yield put(fetchDriversSuccess(drivers));
-    yield put(setLoading(false));
+    try {
+        const drivers = yield call(API.fetchDrivers);
+        yield put(fetchDriversSuccess(drivers));
+    } catch (error) {
+        yield put(fetchDriversError(error));
+    }
+}
+
+export function* deleteDriverSaga({
+    payload,
+}: {
+    payload: number;
+    type: string;
+}) {
+    try {
+        yield call(API.deleteDriver, payload);
+        yield put(deleteDriverSuccess(payload));
+    } catch (error) {
+        yield deleteDriverError(error);
+    }
 }
 
 export function* watchDrivers(): Generator {
-    yield takeEvery(FETCH_DRIVERS_REQUEST, fetchDriversSaga);
+    yield takeLatest(FETCH_DRIVERS_REQUEST, fetchDriversSaga);
+    yield takeLatest(DELETE_DRIVER_REQUEST, deleteDriverSaga);
 }
