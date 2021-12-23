@@ -3,6 +3,8 @@ import { carsSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { Button } from '../../';
 import styles from './ListCars.module.scss';
+import { statusCars } from './statusCars';
+import { useState } from 'react';
 
 export function ListCars(): JSX.Element {
     const cars = useSelector(carsSelector);
@@ -10,6 +12,19 @@ export function ListCars(): JSX.Element {
 
     const deleteCar = (id: number) => {
         console.log(id);
+        return true;
+    };
+    const [focusElement, setFocusElement] = useState('');
+    const [active, setActive] = useState(false);
+
+    const selectStatus = (idCar: string) => {
+        setActive(!active);
+        setFocusElement(idCar);
+        return true;
+    };
+
+    const choiseStatus = (status: string) => {
+        console.log(status);
         return true;
     };
 
@@ -30,7 +45,9 @@ export function ListCars(): JSX.Element {
                         <li
                             key={'name'}
                             className={`${styles.car__item} ${styles.car__name}`}
-                        >{`${car.driver_firstname} ${car.driver_lastname}`}</li>
+                        >
+                            {`${car.driver_firstname} ${car.driver_lastname}`}
+                        </li>
                         <li
                             key={'mark'}
                             className={`${styles.car__item} ${styles.car__mark}`}
@@ -59,7 +76,38 @@ export function ListCars(): JSX.Element {
                             key={'status'}
                             className={`${styles.car__item} ${styles.car__status}`}
                         >
-                            {car.status.title}
+                            {/* {car.status.title} */}
+                            <Button
+                                className={styles.dropdown}
+                                onClick={() => selectStatus(car.id.toString())}
+                                text={car.status.title}
+                                name={car.id.toString()}
+                            />
+                            <ul
+                                id={car.id.toString()}
+                                className={
+                                    styles[
+                                        active &&
+                                        focusElement === car.id.toString()
+                                            ? 'dropdownContent__active'
+                                            : 'dropdownContent'
+                                    ]
+                                }
+                            >
+                                {statusCars.map(status => {
+                                    return (
+                                        <li
+                                            key={status}
+                                            className={
+                                                styles.dropdownContent__li
+                                            }
+                                            onClick={() => choiseStatus(status)}
+                                        >
+                                            {status}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         </li>
                         <li
                             key={'actions'}
