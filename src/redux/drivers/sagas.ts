@@ -25,7 +25,6 @@ export function* deleteDriverSaga({
     type: string;
 }) {
     try {
-        console.log(123);
         yield call(API.deleteDriver, payload);
         yield put(deleteDriverSuccess(payload));
     } catch (error) {
