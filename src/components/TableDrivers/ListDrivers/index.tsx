@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { driversSelector } from '../../../redux/drivers/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
@@ -7,6 +8,20 @@ import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
+    const [statusActive, setStatusActive] = useState(false);
+
+    const deleteDriver = (id: number) => {
+        return true;
+    };
+
+    const showCar = (id: number) => {
+        return true;
+    };
+
+    const selectStatus = () => {
+        setStatusActive(true);
+        return true;
+    };
 
     return (
         <ul className={styles.listDrivers}>
@@ -47,7 +62,23 @@ export function ListDrivers(): JSX.Element {
                             key={'status'}
                             className={`${styles.driver__item} ${styles.driver__status}`}
                         >
-                            {driver.status.title}
+                            <div className={styles.driver__status_dropDown}>
+                                <button
+                                    onClick={selectStatus}
+                                    className={styles.driver__status_dropBtn}
+                                >
+                                    {driver.status.title}
+                                </button>
+                                <ul
+                                    className={
+                                        styles.driver__status_dropDownContent
+                                    }
+                                >
+                                    <li>Активный</li>
+                                    <li>Не активный</li>
+                                    <li>Заблокирован</li>
+                                </ul>
+                            </div>
                         </li>
                         <li
                             key={'action'}
@@ -55,8 +86,13 @@ export function ListDrivers(): JSX.Element {
                         >
                             <Delete
                                 className={styles.tableHeader__iconDelete}
+                                name={driver.id.toString()}
+                                onClick={() => deleteDriver(driver.id)}
                             />
-                            <Car className={styles.tableHeader__iconCar} />
+                            <Car
+                                className={styles.tableHeader__iconCar}
+                                onClick={() => showCar(driver.id)}
+                            />
                         </li>
                     </ul>
                 </li>

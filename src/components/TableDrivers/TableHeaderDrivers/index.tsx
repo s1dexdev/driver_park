@@ -9,14 +9,16 @@ export function TableHeaderDrivers(): JSX.Element {
             <li key={'checkbox'} className={`${styles.tableHeader__item}`}>
                 <input type="checkbox" />
             </li>
-            {driversConfig.map(({ title, classes }) => (
-                <li key={title} className={concatClasses(styles, classes)}>
-                    {title}
-                    {title !== 'ACTIONS' && (
-                        <SortDown className={styles.tableHeader__icon} />
-                    )}
-                </li>
-            ))}
+            {driversConfig.map(
+                ({ title, classes }: { title: string; classes: string[] }) => (
+                    <li key={title} className={concatClasses(styles, classes)}>
+                        {title}
+                        {title !== 'ACTIONS' && (
+                            <SortDown className={styles.tableHeader__icon} />
+                        )}
+                    </li>
+                ),
+            )}
         </ul>
     );
 }

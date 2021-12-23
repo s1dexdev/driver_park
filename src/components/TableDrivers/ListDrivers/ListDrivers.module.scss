@@ -53,6 +53,42 @@
         justify-content: center;
     }
 
+    &__status_dropBtn {
+        color: #4CAF50;
+        font-size: 16px;
+        border: none;
+    }
+
+    &__status_dropDown {
+        position: relative;
+        display: inline-block;
+    }
+
+    &__status_dropDownContent {
+        display: none;
+        position: absolute;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    &__status_dropDownContent li {
+        color: #333333;
+        padding: 8px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+    &__status_dropDownContent li:hover {
+        background-color: #ededed;
+    }
+
+    &__status_dropDown:hover &__status_dropDownContent {
+        display: block;
+      }
+
     &__action {
         cursor: pointer;
     }
