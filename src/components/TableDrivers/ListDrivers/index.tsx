@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteDriverRequest } from '../../../redux/drivers/actions';
 import { driversSelector } from '../../../redux/drivers/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
@@ -7,6 +8,11 @@ import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
+    const dispatch = useDispatch();
+
+    const deleteDriver = (id: number) => {
+        dispatch(deleteDriverRequest(id));
+    };
 
     return (
         <ul className={styles.listDrivers}>
@@ -55,6 +61,7 @@ export function ListDrivers(): JSX.Element {
                         >
                             <Delete
                                 className={styles.tableHeader__iconDelete}
+                                onClick={() => deleteDriver(driver.id)}
                             />
                             <Car className={styles.tableHeader__iconCar} />
                         </li>
