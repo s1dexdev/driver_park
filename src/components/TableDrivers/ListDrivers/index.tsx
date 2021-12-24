@@ -8,10 +8,19 @@ import { ReactComponent as Car } from '../../../images/car.svg';
 import styles from './ListDrivers.module.scss';
 import { Button } from '../../Button';
 import { statusDrivers } from './statusDrivers';
+import { Modal } from '../../Modal/Modal';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
     const dispatch = useDispatch();
+    const [modalActive, setModalActive] = useState(false);
+    const [focusElement, setFocusElement] = useState('');
+    const [active, setActive] = useState(false);
+
+    const renderModalDriver = () => {
+        setModalActive(true);
+        return true;
+    };
 
     const deleteDriver = (id: number) => {
         dispatch(deleteDriverRequest(id));
@@ -20,9 +29,6 @@ export function ListDrivers(): JSX.Element {
     const showCar = (id: number) => {
         return true;
     };
-
-    const [focusElement, setFocusElement] = useState('');
-    const [active, setActive] = useState(false);
 
     const selectStatus = (idDriver: string) => {
         setActive(!active);
@@ -107,23 +113,6 @@ export function ListDrivers(): JSX.Element {
                                     );
                                 })}
                             </ul>
-                            {/*<div className={styles.driver__status_dropDown}>
-                                <button
-                                    onClick={selectStatus}
-                                    className={styles.driver__status_dropBtn}
-                                >
-                                    {driver.status.title}
-                                </button>
-                                <ul
-                                    className={
-                                        styles.driver__status_dropDownContent
-                                    }
-                                >
-                                    <li>Активный</li>
-                                    <li>Не активный</li>
-                                    <li>Заблокирован</li>
-                                </ul>
-                            </div>*/}
                         </li>
                         <li
                             key={'action'}
@@ -131,8 +120,12 @@ export function ListDrivers(): JSX.Element {
                         >
                             <Delete
                                 className={styles.tableHeader__iconDelete}
-                                onClick={() => deleteDriver(driver.id)}
+                                onClick={renderModalDriver}
                                 name={driver.id.toString()}
+                            />
+                            <Modal
+                                active={modalActive}
+                                setActive={setModalActive}
                             />
                             <Car
                                 className={styles.tableHeader__iconCar}
