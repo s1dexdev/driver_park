@@ -39,7 +39,9 @@ export function TableDrivers(): JSX.Element {
                 </div>
                 <TableHeaderDrivers />
                 <ListDrivers />
-                <Modal active={modalActive} setActive={setModalActive} />
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <div></div>
+                </Modal>
             </div>
         </div>
     );

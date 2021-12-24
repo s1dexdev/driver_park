@@ -9,6 +9,7 @@ import styles from './ListDrivers.module.scss';
 import { Button } from '../../Button';
 import { statusDrivers } from './statusDrivers';
 import { Modal } from '../../Modal/Modal';
+import { DeleteDriverForm } from '../../DeleteDriverForm/DeleteDriverForm';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
@@ -126,7 +127,9 @@ export function ListDrivers(): JSX.Element {
                             <Modal
                                 active={modalActive}
                                 setActive={setModalActive}
-                            />
+                            >
+                                <DeleteDriverForm />
+                            </Modal>
                             <Car
                                 className={styles.tableHeader__iconCar}
                                 onClick={() => showCar(driver.id)}

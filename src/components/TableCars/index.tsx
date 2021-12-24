@@ -38,7 +38,9 @@ export function TableCars(): JSX.Element {
                 </div>
                 <TableHeaderCars />
                 <ListCars />
-                <Modal active={modalActive} setActive={setModalActive} />
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <div></div>
+                </Modal>
             </div>
         </div>
     );
