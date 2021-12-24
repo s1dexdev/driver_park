@@ -1,11 +1,10 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Button, Modal, CarForm } from '../';
 import { carsSelector } from '../../redux/cars/selectors';
 import { TableHeaderCars } from './TableHeaderCars';
 import { ListCars } from './ListCars';
 import styles from './TableCars.module.scss';
-import { Button } from '../Button';
-import { Modal } from '../Modal/Modal';
-import { useState } from 'react';
 
 export function TableCars(): JSX.Element {
     const cars = useSelector(carsSelector);
@@ -38,7 +37,9 @@ export function TableCars(): JSX.Element {
                 </div>
                 <TableHeaderCars />
                 <ListCars />
-                <Modal active={modalActive} setActive={setModalActive} />
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <CarForm />
+                </Modal>
             </div>
         </div>
     );

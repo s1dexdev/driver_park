@@ -1,13 +1,15 @@
-import { useSelector } from 'react-redux';
-import { carsSelector } from '../../../redux/cars/selectors';
-import { ReactComponent as Delete } from '../../../images/delete.svg';
-import { Button } from '../../';
-import styles from './ListCars.module.scss';
-import { statusCars } from './statusCars';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Button } from '../../';
+import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
+import { ReactComponent as Delete } from '../../../images/delete.svg';
+
+import styles from './ListCars.module.scss';
 
 export function ListCars(): JSX.Element {
     const cars = useSelector(carsSelector);
+    const statuses = useSelector(statusesSelector);
+
     const removeCar = <Delete />;
 
     const deleteCar = (id: number) => {
@@ -94,16 +96,16 @@ export function ListCars(): JSX.Element {
                                     ]
                                 }
                             >
-                                {statusCars.map(status => {
+                                {statuses.map(({ title }, index) => {
                                     return (
                                         <li
-                                            key={status}
+                                            key={index}
                                             className={
                                                 styles.dropdownContent__li
                                             }
-                                            onClick={() => choiseStatus(status)}
+                                            onClick={() => choiseStatus(title)}
                                         >
-                                            {status}
+                                            {title}
                                         </li>
                                     );
                                 })}
