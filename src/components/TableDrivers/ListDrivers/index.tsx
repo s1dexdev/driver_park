@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteDriverRequest } from '../../../redux/drivers/actions';
+/*import { deleteDriverRequest } from '../../../redux/drivers/actions';*/
 import { driversSelector } from '../../../redux/drivers/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
@@ -13,7 +13,7 @@ import { DeleteDriverForm } from '../../DeleteDriverForm/DeleteDriverForm';
 
 export function ListDrivers(): JSX.Element {
     const drivers = useSelector(driversSelector);
-    const dispatch = useDispatch();
+    /*const dispatch = useDispatch();*/
     const [modalActive, setModalActive] = useState(false);
     const [focusElement, setFocusElement] = useState('');
     const [active, setActive] = useState(false);
@@ -23,9 +23,9 @@ export function ListDrivers(): JSX.Element {
         return true;
     };
 
-    const deleteDriver = (id: number) => {
+    /*const deleteDriver = (id: number) => {
         dispatch(deleteDriverRequest(id));
-    };
+    };*/
 
     const showCar = (id: number) => {
         return true;
@@ -128,7 +128,7 @@ export function ListDrivers(): JSX.Element {
                                 active={modalActive}
                                 setActive={setModalActive}
                             >
-                                <DeleteDriverForm />
+                                <DeleteDriverForm id={driver.id} />
                             </Modal>
                             <Car
                                 className={styles.tableHeader__iconCar}

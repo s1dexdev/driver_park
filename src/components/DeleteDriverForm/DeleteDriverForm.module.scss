@@ -1,0 +1,24 @@
+.deleteForm {
+    &__form {
+        text-align: center;
+    }
+
+    &__title {
+        font-size: 16px;
+        margin: 20px;
+    }
+
+    &__btn {
+        display: flex;
+    }
+
+    &__btnRemove {
+        background-color: #e4bfbc;
+        color: white;
+    }
+
+    &__btnNoRemove {
+        background-color: #99c5e2;
+        color: white;
+    }
+}
