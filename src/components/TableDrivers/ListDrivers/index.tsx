@@ -6,9 +6,10 @@ import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
 import styles from './ListDrivers.module.scss';
+import { Button } from '../../Button';
+import { statusDrivers } from './statusDrivers';
 
 export function ListDrivers(): JSX.Element {
-    const [statusActive, setStatusActive] = useState(false);
     const drivers = useSelector(driversSelector);
     const dispatch = useDispatch();
 
@@ -20,8 +21,17 @@ export function ListDrivers(): JSX.Element {
         return true;
     };
 
-    const selectStatus = () => {
-        setStatusActive(true);
+    const [focusElement, setFocusElement] = useState('');
+    const [active, setActive] = useState(false);
+
+    const selectStatus = (idDriver: string) => {
+        setActive(!active);
+        setFocusElement(idDriver);
+        return true;
+    };
+
+    const choiseStatus = (status: string) => {
+        console.log(status);
         return true;
     };
 
@@ -64,7 +74,40 @@ export function ListDrivers(): JSX.Element {
                             key={'status'}
                             className={`${styles.driver__item} ${styles.driver__status}`}
                         >
-                            <div className={styles.driver__status_dropDown}>
+                            <Button
+                                className={styles.dropdown}
+                                onClick={() =>
+                                    selectStatus(driver.id.toString())
+                                }
+                                text={driver.status.title}
+                                name={driver.id.toString()}
+                            />
+                            <ul
+                                id={driver.id.toString()}
+                                className={
+                                    styles[
+                                        active &&
+                                        focusElement === driver.id.toString()
+                                            ? 'dropdownContent__active'
+                                            : 'dropdownContent'
+                                    ]
+                                }
+                            >
+                                {statusDrivers.map(status => {
+                                    return (
+                                        <li
+                                            key={status}
+                                            className={
+                                                styles.dropdownContent__li
+                                            }
+                                            onClick={() => choiseStatus(status)}
+                                        >
+                                            {status}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                            {/*<div className={styles.driver__status_dropDown}>
                                 <button
                                     onClick={selectStatus}
                                     className={styles.driver__status_dropBtn}
@@ -80,7 +123,7 @@ export function ListDrivers(): JSX.Element {
                                     <li>Не активный</li>
                                     <li>Заблокирован</li>
                                 </ul>
-                            </div>
+                            </div>*/}
                         </li>
                         <li
                             key={'action'}
