@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDriverRequest } from '../../../redux/drivers/actions';
-import { driversSelector } from '../../../redux/drivers/selectors';
+import {
+    driversSelector,
+    statusesSelector,
+} from '../../../redux/drivers/selectors';
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
 import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
+    const dispatch = useDispatch();
     const [statusActive, setStatusActive] = useState(false);
     const drivers = useSelector(driversSelector);
-    const dispatch = useDispatch();
+    const statuses = useSelector(statusesSelector);
 
     const deleteDriver = (id: number) => {
         dispatch(deleteDriverRequest(id));
@@ -76,9 +80,9 @@ export function ListDrivers(): JSX.Element {
                                         styles.driver__status_dropDownContent
                                     }
                                 >
-                                    <li>Активный</li>
-                                    <li>Не активный</li>
-                                    <li>Заблокирован</li>
+                                    {statuses.map(({ title }) => (
+                                        <li key={title}>{title}</li>
+                                    ))}
                                 </ul>
                             </div>
                         </li>

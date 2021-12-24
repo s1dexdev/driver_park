@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, NavBar, TableDrivers, Spinner } from '../../components';
 import { navConfig } from '../../utils/constants';
-import { fetchDriversRequest } from '../../redux/drivers/actions';
+import {
+    fetchDriversRequest,
+    fetchDriverStatusesRequest,
+} from '../../redux/drivers/actions';
 import { loadingSelector } from '../../redux/drivers/selectors';
 import { ReactComponent as Driver } from '../../images/driver.svg';
 
@@ -12,6 +15,7 @@ export function PageDrivers(): JSX.Element {
 
     useEffect(() => {
         dispatch(fetchDriversRequest());
+        dispatch(fetchDriverStatusesRequest());
     }, [dispatch]);
 
     return (

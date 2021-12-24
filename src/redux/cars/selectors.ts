@@ -13,11 +13,24 @@ interface ICar {
     };
 }
 
+interface IStatuse {
+    title: string;
+    code: string;
+}
+
 interface IState {
-    carsReducer: { cars: ICar[]; isLoading: boolean };
+    carsReducer: {
+        cars: ICar[];
+        statuses: IStatuse[];
+        isLoading: boolean;
+        error: null | string;
+    };
 }
 
 export const carsSelector = (state: IState): ICar[] => state.carsReducer.cars;
+
+export const statusesSelector = (state: IState): IStatuse[] =>
+    state.carsReducer.statuses;
 
 export const loadingSelector = (state: IState): boolean =>
     state.carsReducer.isLoading;

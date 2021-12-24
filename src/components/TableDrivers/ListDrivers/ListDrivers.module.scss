@@ -39,22 +39,22 @@
     }
 
     &__status {
-        width: 150px;
-        height: 24px;
-        cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 8px;
-
-        background: $driver-active-bcg-color;
-        color: $driver-active-text-color;
-
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 150px;
+        height: 24px;
+        padding: 4px 8px;
+
+        color: $driver-active-text-color;
+
+        background: $driver-active-bcg-color;
+        border-radius: 8px;
     }
 
     &__status_dropBtn {
-        color: #4CAF50;
+        margin: 0;
+        color: #4caf50;
         font-size: 16px;
         border: none;
     }
@@ -65,13 +65,16 @@
     }
 
     &__status_dropDownContent {
-        display: none;
         position: absolute;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        top: 42px;
         z-index: 1;
+
+        display: none;
+        min-width: 160px;
+
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 
     &__status_dropDownContent li {
@@ -79,7 +82,7 @@
         padding: 8px 16px;
         text-decoration: none;
         display: block;
-      }
+    }
 
     &__status_dropDownContent li:hover {
         background-color: #ededed;
@@ -87,7 +90,7 @@
 
     &__status_dropDown:hover &__status_dropDownContent {
         display: block;
-      }
+    }
 
     &__action {
         cursor: pointer;
@@ -96,6 +99,6 @@
 
 .tableHeader {
     &__iconDelete {
-      margin: 0 20px 0 20px;
+        margin: 0 20px 0 20px;
     }
 }

@@ -2,6 +2,12 @@ import {
     FETCH_DRIVERS_REQUEST,
     FETCH_DRIVERS_SUCCESS,
     FETCH_DRIVERS_ERROR,
+    FETCH_DRIVER_STATUSES_REQUEST,
+    FETCH_DRIVER_STATUSES_SUCCESS,
+    FETCH_DRIVER_STATUSES_ERROR,
+    ADD_DRIVER_REQUEST,
+    ADD_DRIVER_SUCCESS,
+    ADD_DRIVER_ERROR,
     DELETE_DRIVER_REQUEST,
     DELETE_DRIVER_SUCCESS,
     DELETE_DRIVER_ERROR,
@@ -21,6 +27,7 @@ interface IDriver {
 
 interface IDriversState {
     drivers: IDriver[] | [];
+    statuses: { title: string; code: string }[];
     isLoading: boolean;
     error: null | string;
 }
@@ -36,6 +43,7 @@ const setNull = () => null;
 
 const initialDriversState: IDriversState = {
     drivers: [],
+    statuses: [],
     isLoading: setFalse(),
     error: setNull(),
 };
@@ -45,6 +53,8 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
 
     switch (action.type) {
         case FETCH_DRIVERS_REQUEST:
+        case FETCH_DRIVER_STATUSES_REQUEST:
+        case ADD_DRIVER_REQUEST:
         case DELETE_DRIVER_REQUEST:
             return {
                 ...state,
@@ -60,6 +70,22 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
+        case FETCH_DRIVER_STATUSES_SUCCESS:
+            return {
+                ...state,
+                statuses: action.payload,
+                isLoading: setFalse(),
+                error: setNull(),
+            };
+
+        case ADD_DRIVER_SUCCESS:
+            return {
+                ...state,
+                drivers: [...state.drivers, action.payload],
+                isLoading: setFalse(),
+                error: setNull(),
+            };
+
         case DELETE_DRIVER_SUCCESS:
             return {
                 ...state,
@@ -70,6 +96,8 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
         case FETCH_DRIVERS_ERROR:
+        case FETCH_DRIVER_STATUSES_ERROR:
+        case ADD_DRIVER_ERROR:
         case DELETE_DRIVER_ERROR:
             return {
                 ...state,

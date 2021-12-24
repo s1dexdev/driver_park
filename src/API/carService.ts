@@ -53,7 +53,7 @@ export async function fetchCarById(id: number): Promise<ICar> {
     return data;
 }
 
-export async function fetchCarStatus(): Promise<ICarStatus> {
+export async function fetchCarStatuses(): Promise<ICarStatus> {
     const response = await Axios.get(`/car-status/`);
     const { data }: { data: ICarStatus } = response.data;
 

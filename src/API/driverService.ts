@@ -54,9 +54,9 @@ export async function fetchDriverById(id: number): Promise<IDriver> {
     return data;
 }
 
-export async function fetchDriverStatus(): Promise<IDriverStatus> {
+export async function fetchDriverStatuses(): Promise<IDriverStatus[]> {
     const response = await Axios.get(`/driver-status/`);
-    const { data }: { data: IDriverStatus } = response.data;
+    const { data }: { data: IDriverStatus[] } = response.data;
 
     return data;
 }
