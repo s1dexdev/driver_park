@@ -11,7 +11,7 @@ import { ReactComponent as Car } from '../../../images/car.svg';
 import styles from './ListDrivers.module.scss';
 import { Button } from '../../Button';
 import { statusDrivers } from './statusDrivers';
-import { Modal } from '../../Modal/Modal';
+import { Modal } from '../../Modal';
 import { DeleteDriverForm } from '../../DeleteDriverForm/DeleteDriverForm';
 
 export function ListDrivers(): JSX.Element {
@@ -32,7 +32,7 @@ export function ListDrivers(): JSX.Element {
     };
 
     const selectStatus = (idDriver: string) => {
-        setStatusActive(!active);
+        setStatusActive(!statusActive);
         setFocusElement(idDriver);
         return true;
     };
@@ -93,22 +93,20 @@ export function ListDrivers(): JSX.Element {
                                 id={driver.id.toString()}
                                 className={
                                     styles[
-                                        active &&
+                                        statusActive &&
                                         focusElement === driver.id.toString()
                                             ? 'dropdownContent__active'
                                             : 'dropdownContent'
                                     ]
                                 }
                             >
-                                {statuses.map(({ status }) => (
+                                {statuses.map(({ title }) => (
                                     <li
-                                        key={status}
-                                        className={
-                                            styles.dropdownContent__li
-                                        }
-                                        onClick={() => choiseStatus(status)}
+                                        key={title}
+                                        className={styles.dropdownContent__li}
+                                        onClick={() => choiseStatus(title)}
                                     >
-                                        {status}
+                                        {title}
                                     </li>
                                 ))}
                             </ul>
