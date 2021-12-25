@@ -34,7 +34,7 @@ export const DeleteForm = ({
                 className={styles.formWrapper__btnDelete}
                 onClick={() => deleteItem()}
             >
-                Remove
+                Delete
             </button>
             <button onClick={() => setActiveModal(false)}>Cancel</button>
         </div>
