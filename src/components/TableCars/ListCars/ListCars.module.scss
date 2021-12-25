@@ -52,7 +52,8 @@
     margin: 0;
     height: 24px;
 
-    &:hover {
+    &:hover,
+    &:focus {
         box-shadow: none;
     }
 }
