@@ -14,7 +14,7 @@
 }
 
 .driver {
-    display: flex;
+        display: flex;
 
     &__item {
         display: flex;
@@ -44,52 +44,55 @@
         justify-content: center;
         width: 150px;
         height: 24px;
+        cursor: pointer;
         padding: 4px 8px;
-
-        color: $driver-active-text-color;
-
-        background: $driver-active-bcg-color;
         border-radius: 8px;
-    }
-
-    &__status_dropBtn {
-        margin: 0;
-        color: #4caf50;
-        font-size: 16px;
-        border: none;
-    }
-
-    &__status_dropDown {
         position: relative;
-        display: inline-block;
+        li:hover {
+          background-color: #ddd;
+        }
     }
 
-    &__status_dropDownContent {
-        position: absolute;
-        top: 42px;
-        z-index: 1;
+.dropdown {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 24px;
+      margin: 0;
+      padding: 2px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
 
+      &:hover {
+          background-color: #99c5e2;
+      }
+}
+
+.dropdownContent {
         display: none;
-        min-width: 160px;
 
-        background-color: #f9f9f9;
-        border-radius: 8px;
+    &__active {
+        display: block;
+        position: absolute;
+        top: 24px;
+        background-color: #f1f1f1;
+        min-width: 150px;
+        overflow: auto;
+        border-radius: 5px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
     }
 
-    &__status_dropDownContent li {
-        color: #333333;
-        padding: 8px 16px;
+    &__li {
+        color: black;
+        padding: 12px 16px;
         text-decoration: none;
         display: block;
-    }
 
-    &__status_dropDownContent li:hover {
-        background-color: #ededed;
-    }
-
-    &__status_dropDown:hover &__status_dropDownContent {
-        display: block;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__action {
@@ -101,4 +104,5 @@
     &__iconDelete {
         margin: 0 20px 0 20px;
     }
+  }
 }

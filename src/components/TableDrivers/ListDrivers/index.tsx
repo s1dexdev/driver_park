@@ -9,23 +9,36 @@ import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
 import styles from './ListDrivers.module.scss';
+import { Button } from '../../Button';
+import { statusDrivers } from './statusDrivers';
+import { Modal } from '../../Modal';
+import { DeleteDriverForm } from '../../DeleteDriverForm/DeleteDriverForm';
 
 export function ListDrivers(): JSX.Element {
     const dispatch = useDispatch();
     const [statusActive, setStatusActive] = useState(false);
     const drivers = useSelector(driversSelector);
+    const [modalActive, setModalActive] = useState(false);
+    const [focusElement, setFocusElement] = useState('');
     const statuses = useSelector(statusesSelector);
 
-    const deleteDriver = (id: number) => {
-        dispatch(deleteDriverRequest(id));
+    const renderModalDriver = () => {
+        setModalActive(true);
+        return true;
     };
 
     const showCar = (id: number) => {
         return true;
     };
 
-    const selectStatus = () => {
-        setStatusActive(true);
+    const selectStatus = (idDriver: string) => {
+        setStatusActive(!statusActive);
+        setFocusElement(idDriver);
+        return true;
+    };
+
+    const choiseStatus = (status: string) => {
+        console.log(status);
         return true;
     };
 
@@ -68,23 +81,35 @@ export function ListDrivers(): JSX.Element {
                             key={'status'}
                             className={`${styles.driver__item} ${styles.driver__status}`}
                         >
-                            <div className={styles.driver__status_dropDown}>
-                                <button
-                                    onClick={selectStatus}
-                                    className={styles.driver__status_dropBtn}
-                                >
-                                    {driver.status.title}
-                                </button>
-                                <ul
-                                    className={
-                                        styles.driver__status_dropDownContent
-                                    }
-                                >
-                                    {statuses.map(({ title }) => (
-                                        <li key={title}>{title}</li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <Button
+                                className={styles.dropdown}
+                                onClick={() =>
+                                    selectStatus(driver.id.toString())
+                                }
+                                text={driver.status.title}
+                                name={driver.id.toString()}
+                            />
+                            <ul
+                                id={driver.id.toString()}
+                                className={
+                                    styles[
+                                        statusActive &&
+                                        focusElement === driver.id.toString()
+                                            ? 'dropdownContent__active'
+                                            : 'dropdownContent'
+                                    ]
+                                }
+                            >
+                                {statuses.map(({ title }) => (
+                                    <li
+                                        key={title}
+                                        className={styles.dropdownContent__li}
+                                        onClick={() => choiseStatus(title)}
+                                    >
+                                        {title}
+                                    </li>
+                                ))}
+                            </ul>
                         </li>
                         <li
                             key={'action'}
@@ -92,9 +117,15 @@ export function ListDrivers(): JSX.Element {
                         >
                             <Delete
                                 className={styles.tableHeader__iconDelete}
-                                onClick={() => deleteDriver(driver.id)}
+                                onClick={renderModalDriver}
                                 name={driver.id.toString()}
                             />
+                            <Modal
+                                active={modalActive}
+                                setActive={setModalActive}
+                            >
+                                <DeleteDriverForm id={driver.id} />
+                            </Modal>
                             <Car
                                 className={styles.tableHeader__iconCar}
                                 onClick={() => showCar(driver.id)}
