@@ -14,7 +14,7 @@
 }
 
 .driver {
-        display: flex;
+    display: flex;
 
     &__item {
         display: flex;
@@ -44,65 +44,69 @@
         justify-content: center;
         width: 150px;
         height: 24px;
-        cursor: pointer;
         padding: 4px 8px;
         border-radius: 8px;
         position: relative;
         li:hover {
-          background-color: #ddd;
+            background-color: #ddd;
         }
     }
 
-.dropdown {
-      position: relative;
-      top: 0;
-      left: 0;
-      height: 24px;
-      margin: 0;
-      padding: 2px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
+    .dropdown {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 24px;
+        margin: 0;
+        padding: 2px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
 
-      &:hover {
-          background-color: #99c5e2;
-      }
-}
+        &:hover {
+            background-color: #99c5e2;
+        }
+    }
 
-.dropdownContent {
+    .dropdownContent {
         display: none;
 
-    &__active {
-        display: block;
-        position: absolute;
-        top: 24px;
-        background-color: #f1f1f1;
-        min-width: 150px;
-        overflow: auto;
-        border-radius: 5px;
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        z-index: 1;
+        &__active {
+            display: block;
+            position: absolute;
+            top: 24px;
+            background-color: #f1f1f1;
+            min-width: 150px;
+            overflow: auto;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        &__li {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__action {
+            cursor: pointer;
+        }
     }
 
-    &__li {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+    .tableHeader {
+        &__iconDelete {
+            margin: 0 20px 0 20px;
+        }
 
-      &:hover {
-        cursor: pointer;
-      }
+        &__iconDelete,
+        &__iconCar {
+            cursor: pointer;
+        }
     }
-
-    &__action {
-        cursor: pointer;
-    }
-}
-
-.tableHeader {
-    &__iconDelete {
-        margin: 0 20px 0 20px;
-    }
-  }
 }
