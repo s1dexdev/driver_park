@@ -29,21 +29,18 @@ interface IUpdateInfo {
 Axios.defaults.baseURL = apiConfig.baseUrl;
 Axios.defaults.headers.common[apiConfig.apiKeyHeader] = apiConfig.apiKey;
 
-export async function fetchCars(): Promise<ICar[]> {
+export async function fetchCars(id = ''): Promise<ICar[]> {
+    if (id) {
+        Axios.defaults.headers.common[apiConfig.driverCars] = `${id}`;
+    } else {
+        delete Axios.defaults.headers.common[apiConfig.driverCars];
+    }
+
     const response = await Axios.get('/car/');
     const { data }: { data: ICar[] } = await response.data;
     const cars = await addDriverName(data);
 
     return cars;
-}
-
-export async function fetchDriverCars(id: number): Promise<ICar[]> {
-    Axios.defaults.headers.common[apiConfig.driverCars] = `${id}`;
-
-    const response = await Axios.get(`/car/`);
-    const { data }: { data: ICar[] } = await response.data;
-
-    return data;
 }
 
 export async function fetchCarById(id: number): Promise<ICar> {

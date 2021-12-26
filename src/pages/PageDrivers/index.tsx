@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, NavBar, TableDrivers, Spinner } from '../../components';
 import { navConfig } from '../../utils/constants';
+
 import {
     fetchDriversRequest,
     fetchDriverStatusesRequest,

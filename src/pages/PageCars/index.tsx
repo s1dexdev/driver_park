@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, NavBar, TableCars, Spinner } from '../../components';
 import { navConfig } from '../../utils/constants';
@@ -12,11 +13,17 @@ import { ReactComponent as Car } from '../../images/car.svg';
 export function PageCars(): JSX.Element {
     const dispatch = useDispatch();
     const isLoading = useSelector(loadingSelector);
+    const { driverId } = useParams();
 
     useEffect(() => {
         dispatch(fetchCarStatusesRequest());
-        dispatch(fetchCarsRequest());
-    }, [dispatch]);
+
+        if (driverId) {
+            dispatch(fetchCarsRequest(driverId));
+        } else {
+            dispatch(fetchCarsRequest());
+        }
+    }, [dispatch, driverId]);
 
     return (
         <>

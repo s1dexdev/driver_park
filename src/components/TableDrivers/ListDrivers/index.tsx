@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, Modal, DeleteForm } from '../../';
 import { deleteDriverRequest } from '../../../redux/drivers/actions';
@@ -9,6 +10,7 @@ import {
 import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
+import { navConfig } from '../../../utils/constants';
 import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
@@ -124,10 +126,17 @@ export function ListDrivers(): JSX.Element {
                                     name={driver.id.toString()}
                                 />
 
-                                <Car
-                                    className={styles.tableHeader__iconCar}
-                                    onClick={() => showDriverCars(driver.id)}
-                                />
+                                <Link
+                                    className={styles.driver__linkCars}
+                                    to={`${navConfig.drivers.path}/${driver.id}`}
+                                >
+                                    <Car
+                                        className={styles.tableHeader__iconCar}
+                                        onClick={() =>
+                                            showDriverCars(driver.id)
+                                        }
+                                    />
+                                </Link>
                             </li>
                         </ul>
                     </li>

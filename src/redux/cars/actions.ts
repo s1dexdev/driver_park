@@ -15,8 +15,9 @@ export const ADD_CAR_REQUEST = 'ADD_CAR_REQUEST';
 export const ADD_CAR_SUCCESS = 'ADD_CAR_SUCCESS';
 export const ADD_CAR_ERROR = 'ADD_CAR_ERROR';
 
-export const fetchCarsRequest = <P>(): IAction<P> => ({
+export const fetchCarsRequest = <P>(data?: P): IAction<P> => ({
     type: FETCH_CARS_REQUEST,
+    payload: data,
 });
 export const fetchCarsSuccess = <P>(data: P): IAction<P> => ({
     type: FETCH_CARS_SUCCESS,
