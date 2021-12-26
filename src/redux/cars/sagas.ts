@@ -45,9 +45,14 @@ interface IParams {
     payload: ICar;
 }
 
-function* fetchCarsSaga(): Generator {
+function* fetchCarsSaga({
+    payload,
+}: {
+    type: string;
+    payload: string;
+}): Generator {
     try {
-        const cars = yield call(API.fetchCars);
+        const cars = yield call(API.fetchCars, payload);
         yield put(fetchCarsSuccess(cars));
     } catch (error) {
         yield put(fetchCarsError(error));

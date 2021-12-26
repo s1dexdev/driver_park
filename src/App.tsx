@@ -8,7 +8,7 @@ import { navConfig } from './utils/constants';
 const { store } = createStore();
 
 function App(): JSX.Element {
-    const { home, drivers, cars } = navConfig;
+    const { home, drivers, driverCars, cars } = navConfig;
 
     return (
         <Provider store={store}>
@@ -16,6 +16,7 @@ function App(): JSX.Element {
             <Routes>
                 <Route path={home.path} element={<PageHome />} />
                 <Route path={drivers.path} element={<PageDrivers />} />
+                <Route path={driverCars.path} element={<PageCars />} />
                 <Route path={cars.path} element={<PageCars />} />
             </Routes>
         </Provider>

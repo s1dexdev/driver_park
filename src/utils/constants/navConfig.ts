@@ -7,6 +7,10 @@ export const navConfig = {
         path: '/drivers',
         label: 'Drivers',
     },
+    driverCars: {
+        path: '/drivers/:driverId',
+        label: 'Driver Cars',
+    },
     cars: {
         path: '/cars',
         label: 'Cars',
