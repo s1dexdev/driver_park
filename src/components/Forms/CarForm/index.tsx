@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCarRequest } from '../../redux/cars/actions';
-import { statusesSelector } from '../../redux/cars/selectors';
-import styles from './CarForm.module.scss';
+import { addCarRequest } from '../../../redux/cars/actions';
+import { statusesSelector } from '../../../redux/cars/selectors';
+import styles from '../Form.module.scss';
 
 interface IFormData {
     model: string;
@@ -67,13 +67,14 @@ export function CarForm(): JSX.Element {
             autoComplete="off"
             onSubmit={formik.handleSubmit}
         >
-            <b className={styles.form__title}>Enter driver details</b>
+            <b className={styles.form__title}>Enter car details</b>
             <div className={styles.form__fieldWrapper}>
                 <label className={styles.form__field}>
                     <input
                         className={styles.form__inputText}
                         type="text"
                         name="model"
+                        pattern="([a-zA-Zа-яА-Я][a-zа-я0-9]{1,15})"
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.model}
@@ -85,6 +86,7 @@ export function CarForm(): JSX.Element {
                         className={styles.form__inputText}
                         type="text"
                         name="mark"
+                        pattern="([a-zA-Zа-яА-Я][a-zа-я]{2,15}) ?([a-zA-Zа-яА-Я][a-zа-я]{2,10})?"
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.mark}
@@ -98,6 +100,7 @@ export function CarForm(): JSX.Element {
                         name="year"
                         min="1970"
                         max="2022"
+                        pattern="\d{4}"
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.year}
@@ -110,6 +113,7 @@ export function CarForm(): JSX.Element {
                         type="text"
                         name="number"
                         placeholder=" "
+                        pattern="[a-zA-Z]{2}\d{4}[a-zA-Z]{2}"
                         onChange={formik.handleChange}
                         value={formik.values.number}
                     ></input>
@@ -124,6 +128,7 @@ export function CarForm(): JSX.Element {
                         name="driver_id"
                         min="0"
                         placeholder=" "
+                        pattern="[1-9](\d{1,})?"
                         onChange={formik.handleChange}
                         value={formik.values.driver_id}
                     ></input>
@@ -134,6 +139,7 @@ export function CarForm(): JSX.Element {
                 <label className={styles.form__field}>
                     <select
                         name="status"
+                        required
                         onChange={formik.handleChange}
                         value={formik.values.status}
                     >

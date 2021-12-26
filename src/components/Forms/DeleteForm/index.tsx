@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import styles from './DeleteForm.module.scss';
+import styles from '../Form.module.scss';
 
 interface IAction<P> {
     type: string;
@@ -26,12 +26,12 @@ export const DeleteForm = ({
         setActiveModal(false);
     };
     return (
-        <div className={styles.formWrapper}>
-            <p className={styles.formWrapper__text}>
+        <div className={styles.deleteFormWrapper}>
+            <p className={styles.deleteFormWrapper__text}>
                 Do you really want to delete the {text} ?
             </p>
             <button
-                className={styles.formWrapper__btnDelete}
+                className={styles.deleteFormWrapper__btnDelete}
                 onClick={() => deleteItem()}
             >
                 Delete

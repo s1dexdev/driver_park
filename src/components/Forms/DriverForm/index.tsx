@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
-import { addDriverRequest } from '../../redux/drivers/actions';
-import { statusesSelector } from '../../redux/drivers/selectors';
-import styles from './DriverForm.module.scss';
+import { addDriverRequest } from '../../../redux/drivers/actions';
+import { statusesSelector } from '../../../redux/drivers/selectors';
+import styles from '../Form.module.scss';
 
 interface IFormData {
     first_name: string;
@@ -69,6 +69,7 @@ export function DriverForm(): JSX.Element {
                         type="text"
                         name="first_name"
                         placeholder=" "
+                        pattern="[A-ZА-Я]{1}[a-zа-я]{1,15}"
                         onChange={formik.handleChange}
                         value={formik.values.first_name}
                     ></input>
@@ -82,6 +83,7 @@ export function DriverForm(): JSX.Element {
                         type="text"
                         name="last_name"
                         placeholder=" "
+                        pattern="[A-ZА-Я]{1}[a-zа-я]{1,15}"
                         onChange={formik.handleChange}
                         value={formik.values.last_name}
                     ></input>
@@ -102,6 +104,7 @@ export function DriverForm(): JSX.Element {
                 <label className={styles.form__field}>
                     <select
                         name="status"
+                        required
                         onChange={formik.handleChange}
                         value={formik.values.status}
                     >
