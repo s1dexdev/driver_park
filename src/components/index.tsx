@@ -7,7 +7,5 @@ export { UserInfo } from './UserInfo';
 export { TableDrivers } from './TableDrivers';
 export { TableCars } from './TableCars';
 export { Spinner } from './Spinner';
-export { DriverForm } from './DriverForm';
-export { CarForm } from './CarForm';
-export { DeleteForm } from './DeleteForm';
+export { DriverForm, CarForm, DeleteForm } from './Forms';
 export { Modal } from './Modal';
