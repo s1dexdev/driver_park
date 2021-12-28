@@ -4,8 +4,8 @@
     &__item {
         padding: 22px 24px;
 
-        border-top: 1px solid #eeeeee;
-        border-bottom: 1px solid #eeeeee;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
     }
 
     &__item:last-child {
@@ -38,7 +38,7 @@
         width: 150px;
         position: relative;
         li:hover {
-            background-color: #ddd;
+            background-color: $status-background-hover;
         }
     }
 
@@ -72,7 +72,7 @@
     transition: background-color $transition-duration $timing-function;
 
     &:hover {
-        background-color: #99c5e2;
+        background-color: $dropdown-color-hover;
     }
 }
 
@@ -83,11 +83,11 @@
         display: block;
         position: absolute;
         top: 24px;
-        background-color: #f1f1f1;
+        background-color: $dropdownContent-active-color;
         min-width: 150px;
         overflow: auto;
         border-radius: 5px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         z-index: 1;
     }
 

@@ -67,7 +67,7 @@
     text-align: center;
 
     &__btnDelete {
-        color: #ffffff;
-        background-color: rgb(199, 88, 88);
+        color: $btnDelete-color;
+        background-color: $btnDelete-background-color;
     }
 }

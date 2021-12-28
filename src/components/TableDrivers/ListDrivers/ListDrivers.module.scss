@@ -4,8 +4,8 @@
     &__item {
         padding: 22px 24px;
 
-        border-top: 1px solid #eeeeee;
-        border-bottom: 1px solid #eeeeee;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
     }
 
     &__item:last-child {
@@ -48,69 +48,69 @@
         border-radius: 8px;
         position: relative;
         li:hover {
-            background-color: #ddd;
+            background-color: $status-background-hover;
         }
     }
 
-    .dropdown {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 24px;
-        margin: 0;
-        padding: 2px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
+.dropdown {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 24px;
+    margin: 0;
+    padding: 2px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $dropdown-color-hover;
+    }
+}
+
+.dropdownContent {
+    display: none;
+
+    &__active {
+        display: block;
+        position: absolute;
+        top: 24px;
+        background-color: $dropdownContent-active-color;
+        min-width: 150px;
+        overflow: auto;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    &__li {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
 
         &:hover {
-            background-color: #99c5e2;
-        }
-    }
-
-    .dropdownContent {
-        display: none;
-
-        &__active {
-            display: block;
-            position: absolute;
-            top: 24px;
-            background-color: #f1f1f1;
-            min-width: 150px;
-            overflow: auto;
-            border-radius: 5px;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        &__li {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        &__action {
             cursor: pointer;
         }
     }
 
-    .tableHeader {
-        &__iconDelete {
-            margin: 0 20px 0 20px;
-        }
+    &__action {
+        cursor: pointer;
+    }
+}
 
-        &__iconDelete,
-        &__iconCar {
-            cursor: pointer;
-        }
+.tableHeader {
+    &__iconDelete {
+        margin: 0 20px 0 20px;
     }
 
-    .driver__linkCars {
-        display: flex;
+    &__iconDelete,
+    &__iconCar {
+        cursor: pointer;
     }
+}
+
+.driver__linkCars {
+    display: flex;
+}
 }
