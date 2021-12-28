@@ -45,15 +45,10 @@ interface IDriver {
 
 interface IParams {
     type: string;
-    payload: ICar;
+    payload: any;
 }
 
-function* fetchCarsSaga({
-    payload,
-}: {
-    type: string;
-    payload: string;
-}): Generator {
+function* fetchCarsSaga({ payload }: IParams): Generator {
     try {
         const cars = yield call(API.fetchCars, payload);
         yield put(fetchCarsSuccess(cars));
@@ -85,7 +80,7 @@ function* addCarSaga({ payload }: IParams): Generator<any, any, any> {
     }
 }
 
-export function* deleteCarSaga({ payload }: { payload: number; type: string }) {
+function* deleteCarSaga({ payload }: IParams): Generator {
     try {
         yield call(API.deleteCar, payload);
         yield put(deleteCarSuccess(payload));

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, CarForm, Modal, DeleteForm } from '../../';
+import { Button, Modal, DeleteForm } from '../../';
 import { deleteCarRequest } from '../../../redux/cars/actions';
 import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
@@ -9,10 +9,9 @@ import styles from './ListCars.module.scss';
 export function ListCars(): JSX.Element {
     const cars = useSelector(carsSelector);
     const statuses = useSelector(statusesSelector);
-    const [modalActive, setModalActive] = useState(false);
 
-    const [focusElement, setFocusElement] = useState('');
     const [modalActive, setModalActive] = useState(false);
+    const [focusElement, setFocusElement] = useState('');
     const [active, setActive] = useState(false);
     const [carId, setCarId] = useState(0);
 
@@ -31,7 +30,6 @@ export function ListCars(): JSX.Element {
     };
 
     const choiseStatus = (status: string) => {
-        console.log(status);
         return true;
     };
 
