@@ -4,7 +4,6 @@ import { Button, Modal, DeleteForm } from '../../';
 import { deleteCarRequest } from '../../../redux/cars/actions';
 import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
-import { ReactComponent as Plus } from '../../../images/plus.svg';
 import styles from './ListCars.module.scss';
 
 export function ListCars(): JSX.Element {
@@ -17,7 +16,6 @@ export function ListCars(): JSX.Element {
     const [carId, setCarId] = useState(0);
 
     const removeCar = <Delete />;
-    const addCar = <Plus />;
 
     const showDeleteCarForm = (id: number) => {
         setCarId(id);
@@ -132,41 +130,16 @@ export function ListCars(): JSX.Element {
                                 key={'action'}
                                 className={`${styles.car__item} ${styles.car__action}`}
                             >
-                                {statuses.map(({ title }, index) => {
-                                    return (
-                                        <li
-                                            key={index}
-                                            className={
-                                                styles.dropdownContent__li
-                                            }
-                                            onClick={() => choiseStatus(title)}
-                                        >
-                                            {title}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </li>
-                        <li
-                            key={'actions'}
-                            className={`${styles.car__item} ${styles.car__actions}`}
-                        >
-                            <Button
-                                img={removeCar}
-                                name={car.id.toString()}
-                                className={styles.delete}
-                                onClick={() => deleteCar(car.id)}
-                            />
-                            <Button
-                                img={addCar}
-                                name={car.id.toString()}
-                                className={styles.add}
-                                onClick={renderModalCar}
-                            />
-                        </li>
-                    </ul>
-                </li>
-            ))}
+                                <Button
+                                    img={removeCar}
+                                    name={car.id.toString()}
+                                    className={styles.delete}
+                                    onClick={() => showDeleteCarForm(car.id)}
+                                />
+                            </li>
+                        </ul>
+                    </li>
+                ))}
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>
                 <DeleteForm
