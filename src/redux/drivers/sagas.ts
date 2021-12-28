@@ -18,35 +18,12 @@ import {
     deleteDriverError,
 } from './actions';
 
-interface IDriver {
-    first_name: string;
-    last_name: string;
-    date_birth: number;
-    status: {
-        title: string;
-        code: string;
-    };
-}
-
 interface IParams {
-    payload: IDriver;
     type: string;
+    payload: any;
 }
 
-interface IStatus {
-    type: string;
-    payload: {
-        id: number;
-        info: {
-            status: {
-                title: string;
-                code: string;
-            };
-        };
-    };
-}
-
-export function* fetchDriversSaga(): Generator {
+function* fetchDriversSaga(): Generator {
     try {
         const drivers = yield call(API.fetchDrivers);
         yield put(fetchDriversSuccess(drivers));
@@ -55,7 +32,7 @@ export function* fetchDriversSaga(): Generator {
     }
 }
 
-export function* fetchDriverStatusesSaga(): Generator {
+function* fetchDriverStatusesSaga(): Generator {
     try {
         const statuses = yield call(API.fetchDriverStatuses);
         yield put(fetchDriverStatusesSuccess(statuses));
@@ -64,7 +41,7 @@ export function* fetchDriverStatusesSaga(): Generator {
     }
 }
 
-export function* addDriverSaga({ payload }: IParams): Generator {
+function* addDriverSaga({ payload }: IParams): Generator {
     try {
         const driver = yield call(API.addDriver, payload);
         yield put(addDriverSuccess(driver));
@@ -73,7 +50,7 @@ export function* addDriverSaga({ payload }: IParams): Generator {
     }
 }
 
-export function* updateDriverInfoSaga({ payload }: IStatus): Generator {
+function* updateDriverInfoSaga({ payload }: IParams): Generator {
     try {
         const driver = yield call(
             API.updateDriverInfo,
@@ -86,12 +63,7 @@ export function* updateDriverInfoSaga({ payload }: IStatus): Generator {
     }
 }
 
-export function* deleteDriverSaga({
-    payload,
-}: {
-    payload: number;
-    type: string;
-}) {
+function* deleteDriverSaga({ payload }: IParams) {
     try {
         yield call(API.deleteDriver, payload);
         yield put(deleteDriverSuccess(payload));

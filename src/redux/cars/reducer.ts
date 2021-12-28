@@ -8,6 +8,9 @@ import {
     ADD_CAR_REQUEST,
     ADD_CAR_SUCCESS,
     ADD_CAR_ERROR,
+    DELETE_CAR_REQUEST,
+    DELETE_CAR_SUCCESS,
+    DELETE_CAR_ERROR,
 } from './actions';
 
 interface ICar {
@@ -32,7 +35,7 @@ interface ICarsState {
 
 interface IAction {
     type: string;
-    payload?: ICar[];
+    payload?: any;
 }
 
 const setTrue = () => true;
@@ -53,6 +56,12 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
         case FETCH_CARS_REQUEST:
         case FETCH_CAR_STATUSES_REQUEST:
         case ADD_CAR_REQUEST:
+            return {
+                ...state,
+                isLoading: setTrue(),
+                error: setNull(),
+            };
+        case DELETE_CAR_REQUEST:
             return {
                 ...state,
                 isLoading: setTrue(),
@@ -80,12 +89,25 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 isLoading: setFalse(),
                 error: setNull(),
             };
+        case DELETE_CAR_SUCCESS:
+            return {
+                ...state,
+                cars: state.cars.filter(({ id }) => id !== action.payload),
+                isLoading: setFalse(),
+                error: setNull(),
+            };
         case FETCH_CARS_ERROR:
         case FETCH_CAR_STATUSES_ERROR:
         case ADD_CAR_ERROR:
             return {
                 ...state,
                 cars: action.payload,
+                error: action.payload,
+            };
+        case DELETE_CAR_ERROR:
+            return {
+                ...state,
+                isLoading: setFalse(),
                 error: action.payload,
             };
 

@@ -5,7 +5,6 @@ import { Button, Modal, DeleteForm } from '../../';
 import {
     updateDriverInfoRequest,
     deleteDriverRequest,
-    fetchDriverStatusesRequest,
 } from '../../../redux/drivers/actions';
 import {
     driversSelector,
@@ -21,9 +20,10 @@ export function ListDrivers(): JSX.Element {
     const dispatch = useDispatch();
     const drivers = useSelector(driversSelector);
     const statuses = useSelector(statusesSelector);
+
     const [statusActive, setStatusActive] = useState(false);
     const [modalActive, setModalActive] = useState(false);
-    const [focusElement, setFocusElement] = useState('');
+    const [focusElement, setFocusElement] = useState(0);
     const [driverId, setDriverId] = useState(0);
 
     const showDeleteDriverForm = (id: number) => {
@@ -31,19 +31,12 @@ export function ListDrivers(): JSX.Element {
         setModalActive(true);
     };
 
-    const showDriverCars = (id: number) => {
-        return true;
-    };
-
-    const selectStatus = (idDriver: string) => {
+    const selectStatus = (id: number) => {
         setStatusActive(!statusActive);
-        setFocusElement(idDriver);
-        return true;
+        setFocusElement(id);
     };
 
-    const choiseStatus = (id: number, title: string, code: string) => {
-        console.log(status);
-
+    const updateDriverStatus = (id: number, title: string, code: string) => {
         const driver = {
             id,
             info: {
@@ -99,9 +92,7 @@ export function ListDrivers(): JSX.Element {
                             >
                                 <Button
                                     className={styles.dropdown}
-                                    onClick={() =>
-                                        selectStatus(driver.id.toString())
-                                    }
+                                    onClick={() => selectStatus(driver.id)}
                                     text={driver.status.title}
                                     name={driver.id.toString()}
                                 />
@@ -110,8 +101,7 @@ export function ListDrivers(): JSX.Element {
                                     className={
                                         styles[
                                             statusActive &&
-                                            focusElement ===
-                                                driver.id.toString()
+                                            focusElement === driver.id
                                                 ? 'dropdownContent__active'
                                                 : 'dropdownContent'
                                         ]
@@ -124,7 +114,7 @@ export function ListDrivers(): JSX.Element {
                                                 styles.dropdownContent__li
                                             }
                                             onClick={() =>
-                                                choiseStatus(
+                                                updateDriverStatus(
                                                     driver.id,
                                                     title,
                                                     code,
@@ -154,9 +144,6 @@ export function ListDrivers(): JSX.Element {
                                 >
                                     <Car
                                         className={styles.tableHeader__iconCar}
-                                        onClick={() =>
-                                            showDriverCars(driver.id)
-                                        }
                                     />
                                 </Link>
                             </li>

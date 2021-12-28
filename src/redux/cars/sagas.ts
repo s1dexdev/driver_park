@@ -11,6 +11,9 @@ import {
     fetchCarsError,
     addCarSuccess,
     addCarError,
+    deleteCarSuccess,
+    deleteCarError,
+    DELETE_CAR_REQUEST,
 } from './actions';
 
 interface ICar {
@@ -42,15 +45,10 @@ interface IDriver {
 
 interface IParams {
     type: string;
-    payload: ICar;
+    payload: any;
 }
 
-function* fetchCarsSaga({
-    payload,
-}: {
-    type: string;
-    payload: string;
-}): Generator {
+function* fetchCarsSaga({ payload }: IParams): Generator {
     try {
         const cars = yield call(API.fetchCars, payload);
         yield put(fetchCarsSuccess(cars));
@@ -59,7 +57,7 @@ function* fetchCarsSaga({
     }
 }
 
-function* fetCarStatusesSaga(): Generator {
+function* fetchCarStatusesSaga(): Generator {
     try {
         const statuses = yield call(API.fetchCarStatuses);
         yield put(fetchCarStatusesSuccess(statuses));
@@ -82,8 +80,18 @@ function* addCarSaga({ payload }: IParams): Generator<any, any, any> {
     }
 }
 
+function* deleteCarSaga({ payload }: IParams): Generator {
+    try {
+        yield call(API.deleteCar, payload);
+        yield put(deleteCarSuccess(payload));
+    } catch (error) {
+        yield deleteCarError(error);
+    }
+}
+
 export function* watchCars(): Generator {
     yield takeLatest(FETCH_CARS_REQUEST, fetchCarsSaga);
-    yield takeLatest(FETCH_CAR_STATUSES_REQUEST, fetCarStatusesSaga);
+    yield takeLatest(FETCH_CAR_STATUSES_REQUEST, fetchCarStatusesSaga);
     yield takeLatest(ADD_CAR_REQUEST, addCarSaga);
+    yield takeLatest(DELETE_CAR_REQUEST, deleteCarSaga);
 }

@@ -9,7 +9,7 @@ export const Button = ({
     text?: string;
     name?: string;
     className: string;
-    onClick: () => boolean;
+    onClick: () => void;
 }): JSX.Element => {
     return (
         <button onClick={onClick} className={className} name={name}>
