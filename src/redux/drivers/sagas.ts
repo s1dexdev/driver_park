@@ -4,6 +4,7 @@ import {
     FETCH_DRIVERS_REQUEST,
     FETCH_DRIVER_STATUSES_REQUEST,
     ADD_DRIVER_REQUEST,
+    UPDATE_DRIVER_INFO_REQUEST,
     DELETE_DRIVER_REQUEST,
     fetchDriversSuccess,
     fetchDriversError,
@@ -11,6 +12,8 @@ import {
     fetchDriverStatusesError,
     addDriverSuccess,
     addDriverError,
+    updateDriverInfoSuccess,
+    updateDriverInfoError,
     deleteDriverSuccess,
     deleteDriverError,
 } from './actions';
@@ -28,6 +31,19 @@ interface IDriver {
 interface IParams {
     payload: IDriver;
     type: string;
+}
+
+interface IStatus {
+    type: string;
+    payload: {
+        id: number;
+        info: {
+            status: {
+                title: string;
+                code: string;
+            };
+        };
+    };
 }
 
 export function* fetchDriversSaga(): Generator {
@@ -57,6 +73,19 @@ export function* addDriverSaga({ payload }: IParams): Generator {
     }
 }
 
+export function* updateDriverInfoSaga({ payload }: IStatus): Generator {
+    try {
+        const driver = yield call(
+            API.updateDriverInfo,
+            payload.id,
+            payload.info,
+        );
+        yield put(updateDriverInfoSuccess(driver));
+    } catch (error) {
+        yield put(updateDriverInfoError(error));
+    }
+}
+
 export function* deleteDriverSaga({
     payload,
 }: {
@@ -75,5 +104,6 @@ export function* watchDrivers(): Generator {
     yield takeLatest(FETCH_DRIVERS_REQUEST, fetchDriversSaga);
     yield takeLatest(FETCH_DRIVER_STATUSES_REQUEST, fetchDriverStatusesSaga);
     yield takeLatest(ADD_DRIVER_REQUEST, addDriverSaga);
+    yield takeLatest(UPDATE_DRIVER_INFO_REQUEST, updateDriverInfoSaga);
     yield takeLatest(DELETE_DRIVER_REQUEST, deleteDriverSaga);
 }

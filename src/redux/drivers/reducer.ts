@@ -8,6 +8,9 @@ import {
     ADD_DRIVER_REQUEST,
     ADD_DRIVER_SUCCESS,
     ADD_DRIVER_ERROR,
+    UPDATE_DRIVER_INFO_REQUEST,
+    UPDATE_DRIVER_INFO_SUCCESS,
+    UPDATE_DRIVER_INFO_ERROR,
     DELETE_DRIVER_REQUEST,
     DELETE_DRIVER_SUCCESS,
     DELETE_DRIVER_ERROR,
@@ -26,7 +29,7 @@ interface IDriver {
 }
 
 interface IDriversState {
-    drivers: IDriver[] | [];
+    drivers: IDriver[];
     statuses: { title: string; code: string }[];
     isLoading: boolean;
     error: null | string;
@@ -34,7 +37,7 @@ interface IDriversState {
 
 interface IAction {
     type: string;
-    payload: IDriver[] | boolean | number;
+    payload: any;
 }
 
 const setTrue = () => true;
@@ -55,6 +58,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
         case FETCH_DRIVERS_REQUEST:
         case FETCH_DRIVER_STATUSES_REQUEST:
         case ADD_DRIVER_REQUEST:
+        case UPDATE_DRIVER_INFO_REQUEST:
         case DELETE_DRIVER_REQUEST:
             return {
                 ...state,
@@ -86,6 +90,20 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
+        case UPDATE_DRIVER_INFO_SUCCESS:
+            return {
+                ...state,
+                drivers: state.drivers.map((driver: IDriver) => {
+                    if (driver.id === action.payload.id) {
+                        driver = Object.assign({}, driver, action.payload);
+                        return driver;
+                    }
+                    return driver;
+                }),
+                isLoading: setFalse(),
+                error: setNull(),
+            };
+
         case DELETE_DRIVER_SUCCESS:
             return {
                 ...state,
@@ -98,6 +116,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
         case FETCH_DRIVERS_ERROR:
         case FETCH_DRIVER_STATUSES_ERROR:
         case ADD_DRIVER_ERROR:
+        case UPDATE_DRIVER_INFO_ERROR:
         case DELETE_DRIVER_ERROR:
             return {
                 ...state,

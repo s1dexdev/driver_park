@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, DeleteForm } from '../../';
-import { deleteDriverRequest } from '../../../redux/drivers/actions';
+import {
+    updateDriverInfoRequest,
+    deleteDriverRequest,
+    fetchDriverStatusesRequest,
+} from '../../../redux/drivers/actions';
 import {
     driversSelector,
     statusesSelector,
@@ -14,6 +18,7 @@ import { navConfig } from '../../../utils/constants';
 import styles from './ListDrivers.module.scss';
 
 export function ListDrivers(): JSX.Element {
+    const dispatch = useDispatch();
     const drivers = useSelector(driversSelector);
     const statuses = useSelector(statusesSelector);
     const [statusActive, setStatusActive] = useState(false);
@@ -36,9 +41,20 @@ export function ListDrivers(): JSX.Element {
         return true;
     };
 
-    const choiseStatus = (status: string) => {
+    const choiseStatus = (id: number, title: string, code: string) => {
         console.log(status);
-        return true;
+
+        const driver = {
+            id,
+            info: {
+                status: {
+                    title,
+                    code,
+                },
+            },
+        };
+
+        dispatch(updateDriverInfoRequest(driver));
     };
 
     return (
@@ -101,13 +117,19 @@ export function ListDrivers(): JSX.Element {
                                         ]
                                     }
                                 >
-                                    {statuses.map(({ title }) => (
+                                    {statuses.map(({ title, code }) => (
                                         <li
                                             key={title}
                                             className={
                                                 styles.dropdownContent__li
                                             }
-                                            onClick={() => choiseStatus(title)}
+                                            onClick={() =>
+                                                choiseStatus(
+                                                    driver.id,
+                                                    title,
+                                                    code,
+                                                )
+                                            }
                                         >
                                             {title}
                                         </li>
