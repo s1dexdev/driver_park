@@ -10,7 +10,7 @@ import {
     driversSelector,
     statusesSelector,
 } from '../../../redux/drivers/selectors';
-import { parseDate } from '../../../helpers';
+import { parseDate, concatClasses } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
 import { navConfig } from '../../../utils/constants';
@@ -91,7 +91,9 @@ export function ListDrivers(): JSX.Element {
                                 className={`${styles.driver__item} ${styles.driver__status}`}
                             >
                                 <Button
-                                    className={styles.dropdown}
+                                    className={`${styles.dropdown} ${
+                                        styles[driver.status.code]
+                                    }`}
                                     onClick={() => selectStatus(driver.id)}
                                     text={driver.status.title}
                                     name={driver.id.toString()}
