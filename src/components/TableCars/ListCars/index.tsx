@@ -18,6 +18,7 @@ export function ListCars(): JSX.Element {
     const [formType, setFormType] = useState(false);
 
     const removeCar = <Delete />;
+    const addCar = <Plus />;
 
     const showDeleteCarForm = (id: number) => {
         setFormType(false);
@@ -135,14 +136,14 @@ export function ListCars(): JSX.Element {
                                 <Button
                                     img={removeCar}
                                     name={car.id.toString()}
-                                    className={styles.delete}
+                                    className={styles.listCars__actionBtn}
                                     onClick={() => showDeleteCarForm(car.id)}
                                 />
-                                <Plus
-                                    width="16 px"
-                                    height="16 px"
+
+                                <Button
+                                    img={addCar}
                                     name={car.id.toString()}
-                                    className={styles.add}
+                                    className={styles.listCars__actionBtn}
                                     onClick={() =>
                                         renderModalCar(car.driver_id, true)
                                     }
