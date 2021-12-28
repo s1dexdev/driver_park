@@ -130,14 +130,6 @@ export function ListDrivers(): JSX.Element {
                                 key={'action'}
                                 className={`${styles.driver__item} ${styles.driver__action}`}
                             >
-                                <Delete
-                                    className={styles.tableHeader__iconDelete}
-                                    onClick={() =>
-                                        showDeleteDriverForm(driver.id)
-                                    }
-                                    name={driver.id.toString()}
-                                />
-
                                 <Link
                                     className={styles.driver__linkCars}
                                     to={`${navConfig.drivers.path}/${driver.id}`}
@@ -146,6 +138,14 @@ export function ListDrivers(): JSX.Element {
                                         className={styles.tableHeader__iconCar}
                                     />
                                 </Link>
+
+                                <Delete
+                                    className={styles.tableHeader__iconDelete}
+                                    onClick={() =>
+                                        showDeleteDriverForm(driver.id)
+                                    }
+                                    name={driver.id.toString()}
+                                />
                             </li>
                         </ul>
                     </li>

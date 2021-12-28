@@ -134,19 +134,18 @@ export function ListCars(): JSX.Element {
                                 className={`${styles.car__item} ${styles.car__action}`}
                             >
                                 <Button
-                                    img={removeCar}
-                                    name={car.id.toString()}
-                                    className={styles.listCars__actionBtn}
-                                    onClick={() => showDeleteCarForm(car.id)}
-                                />
-
-                                <Button
                                     img={addCar}
                                     name={car.id.toString()}
                                     className={styles.listCars__actionBtn}
                                     onClick={() =>
                                         renderModalCar(car.driver_id, true)
                                     }
+                                />
+                                <Button
+                                    img={removeCar}
+                                    name={car.id.toString()}
+                                    className={styles.listCars__actionBtn}
+                                    onClick={() => showDeleteCarForm(car.id)}
                                 />
                             </li>
                         </ul>
