@@ -151,19 +151,19 @@ export function ListCars(): JSX.Element {
                         </ul>
                     </li>
                 ))}
+                <Modal active={modalActive} setActive={setModalActive}>
+                    {formType ? (
+                        <CarForm id={carId} />
+                    ) : (
+                        <DeleteForm
+                            id={carId}
+                            text="car "
+                            deleteAction={deleteCarRequest}
+                            setActiveModal={setModalActive}
+                        />
+                    )}
+                </Modal>
             </ul>
-            <Modal active={modalActive} setActive={setModalActive}>
-                {formType ? (
-                    <CarForm id={carId} />
-                ) : (
-                    <DeleteForm
-                        id={carId}
-                        text="car "
-                        deleteAction={deleteCarRequest}
-                        setActiveModal={setModalActive}
-                    />
-                )}
-            </Modal>
         </>
     );
 }

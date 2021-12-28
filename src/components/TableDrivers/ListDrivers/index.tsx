@@ -150,15 +150,15 @@ export function ListDrivers(): JSX.Element {
                         </ul>
                     </li>
                 ))}
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <DeleteForm
+                        id={driverId}
+                        text="driver and his all cars "
+                        deleteAction={deleteDriverRequest}
+                        setActiveModal={setModalActive}
+                    />
+                </Modal>
             </ul>
-            <Modal active={modalActive} setActive={setModalActive}>
-                <DeleteForm
-                    id={driverId}
-                    text="driver and his all cars "
-                    deleteAction={deleteDriverRequest}
-                    setActiveModal={setModalActive}
-                />
-            </Modal>
         </>
     );
 }
