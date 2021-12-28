@@ -15,28 +15,29 @@ export function ListCars(): JSX.Element {
     const [focusElement, setFocusElement] = useState('');
     const [active, setActive] = useState(false);
     const [carId, setCarId] = useState(0);
+    const [formType, setFormType] = useState(false);
 
     const removeCar = <Delete />;
 
     const showDeleteCarForm = (id: number) => {
+        setFormType(false);
         setCarId(id);
         setModalActive(true);
-        return true;
     };
 
     const selectStatus = (idCar: string) => {
         setActive(!active);
         setFocusElement(idCar);
-        return true;
     };
 
     const choiseStatus = (status: string) => {
         return true;
     };
 
-    const renderModalCar = () => {
+    const renderModalCar = (id: number, b: boolean) => {
+        setCarId(id);
+        setFormType(true);
         setModalActive(true);
-        return true;
     };
 
     return (
@@ -142,7 +143,9 @@ export function ListCars(): JSX.Element {
                                     height="16 px"
                                     name={car.id.toString()}
                                     className={styles.add}
-                                    onClick={renderModalCar}
+                                    onClick={() =>
+                                        renderModalCar(car.driver_id, true)
+                                    }
                                 />
                             </li>
                         </ul>
@@ -150,7 +153,16 @@ export function ListCars(): JSX.Element {
                 ))}
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>
-                <CarForm />
+                {formType ? (
+                    <CarForm id={carId} />
+                ) : (
+                    <DeleteForm
+                        id={carId}
+                        text="car "
+                        deleteAction={deleteCarRequest}
+                        setActiveModal={setModalActive}
+                    />
+                )}
             </Modal>
         </>
     );

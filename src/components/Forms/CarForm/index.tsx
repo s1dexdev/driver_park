@@ -9,7 +9,6 @@ interface IFormData {
     mark: string;
     year: string;
     number: string;
-    driver_id: string;
     status: string;
 }
 
@@ -18,7 +17,7 @@ interface IStatus {
     code: string;
 }
 
-export function CarForm(): JSX.Element {
+export function CarForm({ id }: { id: number }): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
@@ -39,7 +38,7 @@ export function CarForm(): JSX.Element {
             mark: data.mark,
             year: data.year,
             number: data.number,
-            driver_id: data.driver_id,
+            driver_id: id,
             status: getFullCarStatus(data.status),
         };
 
@@ -52,7 +51,6 @@ export function CarForm(): JSX.Element {
             mark: '',
             year: '',
             number: '',
-            driver_id: '',
             status: '',
         },
         onSubmit: values => {
@@ -119,21 +117,6 @@ export function CarForm(): JSX.Element {
                     ></input>
                     <span className={styles.form__descriptionInput}>
                         Number
-                    </span>
-                </label>
-                <label className={styles.form__field}>
-                    <input
-                        className={styles.form__inputText}
-                        type="number"
-                        name="driver_id"
-                        min="0"
-                        placeholder=" "
-                        pattern="[1-9](\d{1,})?"
-                        onChange={formik.handleChange}
-                        value={formik.values.driver_id}
-                    ></input>
-                    <span className={styles.form__descriptionInput}>
-                        Driver id
                     </span>
                 </label>
                 <label className={styles.form__field}>

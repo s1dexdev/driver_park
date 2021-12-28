@@ -28,7 +28,7 @@ export const DeleteForm = ({
     return (
         <div className={styles.deleteFormWrapper}>
             <p className={styles.deleteFormWrapper__text}>
-                Do you really want to delete the {text} ?
+                Do you really want to delete this {text} ?
             </p>
             <button
                 className={styles.deleteFormWrapper__btnDelete}
