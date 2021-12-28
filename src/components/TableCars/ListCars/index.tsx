@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Modal, DeleteForm } from '../../';
+import { Button, Modal, DeleteForm, CarForm } from '../../';
 import { deleteCarRequest } from '../../../redux/cars/actions';
 import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
+import { ReactComponent as Plus } from '../../../images/plus.svg';
 import styles from './ListCars.module.scss';
 
 export function ListCars(): JSX.Element {
@@ -136,18 +137,20 @@ export function ListCars(): JSX.Element {
                                     className={styles.delete}
                                     onClick={() => showDeleteCarForm(car.id)}
                                 />
+                                <Plus
+                                    width="16 px"
+                                    height="16 px"
+                                    name={car.id.toString()}
+                                    className={styles.add}
+                                    onClick={renderModalCar}
+                                />
                             </li>
                         </ul>
                     </li>
                 ))}
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>
-                <DeleteForm
-                    id={carId}
-                    text="car"
-                    deleteAction={deleteCarRequest}
-                    setActiveModal={setModalActive}
-                />
+                <CarForm />
             </Modal>
         </>
     );
