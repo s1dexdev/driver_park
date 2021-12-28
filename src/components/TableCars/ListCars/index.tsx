@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button, CarForm, Modal } from '../../';
 import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
+import { ReactComponent as Plus } from '../../../images/plus.svg';
 
 import styles from './ListCars.module.scss';
 
@@ -12,6 +13,7 @@ export function ListCars(): JSX.Element {
     const [modalActive, setModalActive] = useState(false);
 
     const removeCar = <Delete />;
+    const addCar = <Plus />;
 
     const deleteCar = (id: number) => {
         console.log(id);
@@ -128,10 +130,10 @@ export function ListCars(): JSX.Element {
                                 onClick={() => deleteCar(car.id)}
                             />
                             <Button
-                                className={styles.button}
+                                img={addCar}
+                                name={car.id.toString()}
+                                className={styles.add}
                                 onClick={renderModalCar}
-                                name={styles.button}
-                                text={'Add car'}
                             />
                         </li>
                     </ul>
