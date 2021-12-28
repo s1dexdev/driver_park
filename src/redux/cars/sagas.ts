@@ -11,6 +11,9 @@ import {
     fetchCarsError,
     addCarSuccess,
     addCarError,
+    deleteCarSuccess,
+    deleteCarError,
+    DELETE_CAR_REQUEST,
 } from './actions';
 
 interface ICar {
@@ -59,7 +62,7 @@ function* fetchCarsSaga({
     }
 }
 
-function* fetCarStatusesSaga(): Generator {
+function* fetchCarStatusesSaga(): Generator {
     try {
         const statuses = yield call(API.fetchCarStatuses);
         yield put(fetchCarStatusesSuccess(statuses));
@@ -82,8 +85,18 @@ function* addCarSaga({ payload }: IParams): Generator<any, any, any> {
     }
 }
 
+export function* deleteCarSaga({ payload }: { payload: number; type: string }) {
+    try {
+        yield call(API.deleteCar, payload);
+        yield put(deleteCarSuccess(payload));
+    } catch (error) {
+        yield deleteCarError(error);
+    }
+}
+
 export function* watchCars(): Generator {
     yield takeLatest(FETCH_CARS_REQUEST, fetchCarsSaga);
-    yield takeLatest(FETCH_CAR_STATUSES_REQUEST, fetCarStatusesSaga);
+    yield takeLatest(FETCH_CAR_STATUSES_REQUEST, fetchCarStatusesSaga);
     yield takeLatest(ADD_CAR_REQUEST, addCarSaga);
+    yield takeLatest(DELETE_CAR_REQUEST, deleteCarSaga);
 }
