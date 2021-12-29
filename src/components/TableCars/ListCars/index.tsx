@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, DeleteForm, CarForm } from '../../';
-import { deleteCarRequest } from '../../../redux/cars/actions';
+import {
+    updateCarInfoRequest,
+    deleteCarRequest,
+} from '../../../redux/cars/actions';
 import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Plus } from '../../../images/plus.svg';
 import styles from './ListCars.module.scss';
+import { Statuses } from '../../Statuses';
 
 export function ListCars(): JSX.Element {
+    const dispatch = useDispatch();
     const cars = useSelector(carsSelector);
     const statuses = useSelector(statusesSelector);
 
@@ -15,7 +20,9 @@ export function ListCars(): JSX.Element {
     const [focusElement, setFocusElement] = useState('');
     const [active, setActive] = useState(false);
     const [carId, setCarId] = useState(0);
+    const [driverId, setDriverId] = useState(0);
     const [formType, setFormType] = useState(false);
+    const [activeBackDrop, setActiveBackDrop] = useState(true);
 
     const removeCar = <Delete />;
     const addCar = <Plus />;
@@ -31,12 +38,27 @@ export function ListCars(): JSX.Element {
         setFocusElement(idCar);
     };
 
-    const choiseStatus = (status: string) => {
-        return true;
+    const activateBackDrop = (isActive: boolean) => {
+        setActiveBackDrop(isActive);
+        setActive(!isActive);
     };
 
-    const renderModalCar = (id: number, b: boolean) => {
-        setCarId(id);
+    const updateCarStatus = (id: number, title: string, code: string) => {
+        const car = {
+            id,
+            info: {
+                status: {
+                    title,
+                    code,
+                },
+            },
+        };
+
+        dispatch(updateCarInfoRequest(car));
+    };
+
+    const renderModalCar = (id: number) => {
+        setDriverId(id);
         setFormType(true);
         setModalActive(true);
     };
@@ -45,7 +67,7 @@ export function ListCars(): JSX.Element {
         <>
             <ul className={styles.listCars}>
                 {cars.map(car => (
-                    <li key={car.id} className={styles.listCars__item}>
+                    <li key={car.number} className={styles.listCars__item}>
                         <ul className={styles.car}>
                             <li
                                 key={'checkbox'}
@@ -101,33 +123,15 @@ export function ListCars(): JSX.Element {
                                     text={car.status.title}
                                     name={car.id.toString()}
                                 />
-                                <ul
+                                <Statuses
+                                    statuses={statuses}
                                     id={car.id.toString()}
-                                    className={
-                                        styles[
-                                            active &&
-                                            focusElement === car.id.toString()
-                                                ? 'dropdownContent__active'
-                                                : 'dropdownContent'
-                                        ]
-                                    }
-                                >
-                                    {statuses.map(({ title }, index) => {
-                                        return (
-                                            <li
-                                                key={index}
-                                                className={
-                                                    styles.dropdownContent__li
-                                                }
-                                                onClick={() =>
-                                                    choiseStatus(title)
-                                                }
-                                            >
-                                                {title}
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
+                                    active={active}
+                                    focusElement={focusElement}
+                                    updateStatus={updateCarStatus}
+                                    backDrop={activateBackDrop}
+                                    activeBackDrop={activeBackDrop}
+                                />
                             </li>
                             <li
                                 key={'action'}
@@ -138,7 +142,7 @@ export function ListCars(): JSX.Element {
                                     name={car.id.toString()}
                                     className={styles.listCars__actionBtn}
                                     onClick={() =>
-                                        renderModalCar(car.driver_id, true)
+                                        renderModalCar(car.driver_id)
                                     }
                                 />
                                 <Button
@@ -154,7 +158,7 @@ export function ListCars(): JSX.Element {
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>
                 {formType ? (
-                    <CarForm id={carId} />
+                    <CarForm id={driverId} />
                 ) : (
                     <DeleteForm
                         id={carId}
