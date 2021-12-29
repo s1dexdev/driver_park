@@ -18,6 +18,8 @@ export function DriverNameForm({
     updateDriverInfo,
     changeStateInput,
 }: IProps): JSX.Element {
+    const regexpName = /^[A-ZА-Я]{1}[a-zа-я]{1,10} [A-ZА-Я]{1}[a-zа-я]{1,10}$/;
+
     useEffect(() => {
         const closeInput = (event: globalThis.MouseEvent) => {
             const { nodeName } = event.target as HTMLElement;
@@ -54,7 +56,9 @@ export function DriverNameForm({
         },
 
         onSubmit: ({ newName }) => {
-            updateDriverName(newName);
+            if (regexpName.test(newName)) {
+                updateDriverName(newName);
+            }
         },
     });
 
