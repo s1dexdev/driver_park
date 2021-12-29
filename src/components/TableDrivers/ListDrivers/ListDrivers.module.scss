@@ -30,6 +30,11 @@
         width: 440px;
     }
 
+    &__nameWrap:hover {
+        outline: 1px solid $active-link-color;
+        cursor: pointer;
+    }
+
     &__regDate {
         width: 300px;
     }
@@ -110,7 +115,7 @@
         }
     }
 
-    .driver__linkCars {
+    &__linkCars {
         display: flex;
     }
 }

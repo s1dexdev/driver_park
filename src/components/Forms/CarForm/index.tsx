@@ -76,7 +76,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.model}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>Model</span>
                 </label>
                 <label className={styles.form__field}>
@@ -88,7 +88,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.mark}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>Mark</span>
                 </label>
                 <label className={styles.form__field}>
@@ -102,7 +102,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.year}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>Year</span>
                 </label>
                 <label className={styles.form__field}>
@@ -114,7 +114,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         pattern="[a-zA-Z]{2}\d{4}[a-zA-Z]{2}"
                         onChange={formik.handleChange}
                         value={formik.values.number}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>
                         Number
                     </span>
