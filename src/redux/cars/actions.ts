@@ -15,6 +15,10 @@ export const ADD_CAR_REQUEST = 'ADD_CAR_REQUEST';
 export const ADD_CAR_SUCCESS = 'ADD_CAR_SUCCESS';
 export const ADD_CAR_ERROR = 'ADD_CAR_ERROR';
 
+export const UPDATE_CAR_INFO_REQUEST = 'UPDATE_CAR_INFO_REQUEST';
+export const UPDATE_CAR_INFO_SUCCESS = 'UPDATE_CAR_INFO_SUCCESS';
+export const UPDATE_CAR_INFO_ERROR = 'UPDATE_CAR_INFO_ERROR';
+
 export const DELETE_CAR_REQUEST = 'DELETE_CAR_REQUEST';
 export const DELETE_CAR_SUCCESS = 'DELETE_CAR_SUCCESS';
 export const DELETE_CAR_ERROR = 'DELETE_CAR_ERROR';
@@ -54,6 +58,21 @@ export const addCarSuccess = <P>(data: P): IAction<P> => ({
 });
 export const addCarError = <P>(data: P): IAction<P> => ({
     type: ADD_CAR_ERROR,
+    payload: data,
+});
+
+export const updateCarInfoRequest = <P>(data: P): IAction<P> => ({
+    type: UPDATE_CAR_INFO_REQUEST,
+    payload: data,
+});
+
+export const updateCarInfoSuccess = <P>(data: P): IAction<P> => ({
+    type: UPDATE_CAR_INFO_SUCCESS,
+    payload: data,
+});
+
+export const updateCarInfoError = <P>(data: P): IAction<P> => ({
+    type: UPDATE_CAR_INFO_ERROR,
     payload: data,
 });
 
