@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.dropdownContent {
+    display: none;
+
+    &__active {
+        display: block;
+        position: absolute;
+        top: 24px;
+        background-color: $dropdownContent-active-color;
+        min-width: 150px;
+        overflow: auto;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    &__li {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

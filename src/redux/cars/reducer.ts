@@ -8,6 +8,9 @@ import {
     ADD_CAR_REQUEST,
     ADD_CAR_SUCCESS,
     ADD_CAR_ERROR,
+    UPDATE_CAR_INFO_REQUEST,
+    UPDATE_CAR_INFO_SUCCESS,
+    UPDATE_CAR_INFO_ERROR,
     DELETE_CAR_REQUEST,
     DELETE_CAR_SUCCESS,
     DELETE_CAR_ERROR,
@@ -27,7 +30,7 @@ interface ICar {
 }
 
 interface ICarsState {
-    cars: ICar[] | [];
+    cars: ICar[];
     statuses: { title: string; code: string }[];
     isLoading: boolean;
     error: null | string;
@@ -35,7 +38,7 @@ interface ICarsState {
 
 interface IAction {
     type: string;
-    payload?: any;
+    payload: any;
 }
 
 const setTrue = () => true;
@@ -55,6 +58,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
     switch (action.type) {
         case FETCH_CARS_REQUEST:
         case FETCH_CAR_STATUSES_REQUEST:
+        case UPDATE_CAR_INFO_REQUEST:
         case ADD_CAR_REQUEST:
             return {
                 ...state,
@@ -82,6 +86,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 isLoading: setFalse(),
                 error: setNull(),
             };
+
         case ADD_CAR_SUCCESS:
             return {
                 ...state,
@@ -89,6 +94,21 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 isLoading: setFalse(),
                 error: setNull(),
             };
+
+        case UPDATE_CAR_INFO_SUCCESS:
+            return {
+                ...state,
+                cars: state.cars.map((car: ICar) => {
+                    if (Number(car.id) === action.payload.id) {
+                        car = Object.assign({}, car, action.payload);
+                        return car;
+                    }
+                    return car;
+                }),
+                isLoading: setFalse(),
+                error: setNull(),
+            };
+
         case DELETE_CAR_SUCCESS:
             return {
                 ...state,
@@ -98,6 +118,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
             };
         case FETCH_CARS_ERROR:
         case FETCH_CAR_STATUSES_ERROR:
+        case UPDATE_CAR_INFO_ERROR:
         case ADD_CAR_ERROR:
             return {
                 ...state,
