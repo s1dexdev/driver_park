@@ -84,7 +84,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         className={styles.form__inputText}
                         type="text"
                         name="mark"
-                        pattern="([a-zA-Zа-яА-Я][a-zа-я]{2,15}) ?([a-zA-Zа-яА-Я][a-zа-я]{2,10})?"
+                        pattern="([a-zA-Zа-яА-Я][a-zа-я0-9]{2,15}) ?([a-zA-Zа-яА-Я][a-zа-я]{2,10})?"
                         placeholder=" "
                         onChange={formik.handleChange}
                         value={formik.values.mark}

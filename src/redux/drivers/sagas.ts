@@ -6,6 +6,8 @@ import {
     ADD_DRIVER_REQUEST,
     UPDATE_DRIVER_INFO_REQUEST,
     DELETE_DRIVER_REQUEST,
+} from './types';
+import {
     fetchDriversSuccess,
     fetchDriversError,
     fetchDriverStatusesSuccess,

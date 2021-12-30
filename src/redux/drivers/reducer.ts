@@ -1,20 +1,9 @@
-import {
-    FETCH_DRIVERS_REQUEST,
-    FETCH_DRIVERS_SUCCESS,
-    FETCH_DRIVERS_ERROR,
-    FETCH_DRIVER_STATUSES_REQUEST,
-    FETCH_DRIVER_STATUSES_SUCCESS,
-    FETCH_DRIVER_STATUSES_ERROR,
-    ADD_DRIVER_REQUEST,
-    ADD_DRIVER_SUCCESS,
-    ADD_DRIVER_ERROR,
-    UPDATE_DRIVER_INFO_REQUEST,
-    UPDATE_DRIVER_INFO_SUCCESS,
-    UPDATE_DRIVER_INFO_ERROR,
-    DELETE_DRIVER_REQUEST,
-    DELETE_DRIVER_SUCCESS,
-    DELETE_DRIVER_ERROR,
-} from './actions';
+import * as Type from './types';
+
+interface IStatus {
+    title: string;
+    code: string;
+}
 
 interface IDriver {
     id: number;
@@ -22,15 +11,12 @@ interface IDriver {
     last_name: string;
     date_created: number;
     date_birth: number;
-    status: {
-        title: string;
-        code: string;
-    };
+    status: IStatus;
 }
 
 interface IDriversState {
     drivers: IDriver[];
-    statuses: { title: string; code: string }[];
+    statuses: IStatus[];
     isLoading: boolean;
     error: null | string;
 }
@@ -55,18 +41,18 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
     state = state || initialDriversState;
 
     switch (action.type) {
-        case FETCH_DRIVERS_REQUEST:
-        case FETCH_DRIVER_STATUSES_REQUEST:
-        case ADD_DRIVER_REQUEST:
-        case UPDATE_DRIVER_INFO_REQUEST:
-        case DELETE_DRIVER_REQUEST:
+        case Type.FETCH_DRIVERS_REQUEST:
+        case Type.FETCH_DRIVER_STATUSES_REQUEST:
+        case Type.ADD_DRIVER_REQUEST:
+        case Type.UPDATE_DRIVER_INFO_REQUEST:
+        case Type.DELETE_DRIVER_REQUEST:
             return {
                 ...state,
                 isLoading: setTrue(),
                 error: setNull(),
             };
 
-        case FETCH_DRIVERS_SUCCESS:
+        case Type.FETCH_DRIVERS_SUCCESS:
             return {
                 ...state,
                 drivers: action.payload,
@@ -74,7 +60,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
-        case FETCH_DRIVER_STATUSES_SUCCESS:
+        case Type.FETCH_DRIVER_STATUSES_SUCCESS:
             return {
                 ...state,
                 statuses: action.payload,
@@ -82,7 +68,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
-        case ADD_DRIVER_SUCCESS:
+        case Type.ADD_DRIVER_SUCCESS:
             return {
                 ...state,
                 drivers: [...state.drivers, action.payload],
@@ -90,7 +76,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
-        case UPDATE_DRIVER_INFO_SUCCESS:
+        case Type.UPDATE_DRIVER_INFO_SUCCESS:
             return {
                 ...state,
                 drivers: state.drivers.map((driver: IDriver) => {
@@ -104,7 +90,7 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 error: setNull(),
             };
 
-        case DELETE_DRIVER_SUCCESS:
+        case Type.DELETE_DRIVER_SUCCESS:
             return {
                 ...state,
                 drivers: state.drivers.filter(
@@ -113,11 +99,11 @@ export const driversReducer = (state: IDriversState, action: IAction) => {
                 isLoading: setFalse(),
                 error: setNull(),
             };
-        case FETCH_DRIVERS_ERROR:
-        case FETCH_DRIVER_STATUSES_ERROR:
-        case ADD_DRIVER_ERROR:
-        case UPDATE_DRIVER_INFO_ERROR:
-        case DELETE_DRIVER_ERROR:
+        case Type.FETCH_DRIVERS_ERROR:
+        case Type.FETCH_DRIVER_STATUSES_ERROR:
+        case Type.ADD_DRIVER_ERROR:
+        case Type.UPDATE_DRIVER_INFO_ERROR:
+        case Type.DELETE_DRIVER_ERROR:
             return {
                 ...state,
                 isLoading: setFalse(),
