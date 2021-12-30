@@ -71,3 +71,19 @@
         background-color: $btnDelete-background-color;
     }
 }
+
+.driverNameForm {
+    &__input {
+        height: 24px;
+        padding: 0 5px;
+
+        background-color: rgb(231, 231, 231);
+        border: 1px solid $active-link-color;
+        border-radius: 5px;
+    }
+
+    &__input:focus {
+        outline: none;
+        border: 1px solid $active-link-color;
+    }
+}

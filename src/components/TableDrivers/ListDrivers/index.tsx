@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Modal, DeleteForm } from '../../';
+import { Button, Modal, DeleteForm, DriverNameForm } from '../../';
 import {
     updateDriverInfoRequest,
     deleteDriverRequest,
@@ -10,11 +10,20 @@ import {
     driversSelector,
     statusesSelector,
 } from '../../../redux/drivers/selectors';
-import { parseDate, concatClasses } from '../../../helpers';
+import { navConfig } from '../../../utils/constants';
+import { parseDate } from '../../../helpers';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Car } from '../../../images/car.svg';
-import { navConfig } from '../../../utils/constants';
 import styles from './ListDrivers.module.scss';
+
+interface IStatus {
+    title: string;
+    code: string;
+}
+
+interface IUpdateData {
+    [key: string]: string | number | IStatus;
+}
 
 export function ListDrivers(): JSX.Element {
     const dispatch = useDispatch();
@@ -25,6 +34,8 @@ export function ListDrivers(): JSX.Element {
     const [modalActive, setModalActive] = useState(false);
     const [focusElement, setFocusElement] = useState(0);
     const [driverId, setDriverId] = useState(0);
+    const [driverName, setDriverName] = useState('');
+    const [stateInput, setStateInput] = useState(false);
 
     const showDeleteDriverForm = (id: number) => {
         setDriverId(id);
@@ -36,19 +47,24 @@ export function ListDrivers(): JSX.Element {
         setFocusElement(id);
     };
 
-    const updateDriverStatus = (id: number, title: string, code: string) => {
+    const updateDriverInfo = (id: number, data: IUpdateData) => {
         const driver = {
             id,
-            info: {
-                status: {
-                    title,
-                    code,
-                },
-            },
+            info: data,
         };
 
         dispatch(updateDriverInfoRequest(driver));
     };
+
+    const handleClick = (id: number, event: MouseEvent) => {
+        const span = event.target as HTMLElement;
+
+        setStateInput(true);
+        setDriverId(id);
+        setDriverName(span.textContent!);
+    };
+
+    const changeStateInput = (newState: boolean) => setStateInput(newState);
 
     return (
         <>
@@ -72,7 +88,21 @@ export function ListDrivers(): JSX.Element {
                                 key={'name'}
                                 className={`${styles.driver__item} ${styles.driver__name}`}
                             >
-                                {`${driver.first_name} ${driver.last_name}`}
+                                {stateInput && driverId === driver.id ? (
+                                    <DriverNameForm
+                                        id={driver.id}
+                                        currentName={driverName}
+                                        updateDriverInfo={updateDriverInfo}
+                                        changeStateInput={changeStateInput}
+                                    />
+                                ) : (
+                                    <span
+                                        className={styles.driver__nameWrap}
+                                        onClick={event =>
+                                            handleClick(driver.id, event)
+                                        }
+                                    >{`${driver.first_name} ${driver.last_name}`}</span>
+                                )}
                             </li>
                             <li
                                 key={'regDate'}
@@ -116,11 +146,9 @@ export function ListDrivers(): JSX.Element {
                                                 styles.dropdownContent__li
                                             }
                                             onClick={() =>
-                                                updateDriverStatus(
-                                                    driver.id,
-                                                    title,
-                                                    code,
-                                                )
+                                                updateDriverInfo(driver.id, {
+                                                    status: { title, code },
+                                                })
                                             }
                                         >
                                             {title}

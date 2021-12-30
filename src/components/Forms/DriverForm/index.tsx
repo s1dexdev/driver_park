@@ -72,7 +72,7 @@ export function DriverForm(): JSX.Element {
                         pattern="[A-ZА-Я]{1}[a-zа-я]{1,15}"
                         onChange={formik.handleChange}
                         value={formik.values.first_name}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>
                         First name
                     </span>
@@ -86,7 +86,7 @@ export function DriverForm(): JSX.Element {
                         pattern="[A-ZА-Я]{1}[a-zа-я]{1,15}"
                         onChange={formik.handleChange}
                         value={formik.values.last_name}
-                    ></input>
+                    />
                     <span className={styles.form__descriptionInput}>
                         Last name
                     </span>
@@ -99,7 +99,7 @@ export function DriverForm(): JSX.Element {
                         max="2004-01-01"
                         onChange={formik.handleChange}
                         value={formik.values.date_birth}
-                    ></input>
+                    />
                 </label>
                 <label className={styles.form__field}>
                     <select
