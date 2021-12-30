@@ -1,61 +1,60 @@
+import { useState, useEffect, useRef } from 'react';
 import styles from './Statuses.module.scss';
-import { useEffect } from 'react';
 
 interface IStatus {
     title: string;
     code: string;
 }
 
+interface IUpdateData {
+    [key: string]: string | number | IStatus;
+}
+
+interface IProps {
+    statuses: IStatus[];
+    id: number;
+    updateCarInfo: (id: number, data: IUpdateData) => void;
+    resetIdCar: () => void;
+}
+
 export const Statuses = ({
     statuses,
     id,
-    active,
-    focusElement,
-    activeBackDrop,
-    updateStatus,
-    backDrop,
-}: {
-    statuses: IStatus[];
-    id: string;
-    active: boolean;
-    focusElement: string;
-    activeBackDrop: boolean;
-    updateStatus: (id: number, title: string, code: string) => void;
-    backDrop: (a: boolean) => void;
-}): JSX.Element => {
-    useEffect(() => {
-        const closeMenu = () => {
-            backDrop(!activeBackDrop);
-        };
-        window.addEventListener('click', closeMenu);
+    updateCarInfo,
+    resetIdCar,
+}: IProps): JSX.Element => {
+    const [isShowList, setIsShowList] = useState(true);
 
-        return () => {
-            window.removeEventListener('click', closeMenu);
+    useEffect(() => {
+        const closeStatuses = () => {
+            setIsShowList(false);
+            resetIdCar();
         };
-    }, [backDrop, activeBackDrop]);
+
+        window.addEventListener('click', closeStatuses);
+
+        return () => window.removeEventListener('click', closeStatuses);
+    }, [resetIdCar]);
 
     return (
         <ul
-            id={id}
             className={
-                styles[
-                    active && !activeBackDrop && focusElement === id
-                        ? 'dropdownContent__active'
-                        : 'dropdownContent'
-                ]
+                isShowList
+                    ? styles.dropdownContent__active
+                    : styles.dropdownContent
             }
         >
-            {statuses.map(({ title, code }) => {
-                return (
-                    <li
-                        key={title}
-                        className={styles.dropdownContent__li}
-                        onClick={() => updateStatus(Number(id), title, code)}
-                    >
-                        {title}
-                    </li>
-                );
-            })}
+            {statuses.map(({ title, code }) => (
+                <li
+                    key={title}
+                    className={styles.dropdownContent__li}
+                    onClick={() =>
+                        updateCarInfo(id, { status: { title, code } })
+                    }
+                >
+                    {title}
+                </li>
+            ))}
         </ul>
     );
 };

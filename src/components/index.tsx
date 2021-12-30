@@ -8,4 +8,5 @@ export { TableDrivers } from './TableDrivers';
 export { TableCars } from './TableCars';
 export { Spinner } from './Spinner';
 export { DriverForm, CarForm, DriverNameForm, DeleteForm } from './Forms';
+export { Statuses } from './Statuses';
 export { Modal } from './Modal';

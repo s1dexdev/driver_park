@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal, DeleteForm, CarForm } from '../../';
+import { Button, Modal, DeleteForm, CarForm, Statuses } from '../../';
 import {
     updateCarInfoRequest,
     deleteCarRequest,
@@ -9,7 +9,15 @@ import { carsSelector, statusesSelector } from '../../../redux/cars/selectors';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Plus } from '../../../images/plus.svg';
 import styles from './ListCars.module.scss';
-import { Statuses } from '../../Statuses';
+
+interface IStatus {
+    title: string;
+    code: string;
+}
+
+interface IUpdateData {
+    [key: string]: string | number | IStatus;
+}
 
 export function ListCars(): JSX.Element {
     const dispatch = useDispatch();
@@ -17,41 +25,29 @@ export function ListCars(): JSX.Element {
     const statuses = useSelector(statusesSelector);
 
     const [modalActive, setModalActive] = useState(false);
-    const [focusElement, setFocusElement] = useState('');
-    const [active, setActive] = useState(false);
     const [carId, setCarId] = useState(0);
     const [driverId, setDriverId] = useState(0);
     const [formType, setFormType] = useState(false);
-    const [activeBackDrop, setActiveBackDrop] = useState(true);
 
     const removeCar = <Delete />;
     const addCar = <Plus />;
 
-    const showDeleteCarForm = (id: number) => {
-        setFormType(false);
+    const resetIdCar = () => setCarId(0);
+
+    const handleClick = (id: number) => {
         setCarId(id);
+    };
+
+    const showDeleteCarForm = (id: number) => {
+        setCarId(id);
+        setFormType(false);
         setModalActive(true);
     };
 
-    const selectStatus = (idCar: string) => {
-        setActive(!active);
-        setFocusElement(idCar);
-    };
-
-    const activateBackDrop = (isActive: boolean) => {
-        setActiveBackDrop(isActive);
-        setActive(!isActive);
-    };
-
-    const updateCarStatus = (id: number, title: string, code: string) => {
+    const updateCarInfo = (id: number, data: IUpdateData) => {
         const car = {
             id,
-            info: {
-                status: {
-                    title,
-                    code,
-                },
-            },
+            info: data,
         };
 
         dispatch(updateCarInfoRequest(car));
@@ -117,21 +113,20 @@ export function ListCars(): JSX.Element {
                             >
                                 <Button
                                     className={styles.dropdown}
-                                    onClick={() =>
-                                        selectStatus(car.id.toString())
-                                    }
+                                    onClick={() => handleClick(car.id)}
                                     text={car.status.title}
                                     name={car.id.toString()}
                                 />
-                                <Statuses
-                                    statuses={statuses}
-                                    id={car.id.toString()}
-                                    active={active}
-                                    focusElement={focusElement}
-                                    updateStatus={updateCarStatus}
-                                    backDrop={activateBackDrop}
-                                    activeBackDrop={activeBackDrop}
-                                />
+                                {carId === car.id ? (
+                                    <Statuses
+                                        statuses={statuses}
+                                        id={car.id}
+                                        resetIdCar={resetIdCar}
+                                        updateCarInfo={updateCarInfo}
+                                    />
+                                ) : (
+                                    <></>
+                                )}
                             </li>
                             <li
                                 key={'action'}
