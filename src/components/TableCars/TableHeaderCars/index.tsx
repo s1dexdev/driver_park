@@ -12,6 +12,7 @@ export function TableHeaderCars(): JSX.Element {
     const choiseSort = () => {
         setSortData(!sortData);
     };
+    console.log(carsConfig);
     return (
         <ul className={styles.tableHeader}>
             <li key={'checkbox'} className={`${styles.tableHeader__item}`}>
