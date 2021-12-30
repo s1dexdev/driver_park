@@ -140,7 +140,6 @@ export function ListDrivers(): JSX.Element {
                                         className={styles.tableHeader__iconCar}
                                     />
                                 </Link>
-
                                 <Delete
                                     className={styles.tableHeader__iconDelete}
                                     onClick={() =>
