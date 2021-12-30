@@ -116,7 +116,9 @@ export function ListCars(): JSX.Element {
                                 className={`${styles.car__item} ${styles.car__status}`}
                             >
                                 <Button
-                                    className={styles.dropdown}
+                                    className={`${styles.dropdown} ${
+                                        styles[car.status.code]
+                                    }`}
                                     onClick={() =>
                                         selectStatus(car.id.toString())
                                     }

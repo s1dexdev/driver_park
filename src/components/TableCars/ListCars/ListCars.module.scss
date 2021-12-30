@@ -122,3 +122,23 @@
         z-index: 100;
     }
 }
+
+.econom {
+    color: $driver-locked-text-color;
+    background-color: $driver-fired-bcg-color;
+}
+
+.eco {
+    color: $driver-active-text-color;
+    background-color: $driver-active-bcg-color;
+}
+
+.standart {
+    color: $driver-notActive-text-color;
+    background-color: $driver-notActive-bcg-color;
+}
+
+.bussiness {
+    color: $driver-locked-text-color;
+    background-color: $driver-locked-bcg-color;
+}
