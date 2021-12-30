@@ -1,3 +1,8 @@
+interface IStatus {
+    title: string;
+    code: string;
+}
+
 interface ICar {
     id: number;
     model: string;
@@ -5,23 +10,15 @@ interface ICar {
     year: number;
     number: string;
     driver_id: number;
-    driver_firstname?: string;
-    driver_lastname?: string;
-    status: {
-        title: string;
-        code: string;
-    };
-}
-
-interface IStatuse {
-    title: string;
-    code: string;
+    driver_firstname: string;
+    driver_lastname: string;
+    status: IStatus;
 }
 
 interface IState {
     carsReducer: {
         cars: ICar[];
-        statuses: IStatuse[];
+        statuses: IStatus[];
         isLoading: boolean;
         error: null | string;
     };
@@ -29,7 +26,7 @@ interface IState {
 
 export const carsSelector = (state: IState): ICar[] => state.carsReducer.cars;
 
-export const statusesSelector = (state: IState): IStatuse[] =>
+export const statusesSelector = (state: IState): IStatus[] =>
     state.carsReducer.statuses;
 
 export const loadingSelector = (state: IState): boolean =>

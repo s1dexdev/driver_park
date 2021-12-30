@@ -1,20 +1,9 @@
-import {
-    FETCH_CARS_REQUEST,
-    FETCH_CARS_SUCCESS,
-    FETCH_CARS_ERROR,
-    FETCH_CAR_STATUSES_REQUEST,
-    FETCH_CAR_STATUSES_SUCCESS,
-    FETCH_CAR_STATUSES_ERROR,
-    ADD_CAR_REQUEST,
-    ADD_CAR_SUCCESS,
-    ADD_CAR_ERROR,
-    UPDATE_CAR_INFO_REQUEST,
-    UPDATE_CAR_INFO_SUCCESS,
-    UPDATE_CAR_INFO_ERROR,
-    DELETE_CAR_REQUEST,
-    DELETE_CAR_SUCCESS,
-    DELETE_CAR_ERROR,
-} from './actions';
+import * as Type from './types';
+
+interface IStatus {
+    title: string;
+    code: string;
+}
 
 interface ICar {
     id: number;
@@ -23,15 +12,12 @@ interface ICar {
     year: number;
     number: string;
     driver_id: number;
-    status: {
-        title: string;
-        code: string;
-    };
+    status: IStatus;
 }
 
 interface ICarsState {
     cars: ICar[];
-    statuses: { title: string; code: string }[];
+    statuses: IStatus[];
     isLoading: boolean;
     error: null | string;
 }
@@ -56,22 +42,22 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
     state = state || initialState;
 
     switch (action.type) {
-        case FETCH_CARS_REQUEST:
-        case FETCH_CAR_STATUSES_REQUEST:
-        case UPDATE_CAR_INFO_REQUEST:
-        case ADD_CAR_REQUEST:
+        case Type.FETCH_CARS_REQUEST:
+        case Type.FETCH_CAR_STATUSES_REQUEST:
+        case Type.UPDATE_CAR_INFO_REQUEST:
+        case Type.ADD_CAR_REQUEST:
             return {
                 ...state,
                 isLoading: setTrue(),
                 error: setNull(),
             };
-        case DELETE_CAR_REQUEST:
+        case Type.DELETE_CAR_REQUEST:
             return {
                 ...state,
                 isLoading: setTrue(),
                 error: setNull(),
             };
-        case FETCH_CARS_SUCCESS:
+        case Type.FETCH_CARS_SUCCESS:
             return {
                 ...state,
                 cars: action.payload,
@@ -79,7 +65,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 error: setNull(),
             };
 
-        case FETCH_CAR_STATUSES_SUCCESS:
+        case Type.FETCH_CAR_STATUSES_SUCCESS:
             return {
                 ...state,
                 statuses: action.payload,
@@ -87,7 +73,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 error: setNull(),
             };
 
-        case ADD_CAR_SUCCESS:
+        case Type.ADD_CAR_SUCCESS:
             return {
                 ...state,
                 cars: [...state.cars, action.payload],
@@ -95,7 +81,7 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 error: setNull(),
             };
 
-        case UPDATE_CAR_INFO_SUCCESS:
+        case Type.UPDATE_CAR_INFO_SUCCESS:
             return {
                 ...state,
                 cars: state.cars.map((car: ICar) => {
@@ -109,23 +95,23 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 error: setNull(),
             };
 
-        case DELETE_CAR_SUCCESS:
+        case Type.DELETE_CAR_SUCCESS:
             return {
                 ...state,
                 cars: state.cars.filter(({ id }) => id !== action.payload),
                 isLoading: setFalse(),
                 error: setNull(),
             };
-        case FETCH_CARS_ERROR:
-        case FETCH_CAR_STATUSES_ERROR:
-        case UPDATE_CAR_INFO_ERROR:
-        case ADD_CAR_ERROR:
+        case Type.FETCH_CARS_ERROR:
+        case Type.FETCH_CAR_STATUSES_ERROR:
+        case Type.UPDATE_CAR_INFO_ERROR:
+        case Type.ADD_CAR_ERROR:
             return {
                 ...state,
                 cars: action.payload,
                 error: action.payload,
             };
-        case DELETE_CAR_ERROR:
+        case Type.DELETE_CAR_ERROR:
             return {
                 ...state,
                 isLoading: setFalse(),

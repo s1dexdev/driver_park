@@ -7,6 +7,8 @@ import {
     ADD_CAR_REQUEST,
     UPDATE_CAR_INFO_REQUEST,
     DELETE_CAR_REQUEST,
+} from './types';
+import {
     fetchCarStatusesSuccess,
     fetchCarStatusesError,
     fetchCarsSuccess,
@@ -19,6 +21,11 @@ import {
     deleteCarError,
 } from './actions';
 
+interface IStatus {
+    title: string;
+    code: string;
+}
+
 interface ICar {
     id?: number;
     model: string;
@@ -28,10 +35,7 @@ interface ICar {
     driver_id: number;
     driver_firstname?: string;
     driver_lastname?: string;
-    status: {
-        title: string;
-        code: string;
-    };
+    status: IStatus;
 }
 
 interface IDriver {
@@ -40,10 +44,7 @@ interface IDriver {
     last_name: string;
     date_created: number;
     date_birth: number;
-    status: {
-        title: string;
-        code: string;
-    };
+    status: IStatus;
 }
 
 interface IParams {
