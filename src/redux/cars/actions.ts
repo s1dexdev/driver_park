@@ -23,6 +23,8 @@ export const DELETE_CAR_REQUEST = 'DELETE_CAR_REQUEST';
 export const DELETE_CAR_SUCCESS = 'DELETE_CAR_SUCCESS';
 export const DELETE_CAR_ERROR = 'DELETE_CAR_ERROR';
 
+export const CHOISE_PARAMETR_SORT = 'CHOISE_PARAMETR_SORT';
+
 export const fetchCarsRequest = <P>(data?: P): IAction<P> => ({
     type: FETCH_CARS_REQUEST,
     payload: data,
@@ -88,5 +90,10 @@ export const deleteCarSuccess = <P>(data: P): IAction<P> => ({
 
 export const deleteCarError = <P>(data: P): IAction<P> => ({
     type: DELETE_CAR_ERROR,
+    payload: data,
+});
+
+export const choiseParameterSort = <P>(data: P): IAction<P> => ({
+    type: CHOISE_PARAMETR_SORT,
     payload: data,
 });

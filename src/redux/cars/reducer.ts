@@ -14,6 +14,7 @@ import {
     DELETE_CAR_REQUEST,
     DELETE_CAR_SUCCESS,
     DELETE_CAR_ERROR,
+    CHOISE_PARAMETR_SORT,
 } from './actions';
 
 interface ICar {
@@ -32,6 +33,7 @@ interface ICar {
 interface ICarsState {
     cars: ICar[];
     statuses: { title: string; code: string }[];
+    parametrSort: IParametrSort;
     isLoading: boolean;
     error: null | string;
 }
@@ -41,6 +43,11 @@ interface IAction {
     payload: any;
 }
 
+interface IParametrSort {
+    class: string;
+    isAsc: boolean;
+}
+
 const setTrue = () => true;
 const setFalse = () => false;
 const setNull = () => null;
@@ -48,6 +55,10 @@ const setNull = () => null;
 const initialState: ICarsState = {
     cars: [],
     statuses: [],
+    parametrSort: {
+        class: '',
+        isAsc: true,
+    },
     isLoading: setFalse(),
     error: setNull(),
 };
@@ -130,6 +141,12 @@ export const carsReducer = (state: ICarsState, action: IAction) => {
                 ...state,
                 isLoading: setFalse(),
                 error: action.payload,
+            };
+
+        case CHOISE_PARAMETR_SORT:
+            return {
+                ...state,
+                parametrSort: action.payload,
             };
 
         default:
