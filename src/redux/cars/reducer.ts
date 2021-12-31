@@ -19,13 +19,15 @@ interface ICarsState {
     cars: ICar[];
     statuses: IStatus[];
     isLoading: boolean;
-    error: null | string;
+    error: Error | null | string;
 }
 
-interface IAction {
+interface IAction<T> {
     type: string;
-    payload: any;
+    payload: T;
 }
+
+type TReducer = ICar & ICar[] & IStatus[] & Error & number;
 
 const setTrue = () => true;
 const setFalse = () => false;
@@ -38,7 +40,10 @@ const initialState: ICarsState = {
     error: setNull(),
 };
 
-export const carsReducer = (state: ICarsState, action: IAction) => {
+export const carsReducer = <T extends TReducer>(
+    state: ICarsState,
+    action: IAction<T>,
+): ICarsState => {
     state = state || initialState;
 
     switch (action.type) {

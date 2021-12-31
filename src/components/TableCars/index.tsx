@@ -21,7 +21,13 @@ export function TableCars(): JSX.Element {
                     </p>
                 </div>
                 <TableHeaderCars />
-                <ListCars />
+                {cars.length ? (
+                    <ListCars />
+                ) : (
+                    <p className={styles.carTable__info}>
+                        Oops, no one car found...
+                    </p>
+                )}
             </div>
         </div>
     );
