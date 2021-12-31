@@ -25,8 +25,8 @@
     }
 
     &__wrapperCars {
-      display: flex;
-      justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
     }
 
     &__numberCars {
@@ -37,5 +37,14 @@
 
     &__numberCars_color {
         color: $primary-link-color;
+    }
+
+    &__info {
+        padding-top: 75px;
+        padding-bottom: 75px;
+
+        font-size: 22px;
+        font-weight: 500;
+        text-align: center;
     }
 }

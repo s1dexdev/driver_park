@@ -20,14 +20,37 @@ import {
     deleteDriverError,
 } from './actions';
 
-interface IParams {
+interface IStatus {
+    title: string;
+    code: string;
+}
+
+interface IDriver {
+    id: number;
+    first_name: string;
+    last_name: string;
+    date_created: number;
+    date_birth: number;
+    driver_firstname: string;
+    driver_lastname: string;
+    status: IStatus;
+}
+
+interface IParams<T> {
     type: string;
-    payload: any;
+    payload: T;
+}
+
+interface IUpdateDriver {
+    id: number;
+    info: {
+        [key: string]: string | number | IStatus;
+    };
 }
 
 function* fetchDriversSaga(): Generator {
     try {
-        const drivers = yield call(API.fetchDrivers);
+        const drivers = (yield call(API.fetchDrivers)) as IDriver[];
         yield put(fetchDriversSuccess(drivers));
     } catch (error) {
         yield put(fetchDriversError(error));
@@ -36,23 +59,25 @@ function* fetchDriversSaga(): Generator {
 
 function* fetchDriverStatusesSaga(): Generator {
     try {
-        const statuses = yield call(API.fetchDriverStatuses);
+        const statuses = (yield call(API.fetchDriverStatuses)) as IStatus[];
         yield put(fetchDriverStatusesSuccess(statuses));
     } catch (error) {
         yield put(fetchDriverStatusesError(error));
     }
 }
 
-function* addDriverSaga({ payload }: IParams): Generator {
+function* addDriverSaga<T extends IDriver>({ payload }: IParams<T>): Generator {
     try {
-        const driver = yield call(API.addDriver, payload);
+        const driver = (yield call(API.addDriver, payload)) as IDriver;
         yield put(addDriverSuccess(driver));
     } catch (error) {
         yield put(addDriverError(error));
     }
 }
 
-function* updateDriverInfoSaga({ payload }: IParams): Generator {
+function* updateDriverInfoSaga<T extends IUpdateDriver>({
+    payload,
+}: IParams<T>): Generator {
     try {
         const driver = yield call(
             API.updateDriverInfo,
@@ -65,7 +90,7 @@ function* updateDriverInfoSaga({ payload }: IParams): Generator {
     }
 }
 
-function* deleteDriverSaga({ payload }: IParams) {
+function* deleteDriverSaga<T extends number>({ payload }: IParams<T>) {
     try {
         yield call(API.deleteDriver, payload);
         yield put(deleteDriverSuccess(payload));

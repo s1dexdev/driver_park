@@ -18,12 +18,7 @@ interface IDriversState {
     drivers: IDriver[];
     statuses: IStatus[];
     isLoading: boolean;
-    error: null | string;
-}
-
-interface IAction {
-    type: string;
-    payload: any;
+    error: Error | null | string;
 }
 
 const setTrue = () => true;
@@ -37,7 +32,17 @@ const initialDriversState: IDriversState = {
     error: setNull(),
 };
 
-export const driversReducer = (state: IDriversState, action: IAction) => {
+interface IAction<T> {
+    type: string;
+    payload: T;
+}
+
+type TReducer = IDriver & IDriver[] & IStatus[] & Error & number;
+
+export const driversReducer = <T extends TReducer>(
+    state: IDriversState,
+    action: IAction<T>,
+): IDriversState => {
     state = state || initialDriversState;
 
     switch (action.type) {

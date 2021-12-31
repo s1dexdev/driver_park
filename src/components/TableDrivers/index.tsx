@@ -37,7 +37,13 @@ export function TableDrivers(): JSX.Element {
                     />
                 </div>
                 <TableHeaderDrivers />
-                <ListDrivers />
+                {drivers.length ? (
+                    <ListDrivers />
+                ) : (
+                    <p className={styles.driverTable__info}>
+                        Oops, no one driver found...
+                    </p>
+                )}
                 <Modal active={modalActive} setActive={setModalActive}>
                     <DriverForm />
                 </Modal>
