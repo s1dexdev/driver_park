@@ -8,6 +8,45 @@
         justify-content: space-between;
         padding: 8px 0;
     }
+
+    &__infoWrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 250px;
+        height: 100%;
+        transition: background-color $transition-duration $timing-function;
+        border-radius: 35px;
+    }
+
+    &__infoWrapper:hover {
+        background-color: rgb(220, 220, 220);
+    }
+
+    &__langBox {
+        width: 80px;
+    }
+
+    &__langBtn {
+        margin: 0;
+        padding: 0;
+
+        background-color: transparent;
+        cursor: default;
+    }
+
+    &__langBtn:hover,
+    &__langBtn:focus {
+        box-shadow: none;
+    }
+
+    &__langBtn:hover svg,
+    &__langBtn:focus svg {
+        cursor: pointer;
+    }
+
+    &__langBox {
+        display: flex;
+    }
 }
 
 .headerMenu {

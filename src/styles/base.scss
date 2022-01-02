@@ -47,11 +47,11 @@ button {
     height: 40px;
     margin: 16px;
 
-    color: $active-link-color;
+    color: $btn-text-color;
 
     border: none;
     border-radius: 8px;
-    background-color: $driver-notActive-bcg-color;
+    background-color: $btn-bg-color;
     transition: box-shadow $transition-duration $timing-function;
     cursor: pointer;
 }

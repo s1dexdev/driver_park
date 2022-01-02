@@ -41,9 +41,6 @@ export function Car({ car }: { car: ICar }): JSX.Element {
     const [driverId, setDriverId] = useState(0);
     const [modalActive, setModalActive] = useState(false);
 
-    const removeCar = <Delete />;
-    const addCar = <Plus />;
-
     const handleStatusClick = (id: number) => {
         setCarId(id);
         setShowStatusList(true);
@@ -138,13 +135,13 @@ export function Car({ car }: { car: ICar }): JSX.Element {
                     className={`${styles.car__item} ${styles.car__action}`}
                 >
                     <Button
-                        img={addCar}
+                        img={<Plus />}
                         name={car.id.toString()}
                         className={styles.car__actionBtn}
                         onClick={() => renderModalCar(car.driver_id)}
                     />
                     <Button
-                        img={removeCar}
+                        img={<Delete />}
                         name={car.id.toString()}
                         className={styles.car__actionBtn}
                         onClick={() => showDeleteCarForm(car.id)}

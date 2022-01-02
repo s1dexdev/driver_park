@@ -148,18 +148,22 @@ export function Driver({ driver }: { driver: IDriver }): JSX.Element {
                     key={'action'}
                     className={`${styles.driver__item} ${styles.driver__action}`}
                 >
-                    <Link
-                        className={styles.driver__linkCars}
-                        to={`${navConfig.drivers.path}/${driver.id}`}
-                    >
-                        <Car className={styles.driver__iconCar} />
-                    </Link>
+                    <div className={styles.actionButtons}>
+                        <Link
+                            className={styles.actionButtons__viewCars}
+                            to={`${navConfig.drivers.path}/${driver.id}`}
+                        >
+                            <Car
+                                className={styles.actionButtons__viewCarsIcon}
+                            />
+                        </Link>
 
-                    <Delete
-                        className={styles.driver__iconDelete}
-                        onClick={() => showDeleteDriverForm(driver.id)}
-                        name={driver.id.toString()}
-                    />
+                        <Button
+                            img={<Delete />}
+                            className={styles.actionButtons__deleteDriver}
+                            onClick={() => showDeleteDriverForm(driver.id)}
+                        />
+                    </div>
                 </li>
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>
