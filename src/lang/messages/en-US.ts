@@ -12,6 +12,7 @@ export default {
         allCars: 'All Cars',
         addCarBtn: 'Add car',
         driverNotFound: 'Oops, no one driver found...',
+        carNotFound: 'Oops, no one car found...',
         id: 'ID',
         firstName: 'First name',
         lastName: 'Last name',
