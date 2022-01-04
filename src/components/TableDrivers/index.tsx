@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { driversSelector } from '../../redux/drivers/selectors';
 import { Button, Modal, DriverForm } from '../';
+import { Translate } from '../../lang';
 import { TableHeaderDrivers } from './TableHeaderDrivers';
 import { ListDrivers } from './ListDrivers';
 import styles from './TableDrivers.module.scss';
@@ -17,15 +18,17 @@ export function TableDrivers(): JSX.Element {
 
     return (
         <div className={styles.driverTable}>
-            <p className={styles.driverTable__title}>All drivers</p>
+            <p className={styles.driverTable__title}>
+                {Translate('tableDriversName')}
+            </p>
             <div className={styles.driverTable__wrapper}>
                 <div className={styles.driverTable__wrapperDrivers}>
                     <p className={styles.driverTable__numberDrivers}>
-                        {' '}
-                        All drivers{' '}
+                        {Translate('allDrivers')}
                         <span
                             className={styles.driverTable__numberDrivers_color}
                         >
+                            {' '}
                             ({drivers.length})
                         </span>
                     </p>
@@ -33,7 +36,7 @@ export function TableDrivers(): JSX.Element {
                         onClick={renderModalDriver}
                         className={styles.button}
                         name={styles.button}
-                        text={'Add driver'}
+                        text={Translate('addDriverBtn')}
                     />
                 </div>
                 <TableHeaderDrivers />
@@ -41,7 +44,7 @@ export function TableDrivers(): JSX.Element {
                     <ListDrivers />
                 ) : (
                     <p className={styles.driverTable__info}>
-                        Oops, no one driver found...
+                        {Translate('driverNotFound')}
                     </p>
                 )}
                 <Modal active={modalActive} setActive={setModalActive}>

@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import { Translate } from '../../../lang';
 import { addCarRequest } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
 import styles from '../Form.module.scss';
@@ -65,7 +66,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
             autoComplete="off"
             onSubmit={formik.handleSubmit}
         >
-            <b className={styles.form__title}>Enter car details</b>
+            <b className={styles.form__title}>{Translate('carDetails')}</b>
             <div className={styles.form__fieldWrapper}>
                 <label className={styles.form__field}>
                     <input
@@ -77,7 +78,9 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         onChange={formik.handleChange}
                         value={formik.values.model}
                     />
-                    <span className={styles.form__descriptionInput}>Model</span>
+                    <span className={styles.form__descriptionInput}>
+                        {Translate('model')}
+                    </span>
                 </label>
                 <label className={styles.form__field}>
                     <input
@@ -89,7 +92,9 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         onChange={formik.handleChange}
                         value={formik.values.mark}
                     />
-                    <span className={styles.form__descriptionInput}>Mark</span>
+                    <span className={styles.form__descriptionInput}>
+                        {Translate('mark')}
+                    </span>
                 </label>
                 <label className={styles.form__field}>
                     <input
@@ -103,7 +108,9 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         onChange={formik.handleChange}
                         value={formik.values.year}
                     />
-                    <span className={styles.form__descriptionInput}>Year</span>
+                    <span className={styles.form__descriptionInput}>
+                        {Translate('firstReg')}
+                    </span>
                 </label>
                 <label className={styles.form__field}>
                     <input
@@ -116,7 +123,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         value={formik.values.number}
                     />
                     <span className={styles.form__descriptionInput}>
-                        Number
+                        {Translate('number')}
                     </span>
                 </label>
                 <label className={styles.form__field}>
@@ -135,7 +142,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                     </select>
                 </label>
             </div>
-            <button type="submit">Add</button>
+            <button type="submit">{Translate('add')}</button>
         </form>
     );
 }

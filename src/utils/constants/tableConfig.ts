@@ -1,61 +1,61 @@
 export const driversConfig = [
     {
-        title: 'ID',
+        title: 'id',
         classes: ['tableHeader__item', 'tableHeader__id'],
     },
     {
-        title: 'NAME',
+        title: 'fullName',
         classes: ['tableHeader__item', 'tableHeader__name'],
     },
     {
-        title: 'REGISTRATION DATE',
+        title: 'regDate',
         classes: ['tableHeader__item', 'tableHeader__regDate'],
     },
     {
-        title: 'BIRTH DATE',
+        title: 'birthDate',
         classes: ['tableHeader__item', 'tableHeader__birthDate'],
     },
     {
-        title: 'STATUS',
+        title: 'status',
         classes: ['tableHeader__item', 'tableHeader__status'],
     },
     {
-        title: 'ACTIONS',
+        title: 'actions',
         classes: ['tableHeader__item'],
     },
 ];
 
 export const carsConfig = [
     {
-        title: 'ID',
+        title: 'id',
         classes: ['tableHeader__item', 'tableHeader__id'],
     },
     {
-        title: 'NAME',
+        title: 'owner',
         classes: ['tableHeader__item', 'tableHeader__name'],
     },
     {
-        title: 'MARK',
+        title: 'mark',
         classes: ['tableHeader__item', 'tableHeader__mark'],
     },
     {
-        title: 'MODEL',
+        title: 'model',
         classes: ['tableHeader__item', 'tableHeader__model'],
     },
     {
-        title: 'NUMBER',
+        title: 'number',
         classes: ['tableHeader__item', 'tableHeader__number'],
     },
     {
-        title: 'FIRST REGISTRATION',
+        title: 'firstReg',
         classes: ['tableHeader__item', 'tableHeader__year'],
     },
     {
-        title: 'STATUS',
+        title: 'status',
         classes: ['tableHeader__item', 'tableHeader__status'],
     },
     {
-        title: 'ACTIONS',
+        title: 'actions',
         classes: ['tableHeader__item', 'tableHeader__actions'],
     },
 ];
