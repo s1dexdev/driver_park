@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { Translate } from '../../../lang';
 import styles from '../Form.module.scss';
 
 interface IAction<P> {
@@ -8,7 +9,7 @@ interface IAction<P> {
 
 interface IProps {
     id: number;
-    text: string;
+    text: string | JSX.Element;
     deleteAction: <P>(id: P) => IAction<P>;
     setActiveModal: (b: boolean) => void;
 }
@@ -27,16 +28,16 @@ export const DeleteForm = ({
     };
     return (
         <div className={styles.deleteFormWrapper}>
-            <p className={styles.deleteFormWrapper__text}>
-                Do you really want to delete this {text} ?
-            </p>
+            <p className={styles.deleteFormWrapper__text}>{text}</p>
             <button
                 className={styles.deleteFormWrapper__btnDelete}
                 onClick={() => deleteItem()}
             >
-                Delete
+                {Translate('delete')}
             </button>
-            <button onClick={() => setActiveModal(false)}>Cancel</button>
+            <button onClick={() => setActiveModal(false)}>
+                {Translate('cancel')}
+            </button>
         </div>
     );
 };

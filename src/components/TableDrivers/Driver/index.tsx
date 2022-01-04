@@ -8,6 +8,7 @@ import {
     StatusesList,
     Modal,
 } from '../../';
+import { Translate } from '../../../lang';
 import {
     updateDriverInfoRequest,
     deleteDriverRequest,
@@ -169,7 +170,7 @@ export function Driver({ driver }: { driver: IDriver }): JSX.Element {
             <Modal active={modalActive} setActive={setModalActive}>
                 <DeleteForm
                     id={driverId}
-                    text="driver and his all cars "
+                    text={Translate('deleteDriverText')}
                     deleteAction={deleteDriverRequest}
                     setActiveModal={setModalActive}
                 />

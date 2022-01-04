@@ -3,6 +3,7 @@ import { LOCALES } from '../locales';
 export default {
     [LOCALES.ENGLISH]: {
         home: 'Home',
+
         drivers: 'Drivers',
         cars: 'Cars',
         tableDriversName: 'All Drivers',
@@ -29,5 +30,10 @@ export default {
         driverDetails: 'Enter driver details',
         carDetails: 'Enter car details',
         add: 'Add',
+        delete: 'Delete',
+        cancel: 'Cancel',
+        deleteCarText: 'Do you really want to delete this car ',
+        deleteDriverText:
+            'Do you really want to delete this driver and his all cars ',
     },
 };
