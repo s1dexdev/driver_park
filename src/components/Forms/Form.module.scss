@@ -32,9 +32,15 @@
         top: 5px;
         left: 10px;
 
+        text-transform: lowercase;
+
         transition: top $transition-duration $timing-function,
             left $transition-duration $timing-function,
             font-weight $transition-duration $timing-function;
+    }
+
+    &__descriptionInput::first-letter {
+        text-transform: uppercase;
     }
 
     &__field:focus-within &__descriptionInput,

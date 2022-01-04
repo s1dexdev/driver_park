@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import { Translate } from '../../../lang';
 import { addDriverRequest } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
 import styles from '../Form.module.scss';
@@ -61,7 +62,7 @@ export function DriverForm(): JSX.Element {
             autoComplete="off"
             onSubmit={formik.handleSubmit}
         >
-            <b className={styles.form__title}>Enter driver details</b>
+            <b className={styles.form__title}>{Translate('driverDetails')}</b>
             <div className={styles.form__fieldWrapper}>
                 <label className={styles.form__field}>
                     <input
@@ -74,7 +75,7 @@ export function DriverForm(): JSX.Element {
                         value={formik.values.first_name}
                     />
                     <span className={styles.form__descriptionInput}>
-                        First name
+                        {Translate('firstName')}
                     </span>
                 </label>
                 <label className={styles.form__field}>
@@ -88,7 +89,7 @@ export function DriverForm(): JSX.Element {
                         value={formik.values.last_name}
                     />
                     <span className={styles.form__descriptionInput}>
-                        Last name
+                        {Translate('lastName')}
                     </span>
                 </label>
                 <label className={styles.form__field}>
@@ -117,7 +118,7 @@ export function DriverForm(): JSX.Element {
                     </select>
                 </label>
             </div>
-            <button type="submit">Add</button>
+            <button type="submit">{Translate('add')}</button>
         </form>
     );
 }

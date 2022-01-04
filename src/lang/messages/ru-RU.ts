@@ -1,0 +1,33 @@
+import { LOCALES } from '../locales';
+
+export default {
+    [LOCALES.RUSSIAN]: {
+        home: 'Главная',
+        drivers: 'Водители',
+        cars: 'Машины',
+        tableDriversName: 'Все водители',
+        allDrivers: 'Всего водителей',
+        addDriverBtn: 'Добавить водителя',
+        tableCarsName: 'Все Машины',
+        allCars: 'Всего Машин',
+        addCarBtn: 'Добавить Машину',
+        driverNotFound: 'Ой, ни одного водителя не найдено...',
+        carNotFound: 'Ой, ни одной машины не найдено...',
+        id: 'ID',
+        firstName: 'Имя',
+        lastName: 'Фамилия',
+        fullName: 'ФИО',
+        owner: 'ВЛАДЕЛЕЦ',
+        regDate: 'ДАТА РЕГИСТРАЦИИ',
+        birthDate: 'ДАТА РОЖДЕНИЯ',
+        status: 'СТАТУС',
+        actions: 'ДЕЙСТВИЯ',
+        mark: 'МАРКА',
+        model: 'МОДЕЛЬ',
+        number: 'НОМЕР',
+        firstReg: 'ПЕРВАЯ РЕГИСТРАЦИЯ',
+        driverDetails: 'Заполните инфо о водителе',
+        carDetails: 'Заполните инфо о машине',
+        add: 'Добавить',
+    },
+};

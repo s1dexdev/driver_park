@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Button, CarForm, Modal } from '../';
+import { Translate } from '../../lang';
 import { carsSelector } from '../../redux/cars/selectors';
 import { TableHeaderCars } from './TableHeaderCars';
 import { ListCars } from './ListCars';
@@ -21,13 +22,15 @@ export function TableCars(): JSX.Element {
     return (
         <>
             <div className={styles.carTable}>
-                <p className={styles.carTable__title}>All cars</p>
+                <p className={styles.carTable__title}>
+                    {Translate('tableCarsName')}
+                </p>
                 <div className={styles.carTable__wrapper}>
                     <div className={styles.carTable__wrapperCars}>
                         <p className={styles.carTable__numberCars}>
-                            {' '}
-                            All cars{' '}
+                            {Translate('allCars')}
                             <span className={styles.carTable__numberCars_color}>
+                                {' '}
                                 ({cars.length})
                             </span>
                         </p>
@@ -36,20 +39,18 @@ export function TableCars(): JSX.Element {
                     {cars.length ? (
                         <ListCars />
                     ) : (
-                        <>
-                            <div className={styles.info}>
-                                <p className={styles.info__text}>
-                                    Oops, no one car found...
-                                </p>
-                                {driverId && (
-                                    <Button
-                                        text="Add car"
-                                        className={styles.info__addBtn}
-                                        onClick={() => renderModalCar()}
-                                    />
-                                )}
-                            </div>
-                        </>
+                        <div className={styles.info}>
+                            <p className={styles.info__text}>
+                                {Translate('carNotFound')}
+                            </p>
+                            {driverId && (
+                                <Button
+                                    text={Translate('addCar')}
+                                    className={styles.info__addBtn}
+                                    onClick={() => renderModalCar()}
+                                />
+                            )}
+                        </div>
                     )}
                 </div>
             </div>

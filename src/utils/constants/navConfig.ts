@@ -1,11 +1,11 @@
 export const navConfig = {
     home: {
         path: '/',
-        label: 'Home',
+        label: 'home',
     },
     drivers: {
         path: '/drivers',
-        label: 'Drivers',
+        label: 'drivers',
     },
     driverCars: {
         path: '/drivers/:driverId',
@@ -13,6 +13,6 @@ export const navConfig = {
     },
     cars: {
         path: '/cars',
-        label: 'Cars',
+        label: 'cars',
     },
 };
