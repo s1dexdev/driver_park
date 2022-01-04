@@ -3,14 +3,11 @@ import { LOCALES } from '../locales';
 export default {
     [LOCALES.ENGLISH]: {
         home: 'Home',
-
         drivers: 'Drivers',
         cars: 'Cars',
-        tableDriversName: 'All Drivers',
         allDrivers: 'All Drivers',
-        addDriverBtn: 'Add driver',
-        tableCarsName: 'All Cars',
         allCars: 'All Cars',
+        addDriverBtn: 'Add driver',
         addCarBtn: 'Add car',
         driverNotFound: 'Oops, no one driver found...',
         carNotFound: 'Oops, no one car found...',
