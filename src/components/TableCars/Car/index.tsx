@@ -119,7 +119,7 @@ export function Car({ car }: { car: ICar }): JSX.Element {
                             styles[car.status.code]
                         }`}
                         onClick={() => handleStatusClick(car.id)}
-                        text={car.status.title}
+                        text={Translate(`${car.status.code}`)}
                         name={car.id.toString()}
                     />
                     {showStatusList && carId === car.id && (

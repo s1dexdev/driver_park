@@ -133,7 +133,7 @@ export function Driver({ driver }: { driver: IDriver }): JSX.Element {
                             styles[driver.status.code]
                         }`}
                         onClick={() => handleClickStatus(driver.id)}
-                        text={driver.status.title}
+                        text={Translate(`${driver.status.code}`)}
                         name={driver.id.toString()}
                     />
                     {showStatusList && driverId === driver.id && (

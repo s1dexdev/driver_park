@@ -32,5 +32,13 @@ export default {
         deleteCarText: 'Вы действительно хотите удалить машину',
         deleteDriverText:
             'Вы действительно хотите удалить водителя и все его машины ',
+        active: 'Активный',
+        blocked: 'Заблокирован',
+        fired: 'Уволенный',
+        not_active: 'Не активный',
+        econom: 'Эконом',
+        standart: 'Стандарт',
+        bussiness: 'Бизнес',
+        eco: 'Эко',
     },
 };

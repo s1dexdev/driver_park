@@ -32,5 +32,13 @@ export default {
         deleteCarText: 'Do you really want to delete this car ',
         deleteDriverText:
             'Do you really want to delete this driver and his all cars ',
+        active: 'Active',
+        blocked: 'Blocked',
+        fired: 'Fired',
+        not_active: 'Not Active',
+        econom: 'Econom',
+        standart: 'Standart',
+        bussiness: 'Business',
+        eco: 'Eco',
     },
 };
