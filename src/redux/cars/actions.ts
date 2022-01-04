@@ -72,3 +72,8 @@ export const deleteCarError = <P>(data: P): IAction<P> => ({
     type: Type.DELETE_CAR_ERROR,
     payload: data,
 });
+
+export const choiseParameterSort = <P>(data: P): IAction<P> => ({
+    type: Type.CHOISE_PARAMETR_SORT,
+    payload: data,
+});
