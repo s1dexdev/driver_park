@@ -22,9 +22,7 @@ export function TableCars(): JSX.Element {
     return (
         <>
             <div className={styles.carTable}>
-                <p className={styles.carTable__title}>
-                    {Translate('tableCarsName')}
-                </p>
+                <p className={styles.carTable__title}>{Translate('cars')}</p>
                 <div className={styles.carTable__wrapper}>
                     <div className={styles.carTable__wrapperCars}>
                         <p className={styles.carTable__numberCars}>

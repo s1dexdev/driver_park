@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { carsConfig } from '../../../utils/constants';
 import { concatClasses } from '../../../helpers';
+import { Translate } from '../../../lang';
 import { ReactComponent as SortDown } from '../../../images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../images/sortUp.svg';
-
 import styles from './TableHeaderCars.module.scss';
-import { Translate } from '../../../lang';
 
 export function TableHeaderCars(): JSX.Element {
     const [sortData, setSortData] = useState(true);
