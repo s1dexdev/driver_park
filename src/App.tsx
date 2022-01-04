@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -11,7 +11,18 @@ function App(): JSX.Element {
     const [locale, setLocale] = useState(LOCALES.ENGLISH);
     const { home, drivers, driverCars, cars } = navConfig;
 
-    const changeLanguage = (language: string) => setLocale(language);
+    useEffect(() => {
+        const lang = localStorage.getItem('locale');
+
+        if (lang) {
+            setLocale(lang);
+        }
+    }, []);
+
+    const changeLanguage = (language: string) => {
+        setLocale(language);
+        localStorage.setItem('locale', language);
+    };
 
     return (
         <I18nProvider locale={locale}>
