@@ -32,6 +32,7 @@ export default {
         deleteCarText: 'Do you really want to delete this car ',
         deleteDriverText:
             'Do you really want to delete this driver and his all cars ',
+        selectStatus: 'Select status',
         active: 'Active',
         blocked: 'Blocked',
         fired: 'Fired',

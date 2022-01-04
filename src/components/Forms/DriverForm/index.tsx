@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { Translate } from '../../../lang';
 import { addDriverRequest } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
@@ -109,11 +110,18 @@ export function DriverForm(): JSX.Element {
                         onChange={formik.handleChange}
                         value={formik.values.status}
                     >
-                        <option value="" label="Select status" />
-                        {statuses.map(({ title, code }) => (
-                            <option key={code} value={code}>
-                                {title}
-                            </option>
+                        <FormattedMessage id={'selectStatus'}>
+                            {id => <option value="" label={`${id}`} />}
+                        </FormattedMessage>
+
+                        {statuses.map(({ code }) => (
+                            <FormattedMessage key={code} id={code}>
+                                {id => (
+                                    <option key={code} value={code}>
+                                        {id}
+                                    </option>
+                                )}
+                            </FormattedMessage>
                         ))}
                     </select>
                 </label>

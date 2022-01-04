@@ -32,6 +32,7 @@ export default {
         deleteCarText: 'Вы действительно хотите удалить машину',
         deleteDriverText:
             'Вы действительно хотите удалить водителя и все его машины ',
+        selectStatus: 'Выберите статус',
         active: 'Активный',
         blocked: 'Заблокирован',
         fired: 'Уволенный',

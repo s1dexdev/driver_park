@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { Translate } from '../../../lang';
 import { addCarRequest } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
@@ -133,11 +134,20 @@ export function CarForm({ id }: { id: number }): JSX.Element {
                         onChange={formik.handleChange}
                         value={formik.values.status}
                     >
-                        <option value="" label="Select status" />
-                        {statuses.map(({ title, code }, index) => (
-                            <option key={index} value={code}>
-                                {title}
-                            </option>
+                        <FormattedMessage id={'selectStatus'}>
+                            {message => (
+                                <option value="" label={`${message}`} />
+                            )}
+                        </FormattedMessage>
+
+                        {statuses.map(({ code }) => (
+                            <FormattedMessage key={code} id={code}>
+                                {message => (
+                                    <option key={code} value={code}>
+                                        {message}
+                                    </option>
+                                )}
+                            </FormattedMessage>
                         ))}
                     </select>
                 </label>
