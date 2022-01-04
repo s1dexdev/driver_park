@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { Header } from './components';
-import { PageHome, PageDrivers, PageCars } from './pages';
+import { Header, Spinner } from './components';
 import { navConfig } from './utils/constants';
 import { I18nProvider, LOCALES } from './lang';
+
+const PageHome = lazy(() => import('./pages/PageHome'));
+const PageDrivers = lazy(() => import('./pages/PageDrivers'));
+const PageCars = lazy(() => import('./pages/PageCars'));
 
 function App(): JSX.Element {
     const [locale, setLocale] = useState(LOCALES.ENGLISH);
@@ -28,12 +31,14 @@ function App(): JSX.Element {
         <I18nProvider locale={locale}>
             <Provider store={store}>
                 <Header onChangeLanguage={changeLanguage} />
-                <Routes>
-                    <Route path={home.path} element={<PageHome />} />
-                    <Route path={drivers.path} element={<PageDrivers />} />
-                    <Route path={driverCars.path} element={<PageCars />} />
-                    <Route path={cars.path} element={<PageCars />} />
-                </Routes>
+                <Suspense fallback={<Spinner />}>
+                    <Routes>
+                        <Route path={home.path} element={<PageHome />} />
+                        <Route path={drivers.path} element={<PageDrivers />} />
+                        <Route path={driverCars.path} element={<PageCars />} />
+                        <Route path={cars.path} element={<PageCars />} />
+                    </Routes>
+                </Suspense>
             </Provider>
         </I18nProvider>
     );

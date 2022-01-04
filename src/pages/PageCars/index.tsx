@@ -10,7 +10,7 @@ import {
 import { loadingSelector } from '../../redux/cars/selectors';
 import { ReactComponent as Car } from '../../images/car.svg';
 
-export function PageCars(): JSX.Element {
+function PageCars(): JSX.Element {
     const dispatch = useDispatch();
     const isLoading = useSelector(loadingSelector);
     const { driverId } = useParams();
@@ -32,3 +32,5 @@ export function PageCars(): JSX.Element {
         </>
     );
 }
+
+export default PageCars;

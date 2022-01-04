@@ -9,7 +9,7 @@ import {
 import { loadingSelector } from '../../redux/drivers/selectors';
 import { ReactComponent as Driver } from '../../images/driver.svg';
 
-export function PageDrivers(): JSX.Element {
+function PageDrivers(): JSX.Element {
     const dispatch = useDispatch();
     const isLoading = useSelector(loadingSelector);
 
@@ -25,3 +25,5 @@ export function PageDrivers(): JSX.Element {
         </>
     );
 }
+
+export default PageDrivers;
