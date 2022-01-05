@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Translate } from '../../lang';
 import { ReactComponent as IconLogo } from '../../images/logo.svg';
 import { ReactComponent as IconDriver } from '../../images/driver.svg';
 import { ReactComponent as IconCar } from '../../images/car.svg';
@@ -33,7 +34,7 @@ export function Menu({ onShowMenu }: { onShowMenu: TProps }): JSX.Element {
                     <NavLink to="/drivers" className={styles.menu__link}>
                         <span className={styles.menu__itemContent}>
                             <IconDriver className={styles.menu__icon} />
-                            {drivers.label}
+                            {Translate(drivers.label)}
                         </span>
                     </NavLink>
                 </li>
@@ -41,7 +42,7 @@ export function Menu({ onShowMenu }: { onShowMenu: TProps }): JSX.Element {
                     <NavLink to="/cars" className={styles.menu__link}>
                         <span className={styles.menu__itemContent}>
                             <IconCar className={styles.menu__icon} />
-                            {cars.label}
+                            {Translate(cars.label)}
                         </span>
                     </NavLink>
                 </li>

@@ -1,68 +1,68 @@
 export const driversConfig = [
     {
-        title: 'ID',
+        title: 'id',
         classes: ['tableHeader__item', 'tableHeader__id'],
     },
     {
-        title: 'NAME',
+        title: 'fullName',
         classes: ['tableHeader__item', 'tableHeader__name'],
     },
     {
-        title: 'REGISTRATION DATE',
+        title: 'regDate',
         classes: ['tableHeader__item', 'tableHeader__regDate'],
     },
     {
-        title: 'BIRTH DATE',
+        title: 'birthDate',
         classes: ['tableHeader__item', 'tableHeader__birthDate'],
     },
     {
-        title: 'STATUS',
+        title: 'status',
         classes: ['tableHeader__item', 'tableHeader__status'],
     },
     {
-        title: 'ACTIONS',
+        title: 'actions',
         classes: ['tableHeader__item'],
     },
 ];
 
 export const carsConfig = [
     {
-        title: 'ID',
+        title: 'id',
         classes: ['tableHeader__item', 'tableHeader__id'],
         name: 'id',
     },
     {
-        title: 'NAME',
+        title: 'owner',
         classes: ['tableHeader__item', 'tableHeader__name'],
         name: 'driver_firstname',
     },
     {
-        title: 'MARK',
+        title: 'mark',
         classes: ['tableHeader__item', 'tableHeader__mark'],
         name: 'mark',
     },
     {
-        title: 'MODEL',
+        title: 'model',
         classes: ['tableHeader__item', 'tableHeader__model'],
         name: 'model',
     },
     {
-        title: 'NUMBER',
+        title: 'number',
         classes: ['tableHeader__item', 'tableHeader__number'],
         name: 'number',
     },
     {
-        title: 'FIRST REGISTRATION',
+        title: 'firstReg',
         classes: ['tableHeader__item', 'tableHeader__year'],
         name: 'year',
     },
     {
-        title: 'STATUS',
+        title: 'status',
         classes: ['tableHeader__item', 'tableHeader__status'],
         name: 'status',
     },
     {
-        title: 'ACTIONS',
+        title: 'actions',
         classes: ['tableHeader__item', 'tableHeader__actions'],
         name: 'actions',
     },

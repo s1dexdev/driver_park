@@ -43,8 +43,8 @@ const initialState: ICarsState = {
     cars: [],
     statuses: [],
     parametrSort: {
-        class: '',
-        isAsc: true,
+        class: 'id',
+        isAsc: false,
     },
     isLoading: setFalse(),
     error: setNull(),

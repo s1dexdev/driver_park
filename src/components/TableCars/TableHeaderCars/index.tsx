@@ -8,6 +8,7 @@ import { Button } from '../../Button/index';
 import { choiseParameterSort } from '../../../redux/cars/actions';
 
 import styles from './TableHeaderCars.module.scss';
+import { Translate } from '../../../lang';
 
 export function TableHeaderCars(): JSX.Element {
     const [sortData, setSortData] = useState({ class: '', isAsc: true });
@@ -29,7 +30,7 @@ export function TableHeaderCars(): JSX.Element {
             {carsConfig.map(({ title, classes, name }) => (
                 <li key={title} className={concatClasses(styles, classes)}>
                     {title}
-                    {title !== 'ACTIONS' && (
+                    {title !== 'actions' && (
                         <Button
                             className={name}
                             onClick={() => choiseSort(name)}
