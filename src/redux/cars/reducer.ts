@@ -27,12 +27,9 @@ interface IAction<T> {
     payload: T;
 }
 
-interface ISort {
-    class: string;
-    sortFunction: (a: string, b: string) => number;
-}
+type TSort = (a: ICar, b: ICar) => number;
 
-type TReducer = ICar & ICar[] & IStatus[] & Error & number & ISort;
+type TReducer = ICar & ICar[] & IStatus[] & Error & number & TSort;
 
 const setTrue = () => true;
 const setFalse = () => false;
@@ -132,19 +129,9 @@ export const carsReducer = <T extends TReducer>(
             return {
                 ...state,
                 cars: [
-                    ...state.cars.sort((itemFirst, itemSecond) => {
-                        if (action.payload.class === 'status') {
-                            return action.payload.sortFunction(
-                                itemFirst.status.code,
-                                itemSecond.status.code,
-                            );
-                        }
-                        const param = action.payload.class as string & number;
-
-                        return action.payload.sortFunction(
-                            itemFirst[param],
-                            itemSecond[param],
-                        );
+                    ...state.cars.sort((itemFirst: ICar, itemSecond: ICar) => {
+                        // console.log(123);
+                        return action.payload(itemFirst, itemSecond);
                     }),
                 ],
             };
