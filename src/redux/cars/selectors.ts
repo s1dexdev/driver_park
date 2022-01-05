@@ -31,6 +31,3 @@ export const statusesSelector = (state: IState): IStatus[] =>
 
 export const loadingSelector = (state: IState): boolean =>
     state.carsReducer.isLoading;
-
-export const choiseParameterSortSelector = (state: IState) =>
-    state.carsReducer.cars;
