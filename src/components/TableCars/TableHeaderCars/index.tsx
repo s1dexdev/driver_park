@@ -6,22 +6,35 @@ import { ReactComponent as SortDown } from '../../../images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../images/sortUp.svg';
 import { Button } from '../../Button/index';
 import { choiseParameterSort } from '../../../redux/cars/actions';
-
 import styles from './TableHeaderCars.module.scss';
-import { Translate } from '../../../lang';
 
 export function TableHeaderCars(): JSX.Element {
-    const [sortData, setSortData] = useState({ class: '', isAsc: true });
     const dispatch = useDispatch();
+    const [sortData, setSortData] = useState({
+        class: '',
+        isAsc: true,
+    });
+
+    const sorting = (a: string, b: string) => {
+        if ((sortData.isAsc && a > b) || (!sortData.isAsc && a < b)) {
+            return -1;
+        }
+        if ((sortData.isAsc && a < b) || (!sortData.isAsc && a > b)) {
+            return 1;
+        }
+        return 0;
+    };
 
     const choiseSort = (name: string) => {
         const obj = {
             class: name,
             isAsc: !sortData.isAsc,
+            sortFunction: sorting,
         };
         setSortData(obj);
         dispatch(choiseParameterSort(obj));
     };
+
     return (
         <ul className={styles.tableHeader}>
             <li key={'checkbox'} className={`${styles.tableHeader__item}`}>

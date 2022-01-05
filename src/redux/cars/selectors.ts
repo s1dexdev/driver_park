@@ -3,11 +3,6 @@ interface IStatus {
     code: string;
 }
 
-interface IParametrSort {
-    class: string;
-    isAsc: boolean;
-}
-
 interface ICar {
     id: number;
     model: string;
@@ -24,7 +19,6 @@ interface IState {
     carsReducer: {
         cars: ICar[];
         statuses: IStatus[];
-        parametrSort: IParametrSort;
         isLoading: boolean;
         error: null | string;
     };
@@ -39,4 +33,4 @@ export const loadingSelector = (state: IState): boolean =>
     state.carsReducer.isLoading;
 
 export const choiseParameterSortSelector = (state: IState) =>
-    state.carsReducer.parametrSort;
+    state.carsReducer.cars;

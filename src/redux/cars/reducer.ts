@@ -15,15 +15,9 @@ interface ICar {
     status: IStatus;
 }
 
-interface IParametrSort {
-    class: string;
-    isAsc: boolean;
-}
-
 interface ICarsState {
     cars: ICar[];
     statuses: IStatus[];
-    parametrSort: IParametrSort;
     isLoading: boolean;
     error: Error | null | string;
 }
@@ -33,7 +27,12 @@ interface IAction<T> {
     payload: T;
 }
 
-type TReducer = ICar & ICar[] & IStatus[] & Error & number & IParametrSort;
+interface ISort {
+    class: string;
+    sortFunction: (a: string, b: string) => number;
+}
+
+type TReducer = ICar & ICar[] & IStatus[] & Error & number & ISort;
 
 const setTrue = () => true;
 const setFalse = () => false;
@@ -42,10 +41,6 @@ const setNull = () => null;
 const initialState: ICarsState = {
     cars: [],
     statuses: [],
-    parametrSort: {
-        class: 'id',
-        isAsc: false,
-    },
     isLoading: setFalse(),
     error: setNull(),
 };
@@ -136,7 +131,22 @@ export const carsReducer = <T extends TReducer>(
         case Type.CHOISE_PARAMETR_SORT:
             return {
                 ...state,
-                parametrSort: action.payload,
+                cars: [
+                    ...state.cars.sort((itemFirst, itemSecond) => {
+                        if (action.payload.class === 'status') {
+                            return action.payload.sortFunction(
+                                itemFirst.status.code,
+                                itemSecond.status.code,
+                            );
+                        }
+                        const param = action.payload.class as string & number;
+
+                        return action.payload.sortFunction(
+                            itemFirst[param],
+                            itemSecond[param],
+                        );
+                    }),
+                ],
             };
 
         default:
