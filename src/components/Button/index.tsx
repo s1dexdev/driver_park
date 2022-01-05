@@ -1,3 +1,5 @@
+import { render, RenderOptions } from '@testing-library/react';
+
 interface IProps {
     img?: JSX.Element;
     text?: string | JSX.Element;
