@@ -28,6 +28,14 @@
 
     &__year {
         width: 220px;
+
+        @media screen and (min-width: 1300px) {
+            width: 170px;
+        }
+
+        @media screen and (min-width: 1872px) {
+            width: 220px;
+        }
     }
 
     &__icon {
