@@ -44,16 +44,11 @@ export function TableHeaderCars(): JSX.Element {
     };
 
     const sortFunction = (firstCar: ICar, secondCar: ICar) => {
-        // console.log('sort data: ', sortData);
         if (sortField === 'status') {
-            // console.log('code: ', firstCar.status.code);
-
             return sorting(firstCar.status.code, secondCar.status.code);
         }
 
         const param = sortField as string & number;
-        // console.log('class: ', firstCar[param]);
-
         return sorting(firstCar[param], secondCar[param]);
     };
 
