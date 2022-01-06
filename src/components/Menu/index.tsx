@@ -19,9 +19,7 @@ export function Menu({ onShowMenu }: { onShowMenu: TProps }): JSX.Element {
 
         window.addEventListener('click', closeMenu);
 
-        return () => {
-            window.removeEventListener('click', closeMenu);
-        };
+        return () => window.removeEventListener('click', closeMenu);
     }, [onShowMenu]);
 
     return (
