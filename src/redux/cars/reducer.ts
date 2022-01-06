@@ -125,14 +125,13 @@ export const carsReducer = <T extends TReducer>(
                 error: action.payload,
             };
 
-        case Type.CHOISE_PARAMETR_SORT:
+        case Type.SORT_ITEMS_CAR:
             return {
                 ...state,
                 cars: [
-                    ...state.cars.sort((itemFirst: ICar, itemSecond: ICar) => {
-                        // console.log(123);
-                        return action.payload(itemFirst, itemSecond);
-                    }),
+                    ...state.cars.sort((itemFirst: ICar, itemSecond: ICar) =>
+                        action.payload(itemFirst, itemSecond),
+                    ),
                 ],
             };
 

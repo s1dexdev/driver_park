@@ -71,3 +71,8 @@ export const deleteDriverError = <P>(data: P): IAction<P> => ({
     type: Type.DELETE_DRIVER_ERROR,
     payload: data,
 });
+
+export const sortItemsDriver = <P>(data: P): IAction<P> => ({
+    type: Type.SORT_ITEMS_DRIVER,
+    payload: data,
+});
