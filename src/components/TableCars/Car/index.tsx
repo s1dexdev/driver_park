@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, StatusesList, Modal, CarForm, DeleteForm } from '../../';
+import { Button, Modal, CarForm, DeleteForm, StatusesList } from '../../';
 import {
     updateCarInfoRequest,
     deleteCarRequest,
