@@ -43,7 +43,7 @@ export function TableCars(): JSX.Element {
                             </p>
                             {driverId && (
                                 <Button
-                                    text={Translate('addCar')}
+                                    text={Translate('add')}
                                     className={styles.info__addBtn}
                                     onClick={() => renderModalCar()}
                                 />
