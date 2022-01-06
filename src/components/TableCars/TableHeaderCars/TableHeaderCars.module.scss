@@ -26,6 +26,14 @@
         width: 150px;
     }
 
+    &__status {
+        justify-content: center;
+
+        @media screen and (min-width: 1300px) {
+            justify-content: flex-start;
+        }
+    }
+
     &__year {
         width: 220px;
 

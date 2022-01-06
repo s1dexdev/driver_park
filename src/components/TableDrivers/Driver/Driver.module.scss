@@ -101,6 +101,14 @@
     margin: 0;
     padding: 0;
 
+    @media screen and (min-width: 1300px) {
+        width: 65px;
+    }
+
+    @media screen and (min-width: 1872px) {
+        width: 50px;
+    }
+
     &__addCar,
     &__viewCars,
     &__deleteDriver {
