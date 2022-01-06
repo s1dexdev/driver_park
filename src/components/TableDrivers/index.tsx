@@ -18,9 +18,7 @@ export function TableDrivers(): JSX.Element {
 
     return (
         <div className={styles.driverTable}>
-            <p className={styles.driverTable__title}>
-                {Translate('tableDriversName')}
-            </p>
+            <p className={styles.driverTable__title}>{Translate('drivers')}</p>
             <div className={styles.driverTable__wrapper}>
                 <div className={styles.driverTable__wrapperDrivers}>
                     <p className={styles.driverTable__numberDrivers}>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Translate } from '../../lang';
 import styles from './StatusesList.module.scss';
 
 interface IStatus {
@@ -48,7 +49,7 @@ export const StatusesList = ({
                             onUpdateInfo(id, { status: { title, code } })
                         }
                     >
-                        {title}
+                        {Translate(`${code}`)}
                     </li>
                 ))}
             </ul>

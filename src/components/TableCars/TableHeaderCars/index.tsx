@@ -4,6 +4,7 @@ import { Button } from '../../';
 import { sortItemsCar } from '../../../redux/cars/actions';
 import { carsConfig } from '../../../utils/constants';
 import { concatClasses } from '../../../helpers';
+import { Translate } from '../../../lang';
 import { ReactComponent as SortDown } from '../../../images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../images/sortUp.svg';
 import styles from './TableHeaderCars.module.scss';
@@ -12,6 +13,7 @@ interface IStatus {
     title: string;
     code: string;
 }
+
 interface ICar {
     id: number;
     model: string;

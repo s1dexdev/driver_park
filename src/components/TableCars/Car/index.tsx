@@ -6,6 +6,7 @@ import {
     deleteCarRequest,
 } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
+import { Translate } from '../../../lang';
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import { ReactComponent as Plus } from '../../../images/plus.svg';
 import styles from './Car.module.scss';
@@ -118,7 +119,7 @@ export function Car({ car }: { car: ICar }): JSX.Element {
                             styles[car.status.code]
                         }`}
                         onClick={() => handleStatusClick(car.id)}
-                        text={car.status.title}
+                        text={Translate(`${car.status.code}`)}
                         name={car.id.toString()}
                     />
                     {showStatusList && carId === car.id && (
@@ -154,7 +155,7 @@ export function Car({ car }: { car: ICar }): JSX.Element {
                 ) : (
                     <DeleteForm
                         id={carId}
-                        text="car "
+                        text={Translate('deleteCarText')}
                         deleteAction={deleteCarRequest}
                         setActiveModal={setModalActive}
                     />
