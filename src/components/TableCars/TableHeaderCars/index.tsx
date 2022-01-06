@@ -65,7 +65,7 @@ export function TableHeaderCars(): JSX.Element {
             </li>
             {carsConfig.map(({ title, classes, name }) => (
                 <li key={title} className={concatClasses(styles, classes)}>
-                    {title}
+                    {Translate(title)}
                     {title !== 'actions' && (
                         <Button
                             className={name}

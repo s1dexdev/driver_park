@@ -7,13 +7,13 @@ import { ReactComponent as Arrow } from '../../images/rightArrow.svg';
 import { navConfig } from '../../utils/constants';
 import styles from './NavBar.module.scss';
 
-type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
+type TIcon = FunctionComponent<SVGProps<SVGSVGElement>>;
 
 export function NavBar({
     icon,
     text,
 }: {
-    icon: Icon;
+    icon: TIcon;
     text: string;
 }): JSX.Element {
     const { home } = navConfig;
