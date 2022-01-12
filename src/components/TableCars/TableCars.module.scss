@@ -38,6 +38,14 @@
     &__numberCars_color {
         color: $primary-link-color;
     }
+
+    @media screen and (min-width: 1300px) {
+        width: 1200px;
+    }
+
+    @media screen and (min-width: 1872px) {
+        width: 1500px;
+    }
 }
 
 .info {

@@ -37,7 +37,9 @@ interface IAction<T> {
     payload: T;
 }
 
-type TReducer = IDriver & IDriver[] & IStatus[] & Error & number;
+type TSort = (a: IDriver, b: IDriver) => number;
+
+type TReducer = IDriver & IDriver[] & IStatus[] & Error & number & TSort;
 
 export const driversReducer = <T extends TReducer>(
     state: IDriversState,
@@ -113,6 +115,17 @@ export const driversReducer = <T extends TReducer>(
                 ...state,
                 isLoading: setFalse(),
                 error: action.payload,
+            };
+
+        case Type.SORT_ITEMS_DRIVER:
+            return {
+                ...state,
+                drivers: [
+                    ...state.drivers.sort(
+                        (itemFirst: IDriver, itemSecond: IDriver) =>
+                            action.payload(itemFirst, itemSecond),
+                    ),
+                ],
             };
 
         default:

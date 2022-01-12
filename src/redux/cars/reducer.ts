@@ -27,7 +27,9 @@ interface IAction<T> {
     payload: T;
 }
 
-type TReducer = ICar & ICar[] & IStatus[] & Error & number;
+type TSort = (a: ICar, b: ICar) => number;
+
+type TReducer = ICar & ICar[] & IStatus[] & Error & number & TSort;
 
 const setTrue = () => true;
 const setFalse = () => false;
@@ -121,6 +123,16 @@ export const carsReducer = <T extends TReducer>(
                 ...state,
                 isLoading: setFalse(),
                 error: action.payload,
+            };
+
+        case Type.SORT_ITEMS_CAR:
+            return {
+                ...state,
+                cars: [
+                    ...state.cars.sort((itemFirst: ICar, itemSecond: ICar) =>
+                        action.payload(itemFirst, itemSecond),
+                    ),
+                ],
             };
 
         default:
