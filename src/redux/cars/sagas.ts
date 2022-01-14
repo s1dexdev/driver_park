@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
-import * as API from '../../API/carService';
-import { fetchDriverById } from '../../API/driverService';
+import * as API from '../../api/carService';
+import { fetchDriverById } from '../../api/driverService';
 import {
     FETCH_CARS_REQUEST,
     FETCH_CAR_STATUSES_REQUEST,

@@ -3,26 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Button } from '../../';
 import { sortItemsCar } from '../../../redux/cars/actions';
 import { carsConfig } from '../../../utils/constants';
-import { concatClasses } from '../../../helpers';
+import { concatClasses } from '../../../utils/helpers';
 import { Translate } from '../../../lang';
-import { ReactComponent as SortDown } from '../../../images/sortDown.svg';
-import { ReactComponent as SortUp } from '../../../images/sortUp.svg';
+import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
+import { ReactComponent as SortUp } from '../../../assets/images/sortUp.svg';
 import styles from './TableHeaderCars.module.scss';
-
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface ICar {
-    id: number;
-    model: string;
-    mark: string;
-    year: number;
-    number: string;
-    driver_id: number;
-    status: IStatus;
-}
+import { Car } from '../../../types';
 
 export function TableHeaderCars(): JSX.Element {
     const dispatch = useDispatch();
@@ -45,7 +31,7 @@ export function TableHeaderCars(): JSX.Element {
             return 0;
         };
 
-        const sortItemsByField = (firstCar: ICar, secondCar: ICar) => {
+        const sortItemsByField = (firstCar: Car, secondCar: Car) => {
             const param = sortField as string & number;
 
             if (sortField === 'status') {

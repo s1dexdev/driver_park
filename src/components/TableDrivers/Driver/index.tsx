@@ -15,30 +15,13 @@ import {
 } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
 import { navConfig } from '../../../utils/constants';
-import { parseDate } from '../../../helpers';
-import { ReactComponent as Delete } from '../../../images/delete.svg';
-import { ReactComponent as Car } from '../../../images/car.svg';
+import { parseDate } from '../../../utils/helpers';
+import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
+import { ReactComponent as Car } from '../../../assets/images/car.svg';
 import styles from './Driver.module.scss';
+import { InfoUpdate, Driver as DriverType } from '../../../types';
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: IStatus;
-}
-
-interface IUpdateData {
-    [key: string]: string | number | IStatus;
-}
-
-export function Driver({ driver }: { driver: IDriver }): JSX.Element {
+export function Driver({ driver }: { driver: DriverType }): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
@@ -48,7 +31,7 @@ export function Driver({ driver }: { driver: IDriver }): JSX.Element {
     const [showStatusList, setShowStatusList] = useState(false);
     const [modalActive, setModalActive] = useState(false);
 
-    const updateDriverInfo = (id: number, data: IUpdateData) => {
+    const updateDriverInfo = (id: number, data: Record<string, InfoUpdate>) => {
         const updates = {
             id,
             info: data,

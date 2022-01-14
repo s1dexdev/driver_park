@@ -1,9 +1,9 @@
 import { FunctionComponent, SVGProps } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Container } from '../';
+import { Container } from '../../components';
 import { Translate } from '../../lang';
-import { ReactComponent as Home } from '../../images/home.svg';
-import { ReactComponent as Arrow } from '../../images/rightArrow.svg';
+import { ReactComponent as Home } from '../../assets/images/home.svg';
+import { ReactComponent as Arrow } from '../../assets/images/rightArrow.svg';
 import { navConfig } from '../../utils/constants';
 import styles from './NavBar.module.scss';
 

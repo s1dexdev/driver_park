@@ -7,9 +7,9 @@ import {
     fetchDriverStatusesRequest,
 } from '../../redux/drivers/actions';
 import { loadingSelector } from '../../redux/drivers/selectors';
-import { ReactComponent as Driver } from '../../images/driver.svg';
+import { ReactComponent as Driver } from '../../assets/images/driver.svg';
 
-function PageDrivers(): JSX.Element {
+function DriversPage(): JSX.Element {
     const dispatch = useDispatch();
     const isLoading = useSelector(loadingSelector);
 
@@ -26,4 +26,4 @@ function PageDrivers(): JSX.Element {
     );
 }
 
-export default PageDrivers;
+export default DriversPage;

@@ -1,6 +1,6 @@
 import styles from './PageHome.module.scss';
 
-function PageHome(): JSX.Element {
+function HomePage(): JSX.Element {
     return (
         <div>
             <h1 className={styles.homePage}>Home Page</h1>
@@ -8,4 +8,4 @@ function PageHome(): JSX.Element {
     );
 }
 
-export default PageHome;
+export default HomePage;

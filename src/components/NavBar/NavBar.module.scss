@@ -1,40 +1,40 @@
-@import '../../styles/variables.scss';
+@import '../../assets/styles/variables.scss';
 
 .navBar {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 
-  margin-bottom: 24px;
-  padding: 16px 0;
+    margin-bottom: 24px;
+    padding: 16px 0;
 
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
 
-  background-color: $component-bcg-color;
-  box-shadow: 0 0 4px rgba(136, 136, 136, 0.24);
+    background-color: $component-bcg-color;
+    box-shadow: 0 0 4px rgba(136, 136, 136, 0.24);
 
-  &__wrapper {
-    display: flex;
-    align-items: center;
-  }
+    &__wrapper {
+        display: flex;
+        align-items: center;
+    }
 
-  &__link {
-    display: flex;
-    align-items: center;
-    margin-right: 16px;
-  }
+    &__link {
+        display: flex;
+        align-items: center;
+        margin-right: 16px;
+    }
 
-  &__icon {
-    margin-right: 4px;
-  }
+    &__icon {
+        margin-right: 4px;
+    }
 
-  &__arrow {
-    margin-right: 16px;
-  }
+    &__arrow {
+        margin-right: 16px;
+    }
 
-  &__textHome {
-    color: $primary-link-color;
-    text-decoration: underline;
-  }
+    &__textHome {
+        color: $primary-link-color;
+        text-decoration: underline;
+    }
 }

@@ -1,27 +1,14 @@
-import { ReactComponent as SortDown } from '../../../images/sortDown.svg';
-import { ReactComponent as SortUp } from '../../../images/sortUp.svg';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { Button } from '../../../components';
 import { sortItemsDriver } from '../../../redux/drivers/actions';
 import { Translate } from '../../../lang';
-import { concatClasses } from '../../../helpers';
+import { concatClasses } from '../../../utils/helpers';
 import { driversConfig } from '../../../utils/constants';
+import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
+import { ReactComponent as SortUp } from '../../../assets/images/sortUp.svg';
 import styles from './TableHeaderDrivers.module.scss';
-import { Button } from '../..';
-
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: IStatus;
-}
+import { Driver } from '../../../types';
 
 export function TableHeaderDrivers(): JSX.Element {
     const dispatch = useDispatch();
@@ -44,7 +31,7 @@ export function TableHeaderDrivers(): JSX.Element {
             return 0;
         };
 
-        const sortItemsByField = (firstCar: IDriver, secondCar: IDriver) => {
+        const sortItemsByField = (firstCar: Driver, secondCar: Driver) => {
             const param = sortField as string & number;
 
             if (sortField === 'status') {

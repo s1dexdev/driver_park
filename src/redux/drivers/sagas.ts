@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
-import * as API from '../../API/driverService';
+import * as API from '../../api/driverService';
 import {
     FETCH_DRIVERS_REQUEST,
     FETCH_DRIVER_STATUSES_REQUEST,

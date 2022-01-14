@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Translate } from '../../lang';
-import { ReactComponent as IconLogo } from '../../images/logo.svg';
-import { ReactComponent as IconDriver } from '../../images/driver.svg';
-import { ReactComponent as IconCar } from '../../images/car.svg';
+import { ReactComponent as IconLogo } from '../../assets/images/logo.svg';
+import { ReactComponent as IconDriver } from '../../assets/images/driver.svg';
+import { ReactComponent as IconCar } from '../../assets/images/car.svg';
 import { navConfig } from '../../utils/constants';
 import styles from './Menu.module.scss';
 

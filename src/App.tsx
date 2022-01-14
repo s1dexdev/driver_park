@@ -6,9 +6,9 @@ import { Header, Spinner } from './components';
 import { navConfig } from './utils/constants';
 import { I18nProvider, LOCALES } from './lang';
 
-const PageHome = lazy(() => import('./pages/PageHome'));
-const PageDrivers = lazy(() => import('./pages/PageDrivers'));
-const PageCars = lazy(() => import('./pages/PageCars'));
+const PageHome = lazy(() => import('./pages/HomePage'));
+const PageDrivers = lazy(() => import('./pages/DriversPage'));
+const PageCars = lazy(() => import('./pages/CarsPage'));
 
 function App(): JSX.Element {
     const [locale, setLocale] = useState(LOCALES.ENGLISH);

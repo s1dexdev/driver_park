@@ -1,20 +1,12 @@
 import { useEffect } from 'react';
 import { Translate } from '../../lang';
 import styles from './StatusesList.module.scss';
-
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IUpdateData {
-    [key: string]: string | number | IStatus;
-}
+import { Status, InfoUpdate } from '../../types';
 
 interface IProps {
-    statuses: IStatus[];
+    statuses: Status[];
     id: number;
-    onUpdateInfo: (id: number, data: IUpdateData) => void;
+    onUpdateInfo: (id: number, data: Record<string, InfoUpdate>) => void;
     setShowStatusList: (value: boolean) => void;
 }
 

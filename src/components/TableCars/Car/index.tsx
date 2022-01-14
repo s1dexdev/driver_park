@@ -1,38 +1,24 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Modal, CarForm, DeleteForm, StatusesList } from '../../';
+import {
+    Button,
+    Modal,
+    CarForm,
+    DeleteForm,
+    StatusesList,
+} from '../../../components';
 import {
     updateCarInfoRequest,
     deleteCarRequest,
 } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
 import { Translate } from '../../../lang';
-import { ReactComponent as Delete } from '../../../images/delete.svg';
-import { ReactComponent as Plus } from '../../../images/plus.svg';
+import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
+import { ReactComponent as Plus } from '../../../assets/images/plus.svg';
 import styles from './Car.module.scss';
+import { InfoUpdate, Car as CarType } from '../../../types';
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface ICar {
-    id: number;
-    model: string;
-    mark: string;
-    year: number;
-    number: string;
-    driver_id: number;
-    driver_firstname: string;
-    driver_lastname: string;
-    status: IStatus;
-}
-
-interface IUpdateData {
-    [key: string]: string | number | IStatus;
-}
-
-export function Car({ car }: { car: ICar }): JSX.Element {
+export function Car({ car }: { car: CarType }): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
@@ -47,7 +33,7 @@ export function Car({ car }: { car: ICar }): JSX.Element {
         setShowStatusList(true);
     };
 
-    const updateCarInfo = (id: number, data: IUpdateData) => {
+    const updateCarInfo = (id: number, data: Record<string, InfoUpdate>) => {
         const updates = {
             id,
             info: data,

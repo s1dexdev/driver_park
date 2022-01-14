@@ -5,6 +5,7 @@ import { Translate } from '../../../lang';
 import { addDriverRequest } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
 import styles from '../Form.module.scss';
+import { Status } from '../../../types';
 
 interface IFormData {
     first_name: string;
@@ -13,17 +14,12 @@ interface IFormData {
     status: string;
 }
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
 export function DriverForm(): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
     const getFullDriverStatus = (status: string) => {
-        return statuses.reduce((acc: IStatus, { title, code }) => {
+        return statuses.reduce((acc: Status, { title, code }) => {
             if (code === status) {
                 acc.title = title;
                 acc.code = code;

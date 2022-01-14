@@ -1,50 +1,26 @@
 import * as Type from './types';
-
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface ICar {
-    id: number;
-    model: string;
-    mark: string;
-    year: number;
-    number: string;
-    driver_id: number;
-    status: IStatus;
-}
+import { Status, Car, Action } from '../../types';
 
 interface ICarsState {
-    cars: ICar[];
-    statuses: IStatus[];
+    cars: Car[];
+    statuses: Status[];
     isLoading: boolean;
     error: Error | null | string;
 }
 
-interface IAction<T> {
-    type: string;
-    payload: T;
-}
-
-type TSort = (a: ICar, b: ICar) => number;
-
-type TReducer = ICar & ICar[] & IStatus[] & Error & number & TSort;
-
-const setTrue = () => true;
-const setFalse = () => false;
-const setNull = () => null;
+type TSort = (a: Car, b: Car) => number;
+type TReducer = Car & Car[] & Status[] & Error & number & TSort;
 
 const initialState: ICarsState = {
     cars: [],
     statuses: [],
-    isLoading: setFalse(),
-    error: setNull(),
+    isLoading: false,
+    error: null,
 };
 
 export const carsReducer = <T extends TReducer>(
     state: ICarsState,
-    action: IAction<T>,
+    action: Action<T>,
 ): ICarsState => {
     state = state || initialState;
 
@@ -55,59 +31,59 @@ export const carsReducer = <T extends TReducer>(
         case Type.ADD_CAR_REQUEST:
             return {
                 ...state,
-                isLoading: setTrue(),
-                error: setNull(),
+                isLoading: true,
+                error: null,
             };
         case Type.DELETE_CAR_REQUEST:
             return {
                 ...state,
-                isLoading: setTrue(),
-                error: setNull(),
+                isLoading: true,
+                error: null,
             };
         case Type.FETCH_CARS_SUCCESS:
             return {
                 ...state,
                 cars: action.payload,
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.FETCH_CAR_STATUSES_SUCCESS:
             return {
                 ...state,
                 statuses: action.payload,
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.ADD_CAR_SUCCESS:
             return {
                 ...state,
                 cars: [...state.cars, action.payload],
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.UPDATE_CAR_INFO_SUCCESS:
             return {
                 ...state,
-                cars: state.cars.map((car: ICar) => {
+                cars: state.cars.map((car: Car) => {
                     if (Number(car.id) === action.payload.id) {
                         car = Object.assign({}, car, action.payload);
                         return car;
                     }
                     return car;
                 }),
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.DELETE_CAR_SUCCESS:
             return {
                 ...state,
                 cars: state.cars.filter(({ id }) => id !== action.payload),
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
         case Type.FETCH_CARS_ERROR:
         case Type.FETCH_CAR_STATUSES_ERROR:
@@ -121,7 +97,7 @@ export const carsReducer = <T extends TReducer>(
         case Type.DELETE_CAR_ERROR:
             return {
                 ...state,
-                isLoading: setFalse(),
+                isLoading: false,
                 error: action.payload,
             };
 
@@ -129,7 +105,7 @@ export const carsReducer = <T extends TReducer>(
             return {
                 ...state,
                 cars: [
-                    ...state.cars.sort((itemFirst: ICar, itemSecond: ICar) =>
+                    ...state.cars.sort((itemFirst: Car, itemSecond: Car) =>
                         action.payload(itemFirst, itemSecond),
                     ),
                 ],

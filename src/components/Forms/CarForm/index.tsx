@@ -5,8 +5,9 @@ import { Translate } from '../../../lang';
 import { addCarRequest } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
 import styles from '../Form.module.scss';
+import { Status } from '../../../types';
 
-interface IFormData {
+interface FormData {
     model: string;
     mark: string;
     year: string;
@@ -14,17 +15,12 @@ interface IFormData {
     status: string;
 }
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
 export function CarForm({ id }: { id: number }): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
     const getFullCarStatus = (status: string) => {
-        return statuses.reduce((acc: IStatus, { title, code }) => {
+        return statuses.reduce((acc: Status, { title, code }) => {
             if (code === status) {
                 acc.title = title;
                 acc.code = code;
@@ -34,7 +30,7 @@ export function CarForm({ id }: { id: number }): JSX.Element {
         });
     };
 
-    const addCar = (data: IFormData) => {
+    const addCar = (data: FormData) => {
         const car = {
             model: data.model,
             mark: data.mark,

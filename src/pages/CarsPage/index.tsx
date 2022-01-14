@@ -8,9 +8,9 @@ import {
     fetchCarStatusesRequest,
 } from '../../redux/cars/actions';
 import { loadingSelector } from '../../redux/cars/selectors';
-import { ReactComponent as Car } from '../../images/car.svg';
+import { ReactComponent as Car } from '../../assets/images/car.svg';
 
-function PageCars(): JSX.Element {
+function CarsPage(): JSX.Element {
     const dispatch = useDispatch();
     const isLoading = useSelector(loadingSelector);
     const { driverId } = useParams();
@@ -33,4 +33,4 @@ function PageCars(): JSX.Element {
     );
 }
 
-export default PageCars;
+export default CarsPage;

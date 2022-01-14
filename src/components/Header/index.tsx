@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Container, Menu, UserInfo } from '../';
 import { LOCALES } from '../../lang';
-import { ReactComponent as IconMenu } from '../../images/menu.svg';
-import { ReactComponent as IconLogo } from '../../images/logo.svg';
-import { ReactComponent as Rus } from '../../lang/icons/ru.svg';
-import { ReactComponent as Eng } from '../../lang/icons/gb.svg';
+import { ReactComponent as IconMenu } from '../../assets/images/menu.svg';
+import { ReactComponent as IconLogo } from '../../assets/images/logo.svg';
+import { ReactComponent as Rus } from '../../assets/images/ru.svg';
+import { ReactComponent as Eng } from '../../assets/images/gb.svg';
 import styles from './Header.module.scss';
 
 interface IProps {

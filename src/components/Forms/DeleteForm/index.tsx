@@ -2,15 +2,10 @@ import { useDispatch } from 'react-redux';
 import { Translate } from '../../../lang';
 import styles from '../Form.module.scss';
 
-interface IAction<P> {
-    type: string;
-    payload?: P;
-}
-
 interface IProps {
     id: number;
     text: string | JSX.Element;
-    deleteAction: <P>(id: P) => IAction<P>;
+    deleteAction: (id: number) => void;
     setActiveModal: (b: boolean) => void;
 }
 
