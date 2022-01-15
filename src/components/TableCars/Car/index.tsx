@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    Button,
-    Modal,
-    CarForm,
-    DeleteForm,
-    StatusesList,
-} from '../../../components';
+import { Modal, CarForm, DeleteForm, StatusesList } from '../../../components';
 import {
     updateCarInfoRequest,
     deleteCarRequest,
@@ -100,14 +94,15 @@ export function Car({ car }: { car: CarType }): JSX.Element {
                     key={'status'}
                     className={`${styles.car__item} ${styles.car__status}`}
                 >
-                    <Button
+                    <button
+                        type="button"
                         className={`${styles.dropdown} ${
                             styles[car.status.code]
                         }`}
                         onClick={() => handleStatusClick(car.id)}
-                        text={Translate(`${car.status.code}`)}
-                        name={car.id.toString()}
-                    />
+                    >
+                        {Translate(`${car.status.code}`)}
+                    </button>
                     {showStatusList && carId === car.id && (
                         <StatusesList
                             statuses={statuses}
@@ -121,18 +116,20 @@ export function Car({ car }: { car: CarType }): JSX.Element {
                     key={'action'}
                     className={`${styles.car__item} ${styles.car__action}`}
                 >
-                    <Button
-                        img={<Plus />}
-                        name={car.id.toString()}
+                    <button
+                        type="button"
                         className={styles.car__actionBtn}
                         onClick={() => renderModalCar(car.driver_id)}
-                    />
-                    <Button
-                        img={<Delete />}
-                        name={car.id.toString()}
+                    >
+                        {<Plus />}
+                    </button>
+                    <button
+                        type="button"
                         className={styles.car__actionBtn}
                         onClick={() => showDeleteCarForm(car.id)}
-                    />
+                    >
+                        {<Delete />}
+                    </button>
                 </li>
             </ul>
             <Modal active={modalActive} setActive={setModalActive}>

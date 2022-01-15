@@ -1,30 +1,20 @@
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: IStatus;
-}
+import { Driver, Status } from '../../types';
 
 interface IState {
     driversReducer: {
-        drivers: IDriver[];
-        statuses: IStatus[];
+        drivers: Driver[];
+        statuses: Status[];
         isLoading: boolean;
     };
 }
 
-export const driversSelector = (state: IState): IDriver[] =>
+const driversSelector = (state: IState): Driver[] =>
     state.driversReducer.drivers;
 
-export const statusesSelector = (state: IState): IStatus[] =>
+const statusesSelector = (state: IState): Status[] =>
     state.driversReducer.statuses;
 
-export const loadingSelector = (state: IState): boolean =>
+const loadingSelector = (state: IState): boolean =>
     state.driversReducer.isLoading;
+
+export { driversSelector, statusesSelector, loadingSelector };

@@ -1,78 +1,49 @@
 import * as Type from './types';
+import { CreateAction } from '../../types';
 
-interface IAction<P> {
-    type: string;
-    payload?: P;
-}
+const createAction: CreateAction = type => data => ({ type, payload: data });
 
-export const fetchDriversRequest = <P>(): IAction<P> => ({
-    type: Type.FETCH_DRIVERS_REQUEST,
-});
-export const fetchDriversSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_DRIVERS_SUCCESS,
-    payload: data,
-});
-export const fetchDriversError = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_DRIVERS_ERROR,
-    payload: data,
-});
+const fetchDriversRequest = createAction(Type.FETCH_DRIVERS_REQUEST);
+const fetchDriversSuccess = createAction(Type.FETCH_DRIVERS_SUCCESS);
+const fetchDriversError = createAction(Type.FETCH_DRIVERS_ERROR);
 
-export const fetchDriverStatusesRequest = <P>(): IAction<P> => ({
-    type: Type.FETCH_DRIVER_STATUSES_REQUEST,
-});
-export const fetchDriverStatusesSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_DRIVER_STATUSES_SUCCESS,
-    payload: data,
-});
-export const fetchDriverStatusesError = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_DRIVER_STATUSES_ERROR,
-    payload: data,
-});
+const fetchDriverStatusesRequest = createAction(
+    Type.FETCH_DRIVER_STATUSES_REQUEST,
+);
+const fetchDriverStatusesSuccess = createAction(
+    Type.FETCH_DRIVER_STATUSES_SUCCESS,
+);
+const fetchDriverStatusesError = createAction(Type.FETCH_DRIVER_STATUSES_ERROR);
 
-export const addDriverRequest = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_DRIVER_REQUEST,
-    payload: data,
-});
-export const addDriverSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_DRIVER_SUCCESS,
-    payload: data,
-});
-export const addDriverError = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_DRIVER_ERROR,
-    payload: data,
-});
+const addDriverRequest = createAction(Type.ADD_DRIVER_REQUEST);
+const addDriverSuccess = createAction(Type.ADD_DRIVER_SUCCESS);
+const addDriverError = createAction(Type.ADD_DRIVER_ERROR);
 
-export const updateDriverInfoRequest = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_DRIVER_INFO_REQUEST,
-    payload: data,
-});
+const updateDriverInfoRequest = createAction(Type.UPDATE_DRIVER_INFO_REQUEST);
+const updateDriverInfoSuccess = createAction(Type.UPDATE_DRIVER_INFO_SUCCESS);
+const updateDriverInfoError = createAction(Type.UPDATE_DRIVER_INFO_ERROR);
 
-export const updateDriverInfoSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_DRIVER_INFO_SUCCESS,
-    payload: data,
-});
+const deleteDriverRequest = createAction(Type.DELETE_DRIVER_REQUEST);
+const deleteDriverSuccess = createAction(Type.DELETE_DRIVER_SUCCESS);
+const deleteDriverError = createAction(Type.DELETE_DRIVER_ERROR);
 
-export const updateDriverInfoError = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_DRIVER_INFO_ERROR,
-    payload: data,
-});
+const sortItemsDriver = createAction(Type.SORT_ITEMS_DRIVER);
 
-export const deleteDriverRequest = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_DRIVER_REQUEST,
-    payload: data,
-});
-
-export const deleteDriverSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_DRIVER_SUCCESS,
-    payload: data,
-});
-
-export const deleteDriverError = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_DRIVER_ERROR,
-    payload: data,
-});
-
-export const sortItemsDriver = <P>(data: P): IAction<P> => ({
-    type: Type.SORT_ITEMS_DRIVER,
-    payload: data,
-});
+export {
+    fetchDriversRequest,
+    fetchDriversSuccess,
+    fetchDriversError,
+    fetchDriverStatusesRequest,
+    fetchDriverStatusesSuccess,
+    fetchDriverStatusesError,
+    addDriverRequest,
+    addDriverSuccess,
+    addDriverError,
+    updateDriverInfoRequest,
+    updateDriverInfoSuccess,
+    updateDriverInfoError,
+    deleteDriverRequest,
+    deleteDriverSuccess,
+    deleteDriverError,
+    sortItemsDriver,
+};

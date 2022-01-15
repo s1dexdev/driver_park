@@ -1,79 +1,45 @@
 import * as Type from './types';
+import { CreateAction } from '../../types';
 
-interface IAction<P> {
-    type: string;
-    payload?: P;
-}
+const createAction: CreateAction = type => data => ({ type, payload: data });
 
-export const fetchCarsRequest = <P>(data?: P): IAction<P> => ({
-    type: Type.FETCH_CARS_REQUEST,
-    payload: data,
-});
-export const fetchCarsSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_CARS_SUCCESS,
-    payload: data,
-});
-export const fetchCarsError = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_CARS_ERROR,
-    payload: data,
-});
+const fetchCarsRequest = createAction(Type.FETCH_CARS_REQUEST);
+const fetchCarsSuccess = createAction(Type.FETCH_CARS_SUCCESS);
+const fetchCarsError = createAction(Type.FETCH_CARS_ERROR);
 
-export const fetchCarStatusesRequest = <P>(): IAction<P> => ({
-    type: Type.FETCH_CAR_STATUSES_REQUEST,
-});
-export const fetchCarStatusesSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_CAR_STATUSES_SUCCESS,
-    payload: data,
-});
-export const fetchCarStatusesError = <P>(data: P): IAction<P> => ({
-    type: Type.FETCH_CAR_STATUSES_ERROR,
-    payload: data,
-});
+const addCarRequest = createAction(Type.ADD_CAR_REQUEST);
+const addCarSuccess = createAction(Type.ADD_CAR_SUCCESS);
+const addCarError = createAction(Type.ADD_CAR_ERROR);
 
-export const addCarRequest = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_CAR_REQUEST,
-    payload: data,
-});
-export const addCarSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_CAR_SUCCESS,
-    payload: data,
-});
-export const addCarError = <P>(data: P): IAction<P> => ({
-    type: Type.ADD_CAR_ERROR,
-    payload: data,
-});
+const deleteCarRequest = createAction(Type.DELETE_CAR_REQUEST);
+const deleteCarSuccess = createAction(Type.DELETE_CAR_SUCCESS);
+const deleteCarError = createAction(Type.DELETE_CAR_ERROR);
 
-export const updateCarInfoRequest = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_CAR_INFO_REQUEST,
-    payload: data,
-});
+const fetchCarStatusesRequest = createAction(Type.FETCH_CAR_STATUSES_REQUEST);
+const fetchCarStatusesSuccess = createAction(Type.FETCH_CAR_STATUSES_SUCCESS);
+const fetchCarStatusesError = createAction(Type.FETCH_CAR_STATUSES_ERROR);
 
-export const updateCarInfoSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_CAR_INFO_SUCCESS,
-    payload: data,
-});
+const updateCarInfoRequest = createAction(Type.UPDATE_CAR_INFO_REQUEST);
+const updateCarInfoSuccess = createAction(Type.UPDATE_CAR_INFO_SUCCESS);
+const updateCarInfoError = createAction(Type.UPDATE_CAR_INFO_ERROR);
 
-export const updateCarInfoError = <P>(data: P): IAction<P> => ({
-    type: Type.UPDATE_CAR_INFO_ERROR,
-    payload: data,
-});
+const sortItemsCar = createAction(Type.SORT_ITEMS_CAR);
 
-export const deleteCarRequest = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_CAR_REQUEST,
-    payload: data,
-});
-
-export const deleteCarSuccess = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_CAR_SUCCESS,
-    payload: data,
-});
-
-export const deleteCarError = <P>(data: P): IAction<P> => ({
-    type: Type.DELETE_CAR_ERROR,
-    payload: data,
-});
-
-export const sortItemsCar = <P>(data: P): IAction<P> => ({
-    type: Type.SORT_ITEMS_CAR,
-    payload: data,
-});
+export {
+    fetchCarsRequest,
+    fetchCarsSuccess,
+    fetchCarsError,
+    addCarRequest,
+    addCarSuccess,
+    addCarError,
+    deleteCarRequest,
+    deleteCarSuccess,
+    deleteCarError,
+    fetchCarStatusesRequest,
+    fetchCarStatusesSuccess,
+    fetchCarStatusesError,
+    updateCarInfoRequest,
+    updateCarInfoSuccess,
+    updateCarInfoError,
+    sortItemsCar,
+};

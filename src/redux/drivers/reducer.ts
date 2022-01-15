@@ -1,51 +1,28 @@
 import * as Type from './types';
+import { Status, Driver, Action } from '../../types';
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: IStatus;
-}
-
-interface IDriversState {
-    drivers: IDriver[];
-    statuses: IStatus[];
+interface DriversState {
+    drivers: Driver[];
+    statuses: Status[];
     isLoading: boolean;
     error: Error | null | string;
 }
 
-const setTrue = () => true;
-const setFalse = () => false;
-const setNull = () => null;
-
-const initialDriversState: IDriversState = {
+const initialState: DriversState = {
     drivers: [],
     statuses: [],
-    isLoading: setFalse(),
-    error: setNull(),
+    isLoading: false,
+    error: null,
 };
 
-interface IAction<T> {
-    type: string;
-    payload: T;
-}
-
-type TSort = (a: IDriver, b: IDriver) => number;
-
-type TReducer = IDriver & IDriver[] & IStatus[] & Error & number & TSort;
+type TSort = (a: Driver, b: Driver) => number;
+type TReducer = Driver & Driver[] & Status[] & Error & number & TSort;
 
 export const driversReducer = <T extends TReducer>(
-    state: IDriversState,
-    action: IAction<T>,
-): IDriversState => {
-    state = state || initialDriversState;
+    state: DriversState,
+    action: Action<T>,
+): DriversState => {
+    state = state || initialState;
 
     switch (action.type) {
         case Type.FETCH_DRIVERS_REQUEST:
@@ -55,46 +32,46 @@ export const driversReducer = <T extends TReducer>(
         case Type.DELETE_DRIVER_REQUEST:
             return {
                 ...state,
-                isLoading: setTrue(),
-                error: setNull(),
+                isLoading: true,
+                error: null,
             };
 
         case Type.FETCH_DRIVERS_SUCCESS:
             return {
                 ...state,
                 drivers: action.payload,
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.FETCH_DRIVER_STATUSES_SUCCESS:
             return {
                 ...state,
                 statuses: action.payload,
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.ADD_DRIVER_SUCCESS:
             return {
                 ...state,
                 drivers: [...state.drivers, action.payload],
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.UPDATE_DRIVER_INFO_SUCCESS:
             return {
                 ...state,
-                drivers: state.drivers.map((driver: IDriver) => {
+                drivers: state.drivers.map((driver: Driver) => {
                     if (driver.id === action.payload.id) {
                         driver = Object.assign({}, driver, action.payload);
                         return driver;
                     }
                     return driver;
                 }),
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
 
         case Type.DELETE_DRIVER_SUCCESS:
@@ -103,8 +80,8 @@ export const driversReducer = <T extends TReducer>(
                 drivers: state.drivers.filter(
                     ({ id }) => id !== action.payload,
                 ),
-                isLoading: setFalse(),
-                error: setNull(),
+                isLoading: false,
+                error: null,
             };
         case Type.FETCH_DRIVERS_ERROR:
         case Type.FETCH_DRIVER_STATUSES_ERROR:
@@ -113,7 +90,7 @@ export const driversReducer = <T extends TReducer>(
         case Type.DELETE_DRIVER_ERROR:
             return {
                 ...state,
-                isLoading: setFalse(),
+                isLoading: false,
                 error: action.payload,
             };
 
@@ -122,13 +99,13 @@ export const driversReducer = <T extends TReducer>(
                 ...state,
                 drivers: [
                     ...state.drivers.sort(
-                        (itemFirst: IDriver, itemSecond: IDriver) =>
+                        (itemFirst: Driver, itemSecond: Driver) =>
                             action.payload(itemFirst, itemSecond),
                     ),
                 ],
             };
 
         default:
-            return initialDriversState;
+            return initialState;
     }
 };

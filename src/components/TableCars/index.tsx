@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Button, CarForm, Modal } from '../';
+import { CarForm, Modal } from '../';
 import { Translate } from '../../lang';
 import { carsSelector } from '../../redux/cars/selectors';
 import { TableHeaderCars } from './TableHeaderCars';
@@ -42,11 +42,13 @@ export function TableCars(): JSX.Element {
                                 {Translate('carNotFound')}
                             </p>
                             {driverId && (
-                                <Button
-                                    text={Translate('add')}
+                                <button
+                                    type="button"
                                     className={styles.info__addBtn}
                                     onClick={() => renderModalCar()}
-                                />
+                                >
+                                    {Translate('add')}
+                                </button>
                             )}
                         </div>
                     )}

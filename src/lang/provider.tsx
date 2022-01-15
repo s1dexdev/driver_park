@@ -8,7 +8,7 @@ interface IProps {
     locale: string;
 }
 
-export function Provider({
+export function I18nProvider({
     children,
     locale = LOCALES.ENGLISH,
 }: IProps): JSX.Element {

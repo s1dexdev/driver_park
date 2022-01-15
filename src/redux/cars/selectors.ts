@@ -1,33 +1,19 @@
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface ICar {
-    id: number;
-    model: string;
-    mark: string;
-    year: number;
-    number: string;
-    driver_id: number;
-    driver_firstname: string;
-    driver_lastname: string;
-    status: IStatus;
-}
+import { Status, Car } from '../../types';
 
 interface IState {
     carsReducer: {
-        cars: ICar[];
-        statuses: IStatus[];
+        cars: Car[];
+        statuses: Status[];
         isLoading: boolean;
         error: null | string;
     };
 }
 
-export const carsSelector = (state: IState): ICar[] => state.carsReducer.cars;
+const carsSelector = (state: IState): Car[] => state.carsReducer.cars;
 
-export const statusesSelector = (state: IState): IStatus[] =>
+const statusesSelector = (state: IState): Status[] =>
     state.carsReducer.statuses;
 
-export const loadingSelector = (state: IState): boolean =>
-    state.carsReducer.isLoading;
+const loadingSelector = (state: IState): boolean => state.carsReducer.isLoading;
+
+export { carsSelector, statusesSelector, loadingSelector };

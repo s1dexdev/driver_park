@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { driversSelector } from '../../redux/drivers/selectors';
-import { Button, Modal, DriverForm } from '../';
+import { Modal, DriverForm } from '../';
 import { Translate } from '../../lang';
 import { TableHeaderDrivers } from './TableHeaderDrivers';
 import { ListDrivers } from './ListDrivers';
@@ -30,12 +30,14 @@ export function TableDrivers(): JSX.Element {
                             ({drivers.length})
                         </span>
                     </p>
-                    <Button
-                        onClick={renderModalDriver}
+
+                    <button
+                        type="button"
                         className={styles.button}
-                        name={styles.button}
-                        text={Translate('addDriverBtn')}
-                    />
+                        onClick={renderModalDriver}
+                    >
+                        {Translate('addDriverBtn')}
+                    </button>
                 </div>
                 <TableHeaderDrivers />
                 {drivers.length ? (

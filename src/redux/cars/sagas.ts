@@ -1,12 +1,13 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
-import * as API from '../../api/carService';
-import { fetchDriverById } from '../../api/driverService';
+import { carApi } from '../../api/carService';
+import { driverApi } from '../../api/driverService';
+import { Status, Car, Driver, Action, InfoUpdate } from '../../types';
 import {
-    FETCH_CARS_REQUEST,
-    FETCH_CAR_STATUSES_REQUEST,
     ADD_CAR_REQUEST,
-    UPDATE_CAR_INFO_REQUEST,
     DELETE_CAR_REQUEST,
+    FETCH_CARS_REQUEST,
+    UPDATE_CAR_INFO_REQUEST,
+    FETCH_CAR_STATUSES_REQUEST,
 } from './types';
 import {
     fetchCarStatusesSuccess,
@@ -21,47 +22,21 @@ import {
     deleteCarError,
 } from './actions';
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface ICar {
+interface UpdateCar {
     id: number;
-    model: string;
-    mark: string;
-    year: number;
-    number: string;
-    driver_id: number;
-    driver_firstname?: string;
-    driver_lastname?: string;
-    status: IStatus;
+    info: Record<string, InfoUpdate>;
 }
 
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    status: IStatus;
-}
+function* fetchCarsSaga<T extends string>({ payload }: Action<T>): Generator {
+    let cars = null;
 
-interface IParams<T> {
-    type: string;
-    payload: T;
-}
-
-interface IUpdateCar {
-    id: number;
-    info: {
-        [key: string]: string | number | IStatus;
-    };
-}
-
-function* fetchCarsSaga<T extends string>({ payload }: IParams<T>): Generator {
     try {
-        const cars = (yield call(API.fetchCars, payload)) as ICar[];
+        if (payload) {
+            cars = (yield call(carApi.fetchCarsOfDriver, payload)) as Car[];
+        } else {
+            cars = (yield call(carApi.fetchCars)) as Car[];
+        }
+
         yield put(fetchCarsSuccess(cars));
     } catch (error) {
         yield put(fetchCarsError(error));
@@ -70,17 +45,20 @@ function* fetchCarsSaga<T extends string>({ payload }: IParams<T>): Generator {
 
 function* fetchCarStatusesSaga(): Generator {
     try {
-        const statuses = (yield call(API.fetchCarStatuses)) as IStatus[];
+        const statuses = (yield call(carApi.fetchCarStatuses)) as Status[];
         yield put(fetchCarStatusesSuccess(statuses));
     } catch (error) {
         fetchCarStatusesError(error);
     }
 }
 
-function* addCarSaga<T extends ICar>({ payload }: IParams<T>): Generator {
+function* addCarSaga<T extends Car>({ payload }: Action<T>): Generator {
     try {
-        const car = (yield call(API.addCar, payload)) as ICar;
-        const driver = (yield call(fetchDriverById, car.driver_id)) as IDriver;
+        const car = (yield call(carApi.addCar, payload)) as Car;
+        const driver = (yield call(
+            driverApi.fetchDriverById,
+            car.driver_id,
+        )) as Driver;
 
         car.driver_firstname = driver.first_name;
         car.driver_lastname = driver.last_name;
@@ -91,21 +69,21 @@ function* addCarSaga<T extends ICar>({ payload }: IParams<T>): Generator {
     }
 }
 
-function* updateCarInfoSaga<T extends IUpdateCar>({
+function* updateCarInfoSaga<T extends UpdateCar>({
     payload,
-}: IParams<T>): Generator {
+}: Action<T>): Generator {
     try {
         const { id, info } = payload;
-        const car = (yield call(API.updateCarInfo, id, info)) as ICar;
+        const car = (yield call(carApi.updateCarInfo, id, info)) as Car;
         yield put(updateCarInfoSuccess(car));
     } catch (error) {
         yield put(updateCarInfoError(error));
     }
 }
 
-function* deleteCarSaga<T extends number>({ payload }: IParams<T>): Generator {
+function* deleteCarSaga<T extends number>({ payload }: Action<T>): Generator {
     try {
-        yield call(API.deleteCar, payload);
+        yield call(carApi.deleteCar, payload);
         yield put(deleteCarSuccess(payload));
     } catch (error) {
         yield deleteCarError(error);

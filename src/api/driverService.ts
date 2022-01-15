@@ -9,39 +9,39 @@ interface IUpdateInfo {
 Axios.defaults.baseURL = apiConfig.baseUrl;
 Axios.defaults.headers.common[apiConfig.apiKeyHeader] = apiConfig.apiKey || '';
 
-export async function fetchDrivers(): Promise<Driver[]> {
+async function fetchDrivers(): Promise<Driver[]> {
     const response = await Axios.get('/driver/');
     const { data }: { data: Driver[] } = response.data;
 
     return data;
 }
 
-export async function fetchDriverById(id: number): Promise<Driver> {
+async function fetchDriverById(id: number): Promise<Driver> {
     const response = await Axios.get(`/driver/${id}/`);
     const { data }: { data: Driver } = response.data;
 
     return data;
 }
 
-export async function fetchDriverStatuses(): Promise<Status[]> {
+async function fetchDriverStatuses(): Promise<Status[]> {
     const response = await Axios.get(`/driver-status/`);
     const { data }: { data: Status[] } = response.data;
 
     return data;
 }
 
-export async function addDriver(driver: Driver): Promise<Driver> {
+async function addDriver(driver: Driver): Promise<Driver> {
     const response = await Axios.post(`/driver/`, driver);
     const { data }: { data: Driver } = response.data;
 
     return data;
 }
 
-export async function deleteDriver(id: number): Promise<void> {
+async function deleteDriver(id: number): Promise<void> {
     await Axios.delete(`/driver/${id}/`);
 }
 
-export async function updateDriverInfo(
+async function updateDriverInfo(
     id: number,
     info: IUpdateInfo,
 ): Promise<Driver> {
@@ -51,7 +51,7 @@ export async function updateDriverInfo(
     return data;
 }
 
-export async function addDriverName(cars: Car[]): Promise<Car[]> {
+async function addDriverName(cars: Car[]): Promise<Car[]> {
     const drivers = await fetchDrivers();
 
     const result = cars.reduce((acc: Car[], car) => {
@@ -73,3 +73,13 @@ export async function addDriverName(cars: Car[]): Promise<Car[]> {
 
     return result;
 }
+
+export const driverApi = {
+    fetchDrivers,
+    fetchDriverById,
+    fetchDriverStatuses,
+    addDriver,
+    deleteDriver,
+    updateDriverInfo,
+    addDriverName,
+};

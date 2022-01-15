@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Button } from '../../../components';
 import { sortItemsDriver } from '../../../redux/drivers/actions';
 import { Translate } from '../../../lang';
 import { concatClasses } from '../../../utils/helpers';
-import { driversConfig } from '../../../utils/constants';
+import { headerConfig } from './headerConfig';
 import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../assets/images/sortUp.svg';
 import styles from './TableHeaderDrivers.module.scss';
@@ -49,7 +48,7 @@ export function TableHeaderDrivers(): JSX.Element {
             <li key={'checkbox'} className={`${styles.tableHeader__item}`}>
                 <input type="checkbox" />
             </li>
-            {driversConfig.map(
+            {headerConfig.map(
                 ({
                     title,
                     classes,
@@ -62,17 +61,17 @@ export function TableHeaderDrivers(): JSX.Element {
                     <li key={title} className={concatClasses(styles, classes)}>
                         {Translate(title)}
                         {title !== 'actions' && (
-                            <Button
+                            <button
+                                type="button"
                                 className={name}
                                 onClick={() => handleClick(name)}
-                                img={
-                                    sortIcon && sortField === name ? (
-                                        <SortDown />
-                                    ) : (
-                                        <SortUp />
-                                    )
-                                }
-                            />
+                            >
+                                {sortIcon && sortField === name ? (
+                                    <SortDown />
+                                ) : (
+                                    <SortUp />
+                                )}
+                            </button>
                         )}
                     </li>
                 ),

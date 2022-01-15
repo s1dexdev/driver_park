@@ -1,11 +1,12 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
-import * as API from '../../api/driverService';
+import { driverApi } from '../../api/driverService';
+import { Status, Driver, Action, InfoUpdate } from '../../types';
 import {
-    FETCH_DRIVERS_REQUEST,
-    FETCH_DRIVER_STATUSES_REQUEST,
     ADD_DRIVER_REQUEST,
-    UPDATE_DRIVER_INFO_REQUEST,
     DELETE_DRIVER_REQUEST,
+    FETCH_DRIVERS_REQUEST,
+    UPDATE_DRIVER_INFO_REQUEST,
+    FETCH_DRIVER_STATUSES_REQUEST,
 } from './types';
 import {
     fetchDriversSuccess,
@@ -20,37 +21,14 @@ import {
     deleteDriverError,
 } from './actions';
 
-interface IStatus {
-    title: string;
-    code: string;
-}
-
-interface IDriver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    date_created: number;
-    date_birth: number;
-    driver_firstname: string;
-    driver_lastname: string;
-    status: IStatus;
-}
-
-interface IParams<T> {
-    type: string;
-    payload: T;
-}
-
 interface IUpdateDriver {
     id: number;
-    info: {
-        [key: string]: string | number | IStatus;
-    };
+    info: Record<string, InfoUpdate>;
 }
 
 function* fetchDriversSaga(): Generator {
     try {
-        const drivers = (yield call(API.fetchDrivers)) as IDriver[];
+        const drivers = (yield call(driverApi.fetchDrivers)) as Driver[];
         yield put(fetchDriversSuccess(drivers));
     } catch (error) {
         yield put(fetchDriversError(error));
@@ -59,16 +37,18 @@ function* fetchDriversSaga(): Generator {
 
 function* fetchDriverStatusesSaga(): Generator {
     try {
-        const statuses = (yield call(API.fetchDriverStatuses)) as IStatus[];
+        const statuses = (yield call(
+            driverApi.fetchDriverStatuses,
+        )) as Status[];
         yield put(fetchDriverStatusesSuccess(statuses));
     } catch (error) {
         yield put(fetchDriverStatusesError(error));
     }
 }
 
-function* addDriverSaga<T extends IDriver>({ payload }: IParams<T>): Generator {
+function* addDriverSaga<T extends Driver>({ payload }: Action<T>): Generator {
     try {
-        const driver = (yield call(API.addDriver, payload)) as IDriver;
+        const driver = (yield call(driverApi.addDriver, payload)) as Driver;
         yield put(addDriverSuccess(driver));
     } catch (error) {
         yield put(addDriverError(error));
@@ -77,10 +57,10 @@ function* addDriverSaga<T extends IDriver>({ payload }: IParams<T>): Generator {
 
 function* updateDriverInfoSaga<T extends IUpdateDriver>({
     payload,
-}: IParams<T>): Generator {
+}: Action<T>): Generator {
     try {
         const driver = yield call(
-            API.updateDriverInfo,
+            driverApi.updateDriverInfo,
             payload.id,
             payload.info,
         );
@@ -90,9 +70,9 @@ function* updateDriverInfoSaga<T extends IUpdateDriver>({
     }
 }
 
-function* deleteDriverSaga<T extends number>({ payload }: IParams<T>) {
+function* deleteDriverSaga<T extends number>({ payload }: Action<T>) {
     try {
-        yield call(API.deleteDriver, payload);
+        yield call(driverApi.deleteDriver, payload);
         yield put(deleteDriverSuccess(payload));
     } catch (error) {
         yield deleteDriverError(error);

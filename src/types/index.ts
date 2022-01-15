@@ -1,9 +1,9 @@
-export interface Status {
+interface Status {
     title: string;
     code: string;
 }
 
-export interface Car {
+interface Car {
     id: number;
     model: string;
     mark: string;
@@ -15,7 +15,7 @@ export interface Car {
     status: Status;
 }
 
-export interface Driver {
+interface Driver {
     id: number;
     first_name: string;
     last_name: string;
@@ -24,9 +24,15 @@ export interface Driver {
     status: Status;
 }
 
-export interface Action<P> {
+interface Action<P> {
     type: string;
     payload: P;
 }
 
-export type InfoUpdate = string | number | Status;
+type CreateAction = (
+    type: string,
+) => <P>(data?: P) => { type: string; payload?: P };
+
+type InfoUpdate = string | number | Status;
+
+export type { Status, Car, Driver, Action, CreateAction, InfoUpdate };

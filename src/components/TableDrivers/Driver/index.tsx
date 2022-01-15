@@ -1,13 +1,7 @@
 import { useState, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-    Button,
-    DriverNameForm,
-    DeleteForm,
-    StatusesList,
-    Modal,
-} from '../../';
+import { DriverNameForm, DeleteForm, StatusesList, Modal } from '../../';
 import { Translate } from '../../../lang';
 import {
     updateDriverInfoRequest,
@@ -15,7 +9,6 @@ import {
 } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
 import { navConfig } from '../../../utils/constants';
-import { parseDate } from '../../../utils/helpers';
 import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
 import { ReactComponent as Car } from '../../../assets/images/car.svg';
 import styles from './Driver.module.scss';
@@ -62,6 +55,9 @@ export function Driver({ driver }: { driver: DriverType }): JSX.Element {
         setDriverId(id);
         setModalActive(true);
     };
+
+    const parseDate = (date: number): string =>
+        new Date(date).toLocaleDateString();
 
     return (
         <>
@@ -111,14 +107,15 @@ export function Driver({ driver }: { driver: DriverType }): JSX.Element {
                     key={'status'}
                     className={`${styles.driver__item} ${styles.driver__status}`}
                 >
-                    <Button
+                    <button
+                        type="button"
                         className={`${styles.dropdown} ${
                             styles[driver.status.code]
                         }`}
                         onClick={() => handleClickStatus(driver.id)}
-                        text={Translate(`${driver.status.code}`)}
-                        name={driver.id.toString()}
-                    />
+                    >
+                        {Translate(`${driver.status.code}`)}
+                    </button>
                     {showStatusList && driverId === driver.id && (
                         <StatusesList
                             statuses={statuses}
@@ -142,11 +139,13 @@ export function Driver({ driver }: { driver: DriverType }): JSX.Element {
                             />
                         </Link>
 
-                        <Button
-                            img={<Delete />}
+                        <button
+                            type="button"
                             className={styles.actionButtons__deleteDriver}
                             onClick={() => showDeleteDriverForm(driver.id)}
-                        />
+                        >
+                            {<Delete />}
+                        </button>
                     </div>
                 </li>
             </ul>

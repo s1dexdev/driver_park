@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '../../';
 import { sortItemsCar } from '../../../redux/cars/actions';
-import { carsConfig } from '../../../utils/constants';
+import { headerConfig } from './headerConfig';
 import { concatClasses } from '../../../utils/helpers';
 import { Translate } from '../../../lang';
 import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
@@ -49,21 +48,21 @@ export function TableHeaderCars(): JSX.Element {
             <li key={'checkbox'} className={`${styles.tableHeader__item}`}>
                 <input type="checkbox" />
             </li>
-            {carsConfig.map(({ title, classes, name }) => (
+            {headerConfig.map(({ title, classes, name }) => (
                 <li key={title} className={concatClasses(styles, classes)}>
                     {Translate(title)}
                     {title !== 'actions' && (
-                        <Button
+                        <button
+                            type="button"
                             className={name}
                             onClick={() => handleClick(name)}
-                            img={
-                                sortIcon && sortField === name ? (
-                                    <SortDown />
-                                ) : (
-                                    <SortUp />
-                                )
-                            }
-                        />
+                        >
+                            {sortIcon && sortField === name ? (
+                                <SortDown />
+                            ) : (
+                                <SortUp />
+                            )}
+                        </button>
                     )}
                 </li>
             ))}
