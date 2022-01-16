@@ -5,7 +5,6 @@ import { Translate } from '../../../lang';
 import { addCarRequest } from '../../../redux/cars/actions';
 import { statusesSelector } from '../../../redux/cars/selectors';
 import styles from '../Form.module.scss';
-import { Status } from '../../../types';
 
 interface FormData {
     model: string;
@@ -19,16 +18,8 @@ export function CarForm({ id }: { id: number }): JSX.Element {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
 
-    const getFullCarStatus = (status: string) => {
-        return statuses.reduce((acc: Status, { title, code }) => {
-            if (code === status) {
-                acc.title = title;
-                acc.code = code;
-            }
-
-            return acc;
-        });
-    };
+    const getFullCarStatus = (status: string) =>
+        statuses.find(({ code }) => code === status);
 
     const addCar = (data: FormData) => {
         const car = {

@@ -5,7 +5,7 @@ import { Translate } from '../../../lang';
 import { addDriverRequest } from '../../../redux/drivers/actions';
 import { statusesSelector } from '../../../redux/drivers/selectors';
 import styles from '../Form.module.scss';
-import { Status } from '../../../types';
+import { Status } from '../../../interfaces';
 
 interface IFormData {
     first_name: string;

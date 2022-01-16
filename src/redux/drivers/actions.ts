@@ -1,7 +1,5 @@
 import * as Type from './types';
-import { CreateAction } from '../../types';
-
-const createAction: CreateAction = type => data => ({ type, payload: data });
+import { createAction } from '../../utils/helpers';
 
 const fetchDriversRequest = createAction(Type.FETCH_DRIVERS_REQUEST);
 const fetchDriversSuccess = createAction(Type.FETCH_DRIVERS_SUCCESS);

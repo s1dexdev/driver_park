@@ -7,7 +7,7 @@ import { Translate } from '../../../lang';
 import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../assets/images/sortUp.svg';
 import styles from './TableHeaderCars.module.scss';
-import { Car } from '../../../types';
+import { Car } from '../../../interfaces';
 
 export function TableHeaderCars(): JSX.Element {
     const dispatch = useDispatch();

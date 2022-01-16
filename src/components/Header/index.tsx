@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Container, Menu, UserInfo } from '../';
+import { useDispatch } from 'react-redux';
+import { setLocale } from '../../redux/locale/actions';
+import { Container, Menu, UserInfo } from '../../components';
 import { LOCALES } from '../../lang';
 import { ReactComponent as IconMenu } from '../../assets/images/menu.svg';
 import { ReactComponent as IconLogo } from '../../assets/images/logo.svg';
@@ -8,11 +10,8 @@ import { ReactComponent as Rus } from '../../assets/images/ru.svg';
 import { ReactComponent as Eng } from '../../assets/images/gb.svg';
 import styles from './Header.module.scss';
 
-interface IProps {
-    onChangeLanguage: (language: string) => void;
-}
-
-export function Header({ onChangeLanguage }: IProps): JSX.Element {
+export function Header(): JSX.Element {
+    const dispatch = useDispatch();
     const [menu, setMenu] = useState(false);
 
     const showMenu = () => {
@@ -39,7 +38,7 @@ export function Header({ onChangeLanguage }: IProps): JSX.Element {
                                 type="button"
                                 className={styles.header__langBtn}
                                 onClick={() =>
-                                    onChangeLanguage(LOCALES.ENGLISH)
+                                    dispatch(setLocale(LOCALES.ENGLISH))
                                 }
                             >
                                 <Eng width={24} />
@@ -48,7 +47,7 @@ export function Header({ onChangeLanguage }: IProps): JSX.Element {
                                 type="button"
                                 className={styles.header__langBtn}
                                 onClick={() =>
-                                    onChangeLanguage(LOCALES.RUSSIAN)
+                                    dispatch(setLocale(LOCALES.RUSSIAN))
                                 }
                             >
                                 <Rus width={24} />

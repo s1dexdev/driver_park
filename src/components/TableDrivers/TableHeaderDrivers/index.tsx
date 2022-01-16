@@ -7,7 +7,7 @@ import { headerConfig } from './headerConfig';
 import { ReactComponent as SortDown } from '../../../assets/images/sortDown.svg';
 import { ReactComponent as SortUp } from '../../../assets/images/sortUp.svg';
 import styles from './TableHeaderDrivers.module.scss';
-import { Driver } from '../../../types';
+import { Driver } from '../../../interfaces';
 
 export function TableHeaderDrivers(): JSX.Element {
     const dispatch = useDispatch();

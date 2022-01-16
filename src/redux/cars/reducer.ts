@@ -1,27 +1,27 @@
 import * as Type from './types';
-import { Status, Car, Action } from '../../types';
+import { Status, Car, Action } from '../../interfaces';
 
-interface ICarsState {
+interface CarsState {
     cars: Car[];
     statuses: Status[];
     isLoading: boolean;
     error: Error | null | string;
 }
 
-type TSort = (a: Car, b: Car) => number;
-type TReducer = Car & Car[] & Status[] & Error & number & TSort;
+type Sort = (a: Car, b: Car) => number;
+type Reducer = Car & Car[] & Status[] & Error & number & Sort;
 
-const initialState: ICarsState = {
+const initialState: CarsState = {
     cars: [],
     statuses: [],
     isLoading: false,
     error: null,
 };
 
-export const carsReducer = <T extends TReducer>(
-    state: ICarsState,
+export const carsReducer = <T extends Reducer>(
+    state: CarsState,
     action: Action<T>,
-): ICarsState => {
+): CarsState => {
     state = state || initialState;
 
     switch (action.type) {
@@ -67,10 +67,9 @@ export const carsReducer = <T extends TReducer>(
         case Type.UPDATE_CAR_INFO_SUCCESS:
             return {
                 ...state,
-                cars: state.cars.map((car: Car) => {
+                cars: state.cars.map(car => {
                     if (Number(car.id) === action.payload.id) {
-                        car = Object.assign({}, car, action.payload);
-                        return car;
+                        return { ...car, ...(action.payload as Car) };
                     }
                     return car;
                 }),
@@ -104,14 +103,10 @@ export const carsReducer = <T extends TReducer>(
         case Type.SORT_ITEMS_CAR:
             return {
                 ...state,
-                cars: [
-                    ...state.cars.sort((itemFirst: Car, itemSecond: Car) =>
-                        action.payload(itemFirst, itemSecond),
-                    ),
-                ],
+                cars: [...state.cars.sort(action.payload)],
             };
 
         default:
-            return initialState;
+            return state;
     }
 };

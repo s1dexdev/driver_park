@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { carApi } from '../../api/carService';
 import { driverApi } from '../../api/driverService';
-import { Status, Car, Driver, Action, InfoUpdate } from '../../types';
+import { Status, Car, Driver, Action, InfoUpdate } from '../../interfaces';
 import {
     ADD_CAR_REQUEST,
     DELETE_CAR_REQUEST,

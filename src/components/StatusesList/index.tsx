@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Translate } from '../../lang';
 import styles from './StatusesList.module.scss';
-import { Status, InfoUpdate } from '../../types';
+import { Status, InfoUpdate } from '../../interfaces';
 
 interface IProps {
     statuses: Status[];

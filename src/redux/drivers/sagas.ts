@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { driverApi } from '../../api/driverService';
-import { Status, Driver, Action, InfoUpdate } from '../../types';
+import { Status, Driver, Action, InfoUpdate } from '../../interfaces';
 import {
     ADD_DRIVER_REQUEST,
     DELETE_DRIVER_REQUEST,

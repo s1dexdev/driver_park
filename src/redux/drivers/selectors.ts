@@ -1,20 +1,12 @@
-import { Driver, Status } from '../../types';
+import { Driver, Status, State } from '../../interfaces';
 
-interface IState {
-    driversReducer: {
-        drivers: Driver[];
-        statuses: Status[];
-        isLoading: boolean;
-    };
-}
-
-const driversSelector = (state: IState): Driver[] =>
+const driversSelector = (state: State): Driver[] =>
     state.driversReducer.drivers;
 
-const statusesSelector = (state: IState): Status[] =>
+const statusesSelector = (state: State): Status[] =>
     state.driversReducer.statuses;
 
-const loadingSelector = (state: IState): boolean =>
+const loadingSelector = (state: State): boolean =>
     state.driversReducer.isLoading;
 
 export { driversSelector, statusesSelector, loadingSelector };

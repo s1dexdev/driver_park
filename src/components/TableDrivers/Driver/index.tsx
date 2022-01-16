@@ -12,7 +12,7 @@ import { navConfig } from '../../../utils/constants';
 import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
 import { ReactComponent as Car } from '../../../assets/images/car.svg';
 import styles from './Driver.module.scss';
-import { InfoUpdate, Driver as DriverType } from '../../../types';
+import { InfoUpdate, Driver as DriverType } from '../../../interfaces';
 
 export function Driver({ driver }: { driver: DriverType }): JSX.Element {
     const dispatch = useDispatch();

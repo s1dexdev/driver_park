@@ -1,7 +1,5 @@
 import * as Type from './types';
-import { CreateAction } from '../../types';
-
-const createAction: CreateAction = type => data => ({ type, payload: data });
+import { createAction } from '../../utils/helpers';
 
 const fetchCarsRequest = createAction(Type.FETCH_CARS_REQUEST);
 const fetchCarsSuccess = createAction(Type.FETCH_CARS_SUCCESS);

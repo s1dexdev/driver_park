@@ -1,5 +1,5 @@
 import * as Type from './types';
-import { Status, Driver, Action } from '../../types';
+import { Status, Driver, Action } from '../../interfaces';
 
 interface DriversState {
     drivers: Driver[];
@@ -15,10 +15,10 @@ const initialState: DriversState = {
     error: null,
 };
 
-type TSort = (a: Driver, b: Driver) => number;
-type TReducer = Driver & Driver[] & Status[] & Error & number & TSort;
+type Sort = (a: Driver, b: Driver) => number;
+type Reducer = Driver & Driver[] & Status[] & Error & number & Sort;
 
-export const driversReducer = <T extends TReducer>(
+export const driversReducer = <T extends Reducer>(
     state: DriversState,
     action: Action<T>,
 ): DriversState => {
@@ -63,10 +63,9 @@ export const driversReducer = <T extends TReducer>(
         case Type.UPDATE_DRIVER_INFO_SUCCESS:
             return {
                 ...state,
-                drivers: state.drivers.map((driver: Driver) => {
+                drivers: state.drivers.map(driver => {
                     if (driver.id === action.payload.id) {
-                        driver = Object.assign({}, driver, action.payload);
-                        return driver;
+                        return { ...driver, ...(action.payload as Driver) };
                     }
                     return driver;
                 }),
@@ -97,15 +96,10 @@ export const driversReducer = <T extends TReducer>(
         case Type.SORT_ITEMS_DRIVER:
             return {
                 ...state,
-                drivers: [
-                    ...state.drivers.sort(
-                        (itemFirst: Driver, itemSecond: Driver) =>
-                            action.payload(itemFirst, itemSecond),
-                    ),
-                ],
+                drivers: [...state.drivers.sort(action.payload)],
             };
 
         default:
-            return initialState;
+            return state;
     }
 };

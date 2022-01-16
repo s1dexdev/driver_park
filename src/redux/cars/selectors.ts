@@ -1,19 +1,7 @@
-import { Status, Car } from '../../types';
+import { Status, Car, State } from '../../interfaces';
 
-interface IState {
-    carsReducer: {
-        cars: Car[];
-        statuses: Status[];
-        isLoading: boolean;
-        error: null | string;
-    };
-}
-
-const carsSelector = (state: IState): Car[] => state.carsReducer.cars;
-
-const statusesSelector = (state: IState): Status[] =>
-    state.carsReducer.statuses;
-
-const loadingSelector = (state: IState): boolean => state.carsReducer.isLoading;
+const carsSelector = (state: State): Car[] => state.carsReducer.cars;
+const statusesSelector = (state: State): Status[] => state.carsReducer.statuses;
+const loadingSelector = (state: State): boolean => state.carsReducer.isLoading;
 
 export { carsSelector, statusesSelector, loadingSelector };

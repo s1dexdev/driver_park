@@ -10,7 +10,7 @@ import { Translate } from '../../../lang';
 import { ReactComponent as Delete } from '../../../assets/images/delete.svg';
 import { ReactComponent as Plus } from '../../../assets/images/plus.svg';
 import styles from './Car.module.scss';
-import { InfoUpdate, Car as CarType } from '../../../types';
+import { InfoUpdate, Car as CarType } from '../../../interfaces';
 
 export function Car({ car }: { car: CarType }): JSX.Element {
     const dispatch = useDispatch();

@@ -24,15 +24,30 @@ interface Driver {
     status: Status;
 }
 
+interface State {
+    driversReducer: {
+        drivers: Driver[];
+        statuses: Status[];
+        isLoading: boolean;
+    };
+
+    carsReducer: {
+        cars: Car[];
+        statuses: Status[];
+        isLoading: boolean;
+        error: null | string;
+    };
+
+    localeReducer: {
+        lang: string;
+    };
+}
+
 interface Action<P> {
     type: string;
     payload: P;
 }
 
-type CreateAction = (
-    type: string,
-) => <P>(data?: P) => { type: string; payload?: P };
-
 type InfoUpdate = string | number | Status;
 
-export type { Status, Car, Driver, Action, CreateAction, InfoUpdate };
+export type { Status, Car, Driver, Action, InfoUpdate, State };
