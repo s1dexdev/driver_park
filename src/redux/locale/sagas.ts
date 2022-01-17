@@ -7,7 +7,7 @@ interface Params {
     payload: string;
 }
 
-function* setLocaleSaga({ payload }: Params) {
+function setLocaleSaga({ payload }: Params) {
     localStorage.setItem('locale', payload);
     put(setLocale(payload));
 }

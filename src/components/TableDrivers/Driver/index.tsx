@@ -1,7 +1,13 @@
 import { useState, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DriverNameForm, DeleteForm, StatusesList, Modal } from '../../';
+import { format } from 'date-fns';
+import {
+    DriverNameForm,
+    DeleteForm,
+    StatusesList,
+    Modal,
+} from '../../../components';
 import { Translate } from '../../../lang';
 import {
     updateDriverInfoRequest,
@@ -56,8 +62,9 @@ export function Driver({ driver }: { driver: DriverType }): JSX.Element {
         setModalActive(true);
     };
 
-    const parseDate = (date: number): string =>
-        new Date(date).toLocaleDateString();
+    const parseDate = (date: number): string => {
+        return format(date, 'P');
+    };
 
     return (
         <>
