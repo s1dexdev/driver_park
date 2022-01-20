@@ -1,0 +1,14 @@
+@import '../../../assets/styles/variables.scss';
+
+.listCars {
+    &__item {
+        padding: 22px 24px;
+
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+    }
+
+    &__item:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+}

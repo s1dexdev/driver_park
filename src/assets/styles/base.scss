@@ -1,0 +1,62 @@
+@import './variables.scss';
+
+@font-face {
+    font-family: 'Gilroy-Regular';
+    font-size: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/gilroy-regular.eot'); /* IE 9 Compatibility Mode */
+    src: url('../fonts/gilroy-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE < 9 */ url('../fonts/gilroy-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/gilroy-regular.woff')
+            format('woff'),
+        /* Firefox >= 3.6, any other modern browser */
+            url('../fonts/gilroy-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+            url('../fonts/gilroy-regular.svg#gilroy-regular') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+
+body {
+    font-family: 'Gilroy-Regular', sans-serif;
+    color: $text-main-color;
+
+    background-color: $page-bcg-color;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+button {
+    width: 147px;
+    height: 40px;
+    margin: 16px;
+
+    color: $btn-text-color;
+
+    border: none;
+    border-radius: 8px;
+    background-color: $btn-bg-color;
+    transition: box-shadow $transition-duration $timing-function;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    -webkit-box-shadow: 0px 16px 20px 5px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 16px 20px 5px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 16px 20px 5px rgba(34, 60, 80, 0.2);
+}

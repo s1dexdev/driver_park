@@ -1,0 +1,69 @@
+@import '../../assets/styles/variables.scss';
+
+.header {
+    background-color: $component-bcg-color;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+    }
+
+    &__infoWrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 250px;
+        height: 100%;
+        transition: background-color $transition-duration $timing-function;
+        border-radius: 35px;
+    }
+
+    &__infoWrapper:hover {
+        background-color: rgb(220, 220, 220);
+    }
+
+    &__langBox {
+        width: 80px;
+    }
+
+    &__langBtn {
+        margin: 0;
+        padding: 0;
+
+        background-color: transparent;
+        cursor: default;
+    }
+
+    &__langBtn:hover,
+    &__langBtn:focus {
+        box-shadow: none;
+    }
+
+    &__langBtn:hover svg,
+    &__langBtn:focus svg {
+        cursor: pointer;
+    }
+
+    &__langBox {
+        display: flex;
+    }
+}
+
+.headerMenu {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        margin-right: 24px;
+        transition: box-shadow $transition-duration $timing-function,
+            border-radius $transition-duration $timing-function;
+    }
+
+    &__icon:hover {
+        -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

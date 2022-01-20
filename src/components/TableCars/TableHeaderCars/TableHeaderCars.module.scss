@@ -1,0 +1,62 @@
+.tableHeader {
+    display: flex;
+    align-items: center;
+
+    padding: 8px 24px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+    }
+
+    &__id,
+    &__actions {
+        width: 70px;
+    }
+
+    &__name {
+        width: 300px;
+    }
+
+    &__mark,
+    &__model,
+    &__number,
+    &__status {
+        width: 150px;
+    }
+
+    &__status {
+        justify-content: center;
+
+        @media screen and (min-width: 1300px) {
+            justify-content: flex-start;
+        }
+    }
+
+    &__year {
+        width: 220px;
+
+        @media screen and (min-width: 1300px) {
+            width: 170px;
+        }
+
+        @media screen and (min-width: 1872px) {
+            width: 220px;
+        }
+    }
+
+    &__icon {
+        margin-left: 8px;
+        cursor: pointer;
+    }
+
+    & button {
+        width: 25px;
+        height: 25px;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+    }
+}
